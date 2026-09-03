@@ -2,454 +2,382 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="簡単辞典WEB - 日本語と英語をシンプルに調べられるWeb辞書">
+    <meta name="theme-color" content="#f5f5f7">
     <title>簡単辞典WEB - Easy Web Dictionary</title>
     <style>
+        :root {
+            --bg-primary: #f5f5f7;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #e8e8ed;
+            --bg-card: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-tertiary: #86868b;
+            --accent: #0071e3;
+            --accent-hover: #0077ed;
+            --accent-soft: rgba(0, 113, 227, 0.12);
+            --border: rgba(0, 0, 0, 0.08);
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --radius: 14px;
+            --radius-sm: 10px;
+            --nav-height: 64px;
+            --base-size: 16px;
+            --transition: 0.22s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #000000;
+            --bg-secondary: #1c1c1e;
+            --bg-tertiary: #2c2c2e;
+            --bg-card: #1c1c1e;
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --text-tertiary: #6e6e73;
+            --accent: #0a84ff;
+            --accent-hover: #409cff;
+            --accent-soft: rgba(10, 132, 255, 0.18);
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        html { font-size: var(--base-size); }
         body {
-            font-family: Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #ffffff;
-            color: #333333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+            transition: background var(--transition), color var(--transition);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 常に上部に表示されるナビゲーションバー --- */
         .navbar {
-            background: #535353;
-            color: white;
-            padding: 10px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000; height: var(--nav-height);
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; padding: 0 20px; gap: 16px;
+            transition: background var(--transition), border-color var(--transition);
         }
+        [data-theme="dark"] .navbar { background: rgba(28, 28, 30, 0.78); }
 
-        .logo-container {
-            cursor: pointer;
-            flex-shrink: 0;
+        .logo { cursor: pointer; flex-shrink: 0; user-select: none; }
+        .logo-main { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary); }
+        .logo-sub { font-size: 0.7rem; color: var(--text-tertiary); margin-top: -1px; }
+
+        .search-area { flex: 1; max-width: 520px; position: relative; display: flex; align-items: center; }
+        .search-box {
+            width: 100%; display: flex; align-items: center;
+            background: var(--bg-tertiary); border-radius: 12px; overflow: hidden;
+            transition: box-shadow var(--transition);
         }
-
-        .logo-main {
-            font-size: 26px;
-            font-weight: normal;
-            margin: 0;
+        .search-box:focus-within { box-shadow: 0 0 0 3px var(--accent-soft); }
+        .search-input {
+            flex: 1; border: none; background: transparent;
+            padding: 11px 12px 11px 16px; font-size: 1rem; color: var(--text-primary);
+            outline: none; min-width: 0;
         }
-
-        .logo-sub {
-            font-size: 14px;
-            margin-top: 2px;
-            color: #dddddd;
-        }
-
-        /* 検索バー周り */
-        .search-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            width: 100%;
-            max-width: 500px;
-            margin-left: 20px;
-        }
-
-        .search-wrapper {
-            position: relative;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            background: white;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 12px 45px 12px 15px; /* クリアボタンが大きくなったため、文字が被らないよう右余白を35pxから45pxに調整 */
-            border: none;
-            font-size: 16px; /* スマホでの自動ズームを防止するため16px以上に修正 */
-            outline: none;
-            color: #333;
-        }
-
-        /* プレースホルダーの文字色を少し薄めに */
-        .search-bar::placeholder {
-            color: #757575;
-        }
-
-        /* 【修正箇所】クリアボタン（×）のサイズとクリック領域の拡大 */
+        .search-input::placeholder { color: var(--text-tertiary); }
         .clear-btn {
-            position: absolute;
-            right: 0;                  /* 右端にぴったり配置 */
-            top: 0;                    /* 上端にぴったり配置 */
-            height: 100%;              /* 検索窓の高さ一杯に広げる */
-            width: 44px;               /* タップしやすい適切な幅（44px）を確保 */
-            background: none;
-            border: none;
-            font-size: 22px;           /* バツ印の視認性を高めるため、16pxから22pxに拡大 */
-            cursor: pointer;
-            color: #999;
-            padding: 0;
-            display: flex;             /* 縦横の中央にバツ印を配置 */
-            align-items: center;
-            justify-content: center;
+            width: 36px; height: 36px; border: none; background: transparent;
+            color: var(--text-tertiary); font-size: 1.25rem; cursor: pointer;
+            display: none; align-items: center; justify-content: center; border-radius: 50%;
         }
-
+        .clear-btn.visible { display: flex; }
+        .clear-btn:hover { color: var(--text-secondary); background: var(--border); }
         .search-btn {
-            background: #3b82f6;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 14px;
-            cursor: pointer;
-            white-space: nowrap;
+            border: none; background: var(--accent); color: white;
+            padding: 0 18px; height: 40px; font-size: 0.9rem; font-weight: 500;
+            cursor: pointer; transition: background var(--transition); white-space: nowrap;
         }
+        .search-btn:hover { background: var(--accent-hover); }
 
-        .search-btn:hover {
-            background: #2563eb;
-        }
-        
-        /* サジェストリスト */
         .suggestions {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: white;
-            border: 1px solid #ddd;
-            max-height: 250px;
-            overflow-y: auto;
-            z-index: 2000;
-            display: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+            background: var(--bg-secondary); border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+            max-height: 280px; overflow-y: auto; display: none; z-index: 2000;
         }
-
+        .suggestions.show { display: block; }
         .suggestion-item {
-            padding: 10px 15px;
-            cursor: pointer;
-            border-bottom: 1px solid #eee;
-            color: #333;
-            font-size: 14px;
+            padding: 12px 16px; cursor: pointer; font-size: 0.95rem;
+            border-bottom: 1px solid var(--border); transition: background 0.15s;
         }
+        .suggestion-item:last-child { border-bottom: none; }
+        .suggestion-item:hover, .suggestion-item.active { background: var(--accent-soft); }
 
-        .suggestion-item:hover {
-            background: #f0f4f8;
+        .controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+        .ctrl-btn {
+            width: 36px; height: 36px; border: none; background: transparent;
+            color: var(--text-secondary); border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background var(--transition), color var(--transition);
         }
-        
-        /* --- メインコンテンツ領域 --- */
-        .main-content {
-            padding: 0;
-            max-width: 100%;
-            margin: 0 auto;
-        }
+        .ctrl-btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .ctrl-btn svg { width: 20px; height: 20px; }
 
-        /* --- 初期トップ画面（HP画像風デザイン） --- */
-        .welcome-view {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
+        .font-controls {
+            display: flex; align-items: center; background: var(--bg-tertiary);
+            border-radius: 20px; padding: 2px;
         }
-
-        /* ヒーロー看板（2色ブロック） */
-        .hero-box {
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 40px;
-            text-align: center;
+        .font-btn {
+            width: 32px; height: 28px; border: none; background: transparent;
+            color: var(--text-secondary); font-size: 0.8rem; font-weight: 600;
+            border-radius: 16px; cursor: pointer; transition: all 0.15s;
         }
-
-        .hero-top {
-            background: #e1f0ff;
-            padding: 40px 20px 20px 20px;
-        }
-
-        .hero-title {
-            font-size: 64px;
-            font-weight: normal;
-            margin: 0 0 10px 0;
-            letter-spacing: 2px;
-        }
-
-        .hero-subtitle {
-            font-size: 32px;
-            margin: 0;
-            font-weight: normal;
-        }
-
-        .hero-box .hero-bottom {
-            background: #cbe6f7;
-            padding: 20px;
-            font-size: 18px;
-            color: #111;
-        }
-
-        /* 使い方セクション */
-        .how-to-section {
-            margin-bottom: 50px;
-        }
-
-        .how-to-header {
-            display: flex;
-            align-items: center;
-            background: #eaeaea;
-            height: 70px;
-            margin-bottom: 40px;
-        }
-
-        .how-to-icon-block {
-            background: #aaaaaa;
-            width: 70px;
-            height: 70px;
-        }
-
-        .how-to-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0;
-            padding-left: 30px;
-        }
-
-        .how-to-text {
-            font-size: 14px;
-            line-height: 1.8;
-            text-align: center;
-            padding: 0 30px;
-            color: #000000;
-        }
-
-        /* フッター */
-        .footer {
-            text-align: center;
-            font-size: 13px;
-            color: #333;
-            margin-top: 80px;
-            padding-bottom: 40px;
-        }
-
-        /* --- 検索結果画面のスタイル --- */
-        .search-results-view {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .search-title {
-            text-align: center;
-            font-size: 20px;
-            color: #555;
-            font-weight: normal;
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-
-        .dictionary-card {
-            background-color: #ededed;
-            padding: 40px 50px;
-            border-radius: 4px;
-            margin-bottom: 30px;
+        .font-btn.active {
+            background: var(--bg-secondary); color: var(--text-primary);
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-baseline;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
+        .main { max-width: 720px; margin: 0 auto; padding: 32px 20px 80px; }
 
+        .hero { text-align: center; margin-bottom: 40px; }
+        .hero-title {
+            font-size: 2.6rem; font-weight: 700; letter-spacing: -0.03em;
+            margin-bottom: 8px; color: var(--text-primary);
+        }
+        .hero-sub { font-size: 1.15rem; color: var(--text-secondary); font-weight: 400; margin-bottom: 12px; }
+        .hero-desc { font-size: 0.95rem; color: var(--text-tertiary); max-width: 420px; margin: 0 auto; }
+
+        .section { margin-bottom: 36px; }
+        .section-title {
+            font-size: 0.8rem; font-weight: 600; color: var(--text-tertiary);
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; padding-left: 4px;
+        }
+        .card {
+            background: var(--bg-card); border-radius: var(--radius);
+            box-shadow: var(--shadow); border: 1px solid var(--border);
+            padding: 20px 22px; transition: background var(--transition), border-color var(--transition);
+        }
+        .how-to-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+
+        .recent-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .recent-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 14px; background: var(--bg-tertiary); border-radius: 20px;
+            font-size: 0.9rem; color: var(--text-primary); cursor: pointer; border: none;
+            transition: background var(--transition);
+        }
+        .recent-chip:hover { background: var(--accent-soft); color: var(--accent); }
+        .recent-empty { font-size: 0.9rem; color: var(--text-tertiary); }
+
+        .results-header { text-align: center; margin-bottom: 28px; }
+        .results-title { font-size: 1.05rem; color: var(--text-secondary); font-weight: 400; }
+
+        .dict-card {
+            background: var(--bg-card); border-radius: var(--radius);
+            box-shadow: var(--shadow); border: 1px solid var(--border);
+            padding: 28px 30px; margin-bottom: 20px;
+            transition: background var(--transition), border-color var(--transition);
+        }
+        .card-top {
+            display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+            margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+        }
+        .word-block { flex: 1; min-width: 0; }
         .main-word {
-            font-size: 36px;
-            font-weight: bold;
-            color: #000;
-            margin: 0;
+            font-size: 1.85rem; font-weight: 700; letter-spacing: -0.02em;
+            line-height: 1.25; word-break: break-word;
         }
-
-        .pos-tag {
-            font-size: 32px;
-            font-weight: bold;
-            color: #000;
-            margin-left: 5px;
+        .pos-tag { font-size: 0.95rem; font-weight: 500; color: var(--text-secondary); margin-left: 6px; }
+        .meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 6px; }
+        .lang-badge {
+            font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 6px;
+            background: var(--accent-soft); color: var(--accent);
         }
+        .type-tag { font-size: 0.8rem; color: var(--text-tertiary); }
+        .romaji { font-size: 0.85rem; color: var(--text-secondary); }
 
-        .word-meta {
-            font-size: 14px;
-            color: #333;
+        .speak-btn {
+            flex-shrink: 0; width: 40px; height: 40px; border: none;
+            background: var(--bg-tertiary); color: var(--accent); border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: background var(--transition), transform 0.15s;
         }
+        .speak-btn:hover { background: var(--accent-soft); }
+        .speak-btn:active { transform: scale(0.92); }
+        .speak-btn.speaking { background: var(--accent); color: white; }
+        .speak-btn svg { width: 18px; height: 18px; }
 
-        .result-meaning {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #111;
-            text-align: justify;
-            margin-bottom: 20px;
-            text-indent: 1em;
+        .meaning { font-size: 1rem; line-height: 1.7; color: var(--text-primary); margin-bottom: 14px; }
+        .en-meaning {
+            font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 18px;
+            padding: 10px 14px; background: var(--bg-tertiary); border-radius: var(--radius-sm);
         }
-
-        .result-en-meaning {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #111;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        /* 英訳・和訳用のクリック可能な単語の共通スタイル */
         .clickable-word {
-            color: #2563eb;
-            cursor: pointer;
-            font-weight: bold;
-            transition: color 0.2s ease;
-            display: inline-block;
-            margin: 0 4px;
+            color: var(--accent); cursor: pointer; font-weight: 500; transition: opacity 0.15s;
+        }
+        .clickable-word:hover { text-decoration: underline; opacity: 0.85; }
+
+        .examples { list-style: none; margin-top: 8px; }
+        .examples li {
+            font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65;
+            padding: 6px 0 6px 16px; position: relative;
+        }
+        .examples li::before { content: "・"; position: absolute; left: 0; color: var(--text-tertiary); }
+
+        .empty-state { text-align: center; padding: 60px 20px; color: var(--text-tertiary); }
+        .empty-state p { font-size: 1.05rem; margin-bottom: 8px; }
+        .empty-hint { font-size: 0.9rem; }
+
+        .footer {
+            text-align: center; font-size: 0.8rem; color: var(--text-tertiary);
+            margin-top: 48px; padding-bottom: 20px;
         }
 
-        .clickable-word:hover {
-            color: #1d4ed8;
-            text-decoration: underline;
-        }
-
-        .result-examples {
-            list-style: none;
-            padding: 0;
-            margin: 0 auto;
-            display: table;
-            font-size: 18px;
-            line-height: 1.8;
-            color: #000;
-        }
-
-        .result-examples li {
-            margin-bottom: 5px;
-        }
-
-        /* --- スマートフォン向けのレスポンシブ調整 --- */
-        @media screen and (max-width: 600px) {
-            .navbar {
-                padding: 15px 20px;
-                flex-direction: column; /* 縦並びにして要素間の衝突を防ぐ */
-                align-items: stretch;
-            }
-
-            .logo-container {
-                text-align: center;
-                margin-bottom: 10px; /* 検索バーとの縦の隙間を確保 */
-            }
-
-            .search-container {
-                margin-left: 0;
-                max-width: 100%;
-            }
-
-            /* スマホでのヒーロータイトルの文字サイズ調整 */
-            .hero-title {
-                font-size: 40px;
-            }
-            .hero-subtitle {
-                font-size: 22px;
-            }
-            
-            /* スマホでのカード内余白調整 */
-            .dictionary-card {
-                padding: 25px 20px;
-            }
-            .main-word {
-                font-size: 28px;
-            }
-            .pos-tag {
-                font-size: 24px;
-            }
+        @media (max-width: 640px) {
+            .navbar { padding: 0 12px; gap: 10px; height: 58px; }
+            .logo-main { font-size: 1rem; }
+            .logo-sub { display: none; }
+            .search-btn { padding: 0 14px; font-size: 0.85rem; }
+            .font-controls { display: none; }
+            .hero-title { font-size: 2rem; }
+            .dict-card { padding: 22px 18px; }
+            .main-word { font-size: 1.55rem; }
+            .main { padding: 24px 14px 60px; }
         }
     </style>
 </head>
 <body>
-
-    <div class="navbar">
-        <div class="logo-container" onclick="resetPage()">
-            <h1 class="logo-main">簡単辞典WEB</h1>
+    <nav class="navbar">
+        <div class="logo" onclick="resetPage()" title="ホームに戻る">
+            <div class="logo-main">簡単辞典WEB</div>
             <div class="logo-sub">Easy Web Dictionary</div>
         </div>
-        <div class="search-container">
-            <div class="search-wrapper">
-                <input type="text" id="searchInput" class="search-bar" placeholder="単語を入力" onkeyup="handleSearch(event)">
-                <button class="clear-btn" onclick="clearSearch()">×</button>
+        <div class="search-area">
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="単語を入力..." autocomplete="off" enterkeyhint="search">
+                <button class="clear-btn" id="clearBtn" onclick="clearSearch()" aria-label="クリア">×</button>
+                <button class="search-btn" onclick="triggerSearch()">検索</button>
             </div>
-            <button class="search-btn" onclick="triggerSearch()">検索</button>
-            <div id="suggestions" class="suggestions"></div>
+            <div id="suggestions" class="suggestions" role="listbox"></div>
         </div>
-    </div>
-
-    <div class="main-content" id="mainContent">
-        <div class="welcome-view" id="welcomeView">
-            <div class="hero-box">
-                <div class="hero-top">
-                    <h2 class="hero-title">簡単辞典 WEB</h2>
-                    <h3 class="hero-subtitle">Easy Web Dictionary</h3>
-                </div>
-                <div class="hero-bottom">
-                    知りたい単語だけ検索！わかりやすくて短い説明ですぐわかる！
-                </div>
+        <div class="controls">
+            <div class="font-controls" title="文字サイズ">
+                <button class="font-btn" data-size="14" onclick="setFontSize(14)">A</button>
+                <button class="font-btn active" data-size="16" onclick="setFontSize(16)">A</button>
+                <button class="font-btn" data-size="18" onclick="setFontSize(18)" style="font-size:1rem">A</button>
             </div>
-
-            <div class="how-to-section">
-                <div class="how-to-header">
-                    <div class="how-to-icon-block"></div>
-                    <h4 class="how-to-title">使い方</h4>
-                </div>
-                <p class="how-to-text">
-                    まず、上の検索バーに検索したい単語を入れます。そしたら出てきた候補を選択するか<br>
-                    検索を押すことで検索ができます。あとは、わかりやすいUIと説明ですぐに理解ができるでしょう。
-                </p>
-            </div>
-
-            <div class="footer">
-                © Saito / Github Server and Create by Saito
-            </div>
+            <button class="ctrl-btn" id="themeBtn" onclick="toggleTheme()" title="テーマ切替" aria-label="ダークモード切替">
+                <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
         </div>
+    </nav>
 
-        <div class="search-results-view" id="searchResultsView" style="display: none;"></div>
-    </div>
+    <main class="main" id="mainContent">
+        <div id="welcomeView">
+            <div class="hero">
+                <h1 class="hero-title">簡単辞典 WEB</h1>
+                <p class="hero-sub">Easy Web Dictionary</p>
+                <p class="hero-desc">知りたい単語だけ検索。わかりやすく短い説明ですぐわかる。</p>
+            </div>
+            <div class="section">
+                <div class="section-title">使い方</div>
+                <div class="card">
+                    <p class="how-to-text">
+                        上部の検索バーに単語を入力すると候補が表示されます。候補を選ぶか「検索」を押すと詳細が表示されます。<br>
+                        結果内の青い単語をタップすると、その単語で再検索できます。スピーカーボタンで発音を確認できます。
+                    </p>
+                </div>
+            </div>
+            <div class="section" id="recentSection">
+                <div class="section-title">最近の検索</div>
+                <div class="card">
+                    <div id="recentList" class="recent-list">
+                        <span class="recent-empty">まだ検索履歴がありません</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">© Saito · GitHub Pages</div>
+        </div>
+        <div id="searchResultsView" style="display: none;"></div>
+    </main>
 
     <script src="jpdata.js"></script>
     <script src="endata.js"></script>
-    
     <script>
         let combinedData = [];
 
-        window.onload = () => {
+        window.addEventListener('DOMContentLoaded', () => {
             if (window.jpData) combinedData = combinedData.concat(window.jpData);
-            if (window.JpData) combinedData = combinedData.concat(window.JpData);
             if (window.enData) combinedData = combinedData.concat(window.enData);
-            if (window.EnData) combinedData = combinedData.concat(window.EnData);
-        };
 
-        function cleanText(str) {
-            return str.toLowerCase().replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-                return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-            });
+            const savedTheme = localStorage.getItem('dict-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                updateThemeIcon(true);
+            }
+
+            const savedSize = localStorage.getItem('dict-font-size');
+            if (savedSize) setFontSize(parseInt(savedSize, 10), false);
+
+            renderRecent();
+            updateClearBtn();
+
+            const input = document.getElementById('searchInput');
+            input.addEventListener('input', onInput);
+            input.addEventListener('keydown', onKeydown);
+            input.addEventListener('focus', onInput);
+        });
+
+        function toggleTheme() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('dict-theme', 'light');
+                updateThemeIcon(false);
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('dict-theme', 'dark');
+                updateThemeIcon(true);
+            }
         }
 
-        // サジェスト用のゆるい絞り込み
+        function updateThemeIcon(isDark) {
+            const icon = document.getElementById('themeIcon');
+            if (isDark) {
+                icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+            } else {
+                icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+            }
+        }
+
+        function setFontSize(size, save = true) {
+            document.documentElement.style.setProperty('--base-size', size + 'px');
+            document.querySelectorAll('.font-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.size, 10) === size);
+            });
+            if (save) localStorage.setItem('dict-font-size', size);
+        }
+
+        function cleanText(str) {
+            return str.toLowerCase().replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
+        }
+
         function filterSuggestions(query) {
             if (!query) return [];
             const target = cleanText(query);
-
             return combinedData.filter(item => {
                 const word = cleanText(item.word);
                 const romaji = item.romaji ? cleanText(item.romaji).replace(/\s+/g, '') : '';
-
-                if (target.length === 1) {
-                    return word.startsWith(target) || romaji.startsWith(target);
-                }
+                if (target.length === 1) return word.startsWith(target) || romaji.startsWith(target);
                 return word.includes(target) || romaji.includes(target);
             });
         }
 
-        // 確定検索用の完全一致絞り込み
         function filterExactSearch(query) {
             if (!query) return [];
             const target = cleanText(query);
-
             return combinedData.filter(item => {
                 const word = cleanText(item.word);
                 const romaji = item.romaji ? cleanText(item.romaji).replace(/\s+/g, '') : '';
@@ -457,171 +385,193 @@
             });
         }
 
-        // 入力時のリアルタイム処理
-        function handleSearch(e) {
-            const query = e.target.value.trim();
-
-            if (e.key === 'Enter') {
-                document.getElementById('suggestions').style.display = 'none';
-                performExactSearch(query);
-                return;
-            }
-
-            const suggestionsDiv = document.getElementById('suggestions');
-            
-            if (query.length === 0) {
-                suggestionsDiv.style.display = 'none';
-                return;
-            }
-
-            const matches = filterSuggestions(query);
-            
-            if (matches.length > 0) {
-                suggestionsDiv.innerHTML = '';
-                matches.slice(0, 10).forEach(match => {
-                    const div = document.createElement('div');
-                    div.className = 'suggestion-item';
-                    div.textContent = match.word;
-                    
-                    div.onclick = (event) => {
-                        event.stopPropagation();
-                        const searchInput = document.getElementById('searchInput');
-                        searchInput.value = match.word;
-                        suggestionsDiv.style.display = 'none';
-                        
-                        performExactSearch(match.word);
-                        searchInput.blur();
-                    };
-                    suggestionsDiv.appendChild(div);
-                });
-                suggestionsDiv.style.display = 'block';
-            } else {
-                suggestionsDiv.style.display = 'none';
-            }
-        }
-
-        // 右側の「検索」ボタンが押されたときの処理
-        function triggerSearch() {
+        function onInput() {
             const query = document.getElementById('searchInput').value.trim();
-            document.getElementById('suggestions').style.display = 'none';
-            performExactSearch(query);
+            updateClearBtn();
+            const box = document.getElementById('suggestions');
+            if (!query) {
+                box.classList.remove('show');
+                box.innerHTML = '';
+                return;
+            }
+            const matches = filterSuggestions(query).slice(0, 10);
+            if (matches.length === 0) {
+                box.classList.remove('show');
+                return;
+            }
+            box.innerHTML = matches.map(m =>
+                `<div class="suggestion-item" role="option" onclick="selectSuggestion('${escapeAttr(m.word)}')">${escapeHtml(m.word)}</div>`
+            ).join('');
+            box.classList.add('show');
         }
 
-        // タップされたときに自動で再検索を実行する共通関数
-        function autoSearchByClickedText(wordText) {
-            const searchInput = document.getElementById('searchInput');
-            searchInput.value = wordText;
-            performExactSearch(wordText);
+        function onKeydown(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('suggestions').classList.remove('show');
+                performExactSearch(document.getElementById('searchInput').value.trim());
+            }
+        }
+
+        function selectSuggestion(word) {
+            document.getElementById('searchInput').value = word;
+            document.getElementById('suggestions').classList.remove('show');
+            performExactSearch(word);
+            document.getElementById('searchInput').blur();
+        }
+
+        function triggerSearch() {
+            document.getElementById('suggestions').classList.remove('show');
+            performExactSearch(document.getElementById('searchInput').value.trim());
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('searchInput');
+            input.value = '';
+            document.getElementById('suggestions').classList.remove('show');
+            updateClearBtn();
+            input.focus();
+        }
+
+        function updateClearBtn() {
+            document.getElementById('clearBtn').classList.toggle('visible', document.getElementById('searchInput').value.length > 0);
+        }
+
+        function getRecent() {
+            try { return JSON.parse(localStorage.getItem('dict-recent') || '[]'); }
+            catch { return []; }
+        }
+
+        function addRecent(word) {
+            let list = getRecent().filter(w => w !== word);
+            list.unshift(word);
+            list = list.slice(0, 12);
+            localStorage.setItem('dict-recent', JSON.stringify(list));
+            renderRecent();
+        }
+
+        function renderRecent() {
+            const list = getRecent();
+            const el = document.getElementById('recentList');
+            if (!list.length) {
+                el.innerHTML = '<span class="recent-empty">まだ検索履歴がありません</span>';
+                return;
+            }
+            el.innerHTML = list.map(w =>
+                `<button class="recent-chip" onclick="selectSuggestion('${escapeAttr(w)}')">${escapeHtml(w)}</button>`
+            ).join('');
+        }
+
+        function speakWord(word, lang) {
+            if (!window.speechSynthesis) {
+                alert('お使いのブラウザは音声読み上げに対応していません。');
+                return;
+            }
+            window.speechSynthesis.cancel();
+            const utter = new SpeechSynthesisUtterance(word);
+            utter.lang = (lang === 'jp' || lang === 'ja') ? 'ja-JP' : 'en-US';
+            utter.rate = 0.9;
+            const btns = document.querySelectorAll('.speak-btn');
+            btns.forEach(b => b.classList.remove('speaking'));
+            if (typeof event !== 'undefined' && event.currentTarget) {
+                event.currentTarget.classList.add('speaking');
+            }
+            utter.onend = utter.onerror = () => { btns.forEach(b => b.classList.remove('speaking')); };
+            window.speechSynthesis.speak(utter);
+        }
+
+        function performExactSearch(query) {
+            if (!query) return;
+            addRecent(query);
+            document.getElementById('welcomeView').style.display = 'none';
+            const results = document.getElementById('searchResultsView');
+            results.style.display = 'block';
+            const found = filterExactSearch(query);
+            let html = '';
+            if (found.length === 0) {
+                html = `<div class="empty-state"><p>「${escapeHtml(query)}」に一致する単語は見つかりませんでした</p><p class="empty-hint">別の表記やローマ字でも試してみてください</p></div>`;
+            } else {
+                html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果</p></div>`;
+                found.forEach(item => {
+                    let enHtml = '';
+                    if (item.enTranslation) {
+                        const tokens = item.enTranslation.split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
+                        const links = tokens.map(t => `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`).join(' <span style="color:var(--text-tertiary)">/</span> ');
+                        enHtml = `<div class="en-meaning">英訳：${links}</div>`;
+                    }
+                    let meaning = item.meaning || '';
+                    if (item.lang === 'en' && meaning.includes('和訳：')) {
+                        meaning = meaning.replace(/和訳：([^<>\n]+)/g, (m, p1) => {
+                            const t = p1.trim();
+                            return `和訳：<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`;
+                        });
+                    }
+                    let exHtml = '';
+                    if (item.examples && item.examples.length) {
+                        exHtml = '<ul class="examples">' + item.examples.map(ex => `<li>${escapeHtml(ex.replace(/^・\s*/, ''))}</li>`).join('') + '</ul>';
+                    }
+                    const langLabel = item.lang === 'jp' ? '日本語' : 'English';
+                    const speakLang = item.lang === 'jp' ? 'ja' : 'en';
+                    html += `
+                        <article class="dict-card">
+                            <div class="card-top">
+                                <div class="word-block">
+                                    <div class="main-word">${escapeHtml(item.word)} <span class="pos-tag">[${escapeHtml(item.pos || '名詞')}]</span></div>
+                                    <div class="meta-row">
+                                        <span class="lang-badge">${langLabel}</span>
+                                        <span class="type-tag">${escapeHtml(item.type || '')}</span>
+                                        ${item.romaji ? `<span class="romaji">${escapeHtml(item.romaji)}</span>` : ''}
+                                    </div>
+                                </div>
+                                <button class="speak-btn" onclick="speakWord('${escapeAttr(item.word)}', '${speakLang}')" title="発音を聞く" aria-label="発音">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="meaning">${meaning}</div>
+                            ${enHtml}
+                            ${exHtml}
+                        </article>`;
+                });
+            }
+            html += `<div class="footer">© Saito · GitHub Pages</div>`;
+            results.innerHTML = html;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 完全一致検索と画面切り替え
-        function performExactSearch(query) {
-            if (!query) return;
-            
-            const welcomeView = document.getElementById('welcomeView');
-            const resultsView = document.getElementById('searchResultsView');
-            
-            welcomeView.style.display = 'none';
-            resultsView.style.display = 'block';
-            
-            const results = filterExactSearch(query);
-            let html = '';
-            
-            if (results.length === 0) {
-                html = `<p style="text-align: center; color: #666; margin-top: 50px;">「${query}」に完全に一致する単語は見つかりませんでした。</p>`;
-            } else {
-                html += `<h2 class="search-title">「${query}」の検索結果 …</h2>`;
-
-                results.forEach(item => {
-                    // --- 1. 日本語データ側：enTranslation（英訳）の処理 ---
-                    let enMeaningHtml = '';
-                    if (item.enTranslation) {
-                        const tokens = item.enTranslation.split(/[\/,]+/);
-                        let linksHtml = '';
-                        
-                        tokens.forEach((token, index) => {
-                            const trimmed = token.trim();
-                            if (trimmed) {
-                                const escapedWord = trimmed.replace(/'/g, "\\'");
-                                linksHtml += `<span class="clickable-word" onclick="autoSearchByClickedText('${escapedWord}')">${trimmed}</span>`;
-                                if (index < tokens.length - 1 && tokens[index+1].trim()) {
-                                    linksHtml += ' / ';
-                                }
-                            }
-                        });
-                        enMeaningHtml = `<p class="result-en-meaning">英訳：${linksHtml}</p>`;
-                    }
-
-                    // --- 2. 英語データ側：meaning内の「和訳：〇〇」を自動リンク化する処理 ---
-                    let processedMeaning = item.meaning || '';
-                    if (item.lang === 'en' && processedMeaning.includes('和訳：')) {
-                        // 「和訳：」に続く文字列（HTMLタグや文末まで）を正規表現でキャプチャ
-                        processedMeaning = processedMeaning.replace(/和訳：([^<>\n]+)/g, (match, p1) => {
-                            const trimmedJapanese = p1.trim();
-                            const escapedJapanese = trimmedJapanese.replace(/'/g, "\\'");
-                            return `和訳：<span class="clickable-word" onclick="autoSearchByClickedText('${escapedJapanese}')">${trimmedJapanese}</span>`;
-                        });
-                    }
-
-                    let examplesHtml = '';
-                    if (item.examples && item.examples.length > 0) {
-                        examplesHtml = '<ul class="result-examples">';
-                        item.examples.forEach(ex => {
-                            const prefix = ex.startsWith('・') ? '' : '・ ';
-                            examplesHtml += `<li>${prefix}${ex}</li>`;
-                        });
-                        examplesHtml += '</ul>';
-                    }
-
-                    html += `
-                        <div class="dictionary-card">
-                            <div class="card-header">
-                                <h1 class="main-word">${item.word} <span class="pos-tag">[${item.pos || '名詞'}]</span></h1>
-                                <div class="word-meta">【${item.type || '基本語'}】${item.romaji ? ` - ${item.romaji}` : ''}</div>
-                            </div>
-                            <p class="result-meaning">${processedMeaning}</p>
-                            ${enMeaningHtml}
-                            ${examplesHtml}
-                        </div>
-                    `;
-                });
-            }
-
-            html += `
-                <div class="footer" style="margin-top: 60px;">
-                    © Saito / Github Server and Create by Saito
-                </div>
-            `;
-
-            resultsView.innerHTML = html;
+        function autoSearch(word) {
+            document.getElementById('searchInput').value = word;
+            updateClearBtn();
+            performExactSearch(word);
         }
 
-        document.addEventListener('click', (e) => {
-            const suggestionsDiv = document.getElementById('suggestions');
-            const searchInput = document.getElementById('searchInput');
-            if (e.target !== suggestionsDiv && e.target !== searchInput) {
-                suggestionsDiv.style.display = 'none';
-            }
-        });
-
-        // ｘボタン（クリアボタン）押下時の処理
-        function clearSearch() {
-            const searchInput = document.getElementById('searchInput');
-            searchInput.value = ''; 
-            document.getElementById('suggestions').style.display = 'none'; 
-            searchInput.focus(); 
-        }
-
-        // ロゴクリック時などの完全リセット処理
         function resetPage() {
             document.getElementById('searchInput').value = '';
-            document.getElementById('suggestions').style.display = 'none';
-            
+            document.getElementById('suggestions').classList.remove('show');
+            updateClearBtn();
             document.getElementById('welcomeView').style.display = 'block';
             document.getElementById('searchResultsView').style.display = 'none';
             document.getElementById('searchResultsView').innerHTML = '';
+            renderRecent();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        function escapeHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function escapeAttr(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        document.addEventListener('click', (e) => {
+            const area = document.querySelector('.search-area');
+            if (!area.contains(e.target)) {
+                document.getElementById('suggestions').classList.remove('show');
+            }
+        });
     </script>
 </body>
 </html>
