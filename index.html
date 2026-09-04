@@ -450,14 +450,14 @@
             if (save) localStorage.setItem('dict-font-size', size);
         }
 
-        // カタカナ → ひらがな変換
+        // カタカナ → ひらがな
         function toHiragana(str) {
             return str.replace(/[\u30A1-\u30F6]/g, ch =>
                 String.fromCharCode(ch.charCodeAt(0) - 0x60)
             );
         }
 
-        // 検索用正規化（全角英数→半角、大文字→小文字、カタカナ→ひらがな、空白除去）
+        // 検索用正規化
         function cleanText(str) {
             return toHiragana(
                 str.toLowerCase().replace(/[Ａ-Ｚａ-ｚ０-９]/g, s =>
@@ -479,26 +479,21 @@
             });
         }
 
-        // 完全一致を優先し、なければ部分一致も返す
+        // 完全一致優先、なければ部分一致
         function filterSearch(query) {
             if (!query) return [];
             const target = cleanText(query);
-
             const exact = [];
             const partial = [];
-
             combinedData.forEach(item => {
                 const word = cleanText(item.word);
                 const romaji = item.romaji ? cleanText(item.romaji) : '';
-
                 if (word === target || romaji === target) {
                     exact.push(item);
                 } else if (word.includes(target) || romaji.includes(target)) {
                     partial.push(item);
                 }
             });
-
-            // 完全一致があればそれを優先、なければ部分一致を返す
             return exact.length > 0 ? exact : partial;
         }
 
