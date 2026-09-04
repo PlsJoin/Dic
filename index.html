@@ -450,8 +450,20 @@
             if (save) localStorage.setItem('dict-font-size', size);
         }
 
+        // カタカナ → ひらがな変換
+        function toHiragana(str) {
+            return str.replace(/[\u30A1-\u30F6]/g, ch =>
+                String.fromCharCode(ch.charCodeAt(0) - 0x60)
+            );
+        }
+
+        // 検索用正規化（全角英数→半角、大文字→小文字、カタカナ→ひらがな、空白除去）
         function cleanText(str) {
-            return str.toLowerCase().replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
+            return toHiragana(
+                str.toLowerCase().replace(/[Ａ-Ｚａ-ｚ０-９]/g, s =>
+                    String.fromCharCode(s.charCodeAt(0) - 0xFEE0)
+                )
+            ).replace(/\s+/g, '');
         }
 
         function filterSuggestions(query) {
@@ -459,20 +471,35 @@
             const target = cleanText(query);
             return combinedData.filter(item => {
                 const word = cleanText(item.word);
-                const romaji = item.romaji ? cleanText(item.romaji).replace(/\s+/g, '') : '';
-                if (target.length === 1) return word.startsWith(target) || romaji.startsWith(target);
+                const romaji = item.romaji ? cleanText(item.romaji) : '';
+                if (target.length === 1) {
+                    return word.startsWith(target) || romaji.startsWith(target);
+                }
                 return word.includes(target) || romaji.includes(target);
             });
         }
 
-        function filterExactSearch(query) {
+        // 完全一致を優先し、なければ部分一致も返す
+        function filterSearch(query) {
             if (!query) return [];
             const target = cleanText(query);
-            return combinedData.filter(item => {
+
+            const exact = [];
+            const partial = [];
+
+            combinedData.forEach(item => {
                 const word = cleanText(item.word);
-                const romaji = item.romaji ? cleanText(item.romaji).replace(/\s+/g, '') : '';
-                return word === target || romaji === target;
+                const romaji = item.romaji ? cleanText(item.romaji) : '';
+
+                if (word === target || romaji === target) {
+                    exact.push(item);
+                } else if (word.includes(target) || romaji.includes(target)) {
+                    partial.push(item);
+                }
             });
+
+            // 完全一致があればそれを優先、なければ部分一致を返す
+            return exact.length > 0 ? exact : partial;
         }
 
         function onInput() {
@@ -499,20 +526,20 @@
             if (e.key === 'Enter') {
                 e.preventDefault();
                 document.getElementById('suggestions').classList.remove('show');
-                performExactSearch(document.getElementById('searchInput').value.trim());
+                performSearch(document.getElementById('searchInput').value.trim());
             }
         }
 
         function selectSuggestion(word) {
             document.getElementById('searchInput').value = word;
             document.getElementById('suggestions').classList.remove('show');
-            performExactSearch(word);
+            performSearch(word);
             document.getElementById('searchInput').blur();
         }
 
         function triggerSearch() {
             document.getElementById('suggestions').classList.remove('show');
-            performExactSearch(document.getElementById('searchInput').value.trim());
+            performSearch(document.getElementById('searchInput').value.trim());
         }
 
         function clearSearch() {
@@ -568,7 +595,7 @@
             window.speechSynthesis.speak(utter);
         }
 
-        function performExactSearch(query) {
+        function performSearch(query) {
             if (!query) return;
             addRecent(query);
             document.getElementById('welcomeView').style.display = 'none';
@@ -577,7 +604,7 @@
             document.getElementById('settingsPanel').classList.remove('show');
             document.getElementById('gearBtn').classList.remove('active');
 
-            const found = filterExactSearch(query);
+            const found = filterSearch(query);
             let html = '';
             if (found.length === 0) {
                 html = `<div class="empty-state"><p>「${escapeHtml(query)}」に一致する単語は見つかりませんでした</p><p class="empty-hint">別の表記やローマ字でも試してみてください</p></div>`;
@@ -645,7 +672,7 @@
         function autoSearch(word) {
             document.getElementById('searchInput').value = word;
             updateClearBtn();
-            performExactSearch(word);
+            performSearch(word);
         }
 
         function resetPage() {
