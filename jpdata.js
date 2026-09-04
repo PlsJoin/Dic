@@ -1,4 +1,3 @@
-```javascript
 window.jpData = [
     {
         word: "こんにちは",
@@ -438,4 +437,3 @@ window.jpData = [
         ]
     }
 ];
-```
