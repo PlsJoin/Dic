@@ -20,9 +20,8 @@
             --accent-soft: rgba(0, 113, 227, 0.12);
             --border: rgba(0, 0, 0, 0.1);
             --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 4px 14px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.1);
             --radius: 6px;
-            --radius-sm: 4px;
             --nav-height: 58px;
             --base-size: 16px;
             --transition: 0.2s ease;
@@ -41,7 +40,7 @@
             --accent-soft: rgba(10, 132, 255, 0.18);
             --border: rgba(255, 255, 255, 0.12);
             --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 4px 14px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -58,20 +57,31 @@
 
         .navbar {
             position: sticky; top: 0; z-index: 1000; height: var(--nav-height);
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: saturate(180%) blur(16px);
             -webkit-backdrop-filter: saturate(180%) blur(16px);
             border-bottom: 1px solid var(--border);
-            display: flex; align-items: center; padding: 0 18px; gap: 12px;
+            display: flex; align-items: center; padding: 0 16px; gap: 12px;
             transition: background var(--transition), border-color var(--transition);
         }
-        [data-theme="dark"] .navbar { background: rgba(28, 28, 30, 0.85); }
+        [data-theme="dark"] .navbar { background: rgba(28, 28, 30, 0.88); }
 
-        .logo { cursor: pointer; flex-shrink: 0; user-select: none; }
-        .logo-main { font-size: 1.08rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary); }
-        .logo-sub { font-size: 0.66rem; color: var(--text-tertiary); margin-top: -1px; }
+        .logo {
+            cursor: pointer; flex-shrink: 0; user-select: none;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .logo-icon {
+            width: 32px; height: 32px; border-radius: 8px;
+            background: var(--accent);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 16px; font-weight: 700;
+            flex-shrink: 0;
+        }
+        .logo-text { line-height: 1.15; }
+        .logo-main { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary); }
+        .logo-sub { font-size: 0.65rem; color: var(--text-tertiary); }
 
-        .search-area { flex: 1; max-width: 480px; position: relative; display: flex; align-items: center; }
+        .search-area { flex: 1; max-width: 460px; position: relative; display: flex; align-items: center; }
         .search-box {
             width: 100%; display: flex; align-items: center;
             background: var(--bg-tertiary); border-radius: 10px; overflow: hidden;
@@ -93,7 +103,7 @@
         .clear-btn:hover { color: var(--text-secondary); background: var(--border); }
         .search-btn {
             border: none; background: var(--accent); color: white;
-            padding: 0 16px; height: 38px; font-size: 0.9rem; font-weight: 500;
+            padding: 0 15px; height: 38px; font-size: 0.9rem; font-weight: 500;
             cursor: pointer; transition: background var(--transition); white-space: nowrap;
         }
         .search-btn:hover { background: var(--accent-hover); }
@@ -112,35 +122,84 @@
         .suggestion-item:last-child { border-bottom: none; }
         .suggestion-item:hover { background: var(--accent-soft); }
 
-        .controls { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-        .ctrl-btn {
-            width: 34px; height: 34px; border: none; background: transparent;
-            color: var(--text-secondary); border-radius: 4px; cursor: pointer;
+        .gear-btn {
+            width: 38px; height: 38px; border: none; background: transparent;
+            color: var(--text-secondary); border-radius: 8px; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             transition: background var(--transition), color var(--transition);
+            flex-shrink: 0;
         }
-        .ctrl-btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
-        .ctrl-btn svg { width: 18px; height: 18px; }
+        .gear-btn:hover, .gear-btn.active {
+            background: var(--bg-tertiary); color: var(--text-primary);
+        }
+        .gear-btn svg { width: 20px; height: 20px; }
+
+        .settings-panel {
+            position: fixed; top: var(--nav-height); right: 12px;
+            width: 260px; background: var(--bg-secondary);
+            border: 1px solid var(--border); border-radius: 10px;
+            box-shadow: var(--shadow-lg); padding: 16px;
+            z-index: 1500; display: none;
+            animation: panelIn 0.18s ease;
+        }
+        .settings-panel.show { display: block; }
+        @keyframes panelIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .settings-title {
+            font-size: 0.78rem; font-weight: 600; color: var(--text-tertiary);
+            text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px;
+        }
+        .settings-row {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 14px;
+        }
+        .settings-row:last-child { margin-bottom: 0; }
+        .settings-label { font-size: 0.92rem; color: var(--text-primary); }
 
         .font-controls {
             display: flex; align-items: center; background: var(--bg-tertiary);
-            border-radius: 4px; padding: 2px;
+            border-radius: 6px; padding: 2px; gap: 1px;
         }
         .font-btn {
-            width: 30px; height: 26px; border: none; background: transparent;
-            color: var(--text-secondary); font-size: 0.78rem; font-weight: 600;
-            border-radius: 3px; cursor: pointer; transition: all 0.12s;
+            width: 32px; height: 28px; border: none; background: transparent;
+            color: var(--text-secondary); font-weight: 600; border-radius: 4px;
+            cursor: pointer; transition: all 0.12s;
         }
+        .font-btn:nth-child(1) { font-size: 0.75rem; }
+        .font-btn:nth-child(2) { font-size: 0.85rem; }
+        .font-btn:nth-child(3) { font-size: 1rem; }
         .font-btn.active {
             background: var(--bg-secondary); color: var(--text-primary);
             box-shadow: 0 1px 2px rgba(0,0,0,0.08);
         }
 
-        .main { max-width: 700px; margin: 0 auto; padding: 28px 18px 70px; }
+        .theme-toggle {
+            width: 48px; height: 28px; border-radius: 14px; border: none;
+            background: var(--bg-tertiary); position: relative; cursor: pointer;
+            transition: background 0.2s;
+        }
+        .theme-toggle::after {
+            content: ""; position: absolute; top: 3px; left: 3px;
+            width: 22px; height: 22px; border-radius: 50%;
+            background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        [data-theme="dark"] .theme-toggle { background: var(--accent); }
+        [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
+
+        .main { max-width: 720px; margin: 0 auto; padding: 28px 18px 70px; }
 
         .hero { text-align: center; margin-bottom: 36px; }
+        .hero-icon {
+            width: 56px; height: 56px; border-radius: 14px;
+            background: var(--accent); color: white;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 26px; font-weight: 700; margin-bottom: 14px;
+        }
         .hero-title {
-            font-size: 2.4rem; font-weight: 700; letter-spacing: -0.03em;
+            font-size: 2.3rem; font-weight: 700; letter-spacing: -0.03em;
             margin-bottom: 6px; color: var(--text-primary);
         }
         .hero-sub { font-size: 1.1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 10px; }
@@ -154,7 +213,7 @@
         .card {
             background: var(--bg-card); border-radius: 6px;
             box-shadow: var(--shadow); border: 1px solid var(--border);
-            padding: 18px 20px; transition: background var(--transition), border-color var(--transition);
+            padding: 18px 20px;
         }
         .how-to-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
 
@@ -171,23 +230,30 @@
         .results-header { text-align: center; margin-bottom: 24px; }
         .results-title { font-size: 1rem; color: var(--text-secondary); font-weight: 400; }
 
-        /* 検索結果カードはカクカク */
         .dict-card {
             background: var(--bg-card); border-radius: 2px;
             box-shadow: var(--shadow); border: 1px solid var(--border);
-            padding: 24px 26px; margin-bottom: 16px;
-            transition: background var(--transition), border-color var(--transition);
+            padding: 22px 24px; margin-bottom: 16px;
+            display: flex; gap: 20px; align-items: flex-start;
         }
+        .dict-body { flex: 1; min-width: 0; }
+        .dict-image {
+            flex-shrink: 0; width: 100px; height: 100px;
+            border-radius: 6px; object-fit: contain;
+            background: var(--bg-tertiary); border: 1px solid var(--border);
+        }
+        .dict-image.hidden { display: none; }
+
         .card-top {
             display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
-            margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border);
+            margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
         }
         .word-block { flex: 1; min-width: 0; }
         .main-word {
-            font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em;
+            font-size: 1.7rem; font-weight: 700; letter-spacing: -0.02em;
             line-height: 1.25; word-break: break-word;
         }
-        .pos-tag { font-size: 0.92rem; font-weight: 500; color: var(--text-secondary); margin-left: 5px; }
+        .pos-tag { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); margin-left: 5px; }
         .meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 5px; }
         .lang-badge {
             font-size: 0.68rem; font-weight: 600; padding: 2px 7px; border-radius: 3px;
@@ -197,7 +263,7 @@
         .romaji { font-size: 0.84rem; color: var(--text-secondary); }
 
         .speak-btn {
-            flex-shrink: 0; width: 38px; height: 38px; border: none;
+            flex-shrink: 0; width: 36px; height: 36px; border: none;
             background: var(--bg-tertiary); color: var(--accent); border-radius: 4px;
             cursor: pointer; display: flex; align-items: center; justify-content: center;
             transition: background var(--transition), transform 0.12s;
@@ -205,11 +271,11 @@
         .speak-btn:hover { background: var(--accent-soft); }
         .speak-btn:active { transform: scale(0.94); }
         .speak-btn.speaking { background: var(--accent); color: white; }
-        .speak-btn svg { width: 17px; height: 17px; }
+        .speak-btn svg { width: 16px; height: 16px; }
 
         .meaning { font-size: 1rem; line-height: 1.7; color: var(--text-primary); margin-bottom: 12px; }
         .en-meaning {
-            font-size: 0.94rem; color: var(--text-secondary); margin-bottom: 16px;
+            font-size: 0.94rem; color: var(--text-secondary); margin-bottom: 14px;
             padding: 10px 12px; background: var(--bg-tertiary); border-radius: 3px;
         }
         .clickable-word {
@@ -220,7 +286,7 @@
         .examples { list-style: none; margin-top: 6px; }
         .examples li {
             font-size: 0.94rem; color: var(--text-secondary); line-height: 1.65;
-            padding: 5px 0 5px 14px; position: relative;
+            padding: 4px 0 4px 14px; position: relative;
         }
         .examples li::before { content: "・"; position: absolute; left: 0; color: var(--text-tertiary); }
 
@@ -234,23 +300,27 @@
         }
 
         @media (max-width: 640px) {
-            .navbar { padding: 0 12px; gap: 8px; height: 54px; }
-            .logo-main { font-size: 0.98rem; }
+            .navbar { padding: 0 10px; gap: 8px; height: 54px; }
             .logo-sub { display: none; }
+            .logo-icon { width: 28px; height: 28px; font-size: 14px; }
             .search-btn { padding: 0 12px; font-size: 0.85rem; }
-            .font-controls { display: none; }
-            .hero-title { font-size: 1.9rem; }
-            .dict-card { padding: 20px 16px; }
-            .main-word { font-size: 1.5rem; }
+            .hero-title { font-size: 1.85rem; }
+            .dict-card { flex-direction: column; padding: 18px 16px; }
+            .dict-image { width: 80px; height: 80px; align-self: flex-end; }
+            .main-word { font-size: 1.45rem; }
             .main { padding: 22px 12px 50px; }
+            .settings-panel { right: 8px; width: calc(100vw - 16px); max-width: 280px; }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo" onclick="resetPage()" title="ホームに戻る">
-            <div class="logo-main">簡単辞典WEB</div>
-            <div class="logo-sub">Easy Web Dictionary</div>
+            <div class="logo-icon">辞</div>
+            <div class="logo-text">
+                <div class="logo-main">簡単辞典WEB</div>
+                <div class="logo-sub">Easy Web Dictionary</div>
+            </div>
         </div>
         <div class="search-area">
             <div class="search-box">
@@ -260,23 +330,34 @@
             </div>
             <div id="suggestions" class="suggestions" role="listbox"></div>
         </div>
-        <div class="controls">
-            <div class="font-controls" title="文字サイズ">
+        <button class="gear-btn" id="gearBtn" onclick="toggleSettings()" title="設定" aria-label="設定">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-title">設定</div>
+        <div class="settings-row">
+            <span class="settings-label">文字サイズ</span>
+            <div class="font-controls">
                 <button class="font-btn" data-size="14" onclick="setFontSize(14)">A</button>
                 <button class="font-btn active" data-size="16" onclick="setFontSize(16)">A</button>
-                <button class="font-btn" data-size="18" onclick="setFontSize(18)" style="font-size:1rem">A</button>
+                <button class="font-btn" data-size="18" onclick="setFontSize(18)">A</button>
             </div>
-            <button class="ctrl-btn" id="themeBtn" onclick="toggleTheme()" title="テーマ切替" aria-label="ダークモード切替">
-                <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-            </button>
         </div>
-    </nav>
+        <div class="settings-row">
+            <span class="settings-label">ダークモード</span>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="ダークモード切替"></button>
+        </div>
+    </div>
 
     <main class="main" id="mainContent">
         <div id="welcomeView">
             <div class="hero">
+                <div class="hero-icon">辞</div>
                 <h1 class="hero-title">簡単辞典 WEB</h1>
                 <p class="hero-sub">Easy Web Dictionary</p>
                 <p class="hero-desc">知りたい単語だけ検索。わかりやすく短い説明ですぐわかる。</p>
@@ -316,7 +397,6 @@
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                updateThemeIcon(true);
             }
 
             const savedSize = localStorage.getItem('dict-font-size');
@@ -331,25 +411,34 @@
             input.addEventListener('focus', onInput);
         });
 
+        function toggleSettings() {
+            const panel = document.getElementById('settingsPanel');
+            const btn = document.getElementById('gearBtn');
+            const isOpen = panel.classList.toggle('show');
+            btn.classList.toggle('active', isOpen);
+        }
+
+        document.addEventListener('click', (e) => {
+            const panel = document.getElementById('settingsPanel');
+            const btn = document.getElementById('gearBtn');
+            if (panel.classList.contains('show') && !panel.contains(e.target) && !btn.contains(e.target)) {
+                panel.classList.remove('show');
+                btn.classList.remove('active');
+            }
+            const area = document.querySelector('.search-area');
+            if (!area.contains(e.target)) {
+                document.getElementById('suggestions').classList.remove('show');
+            }
+        });
+
         function toggleTheme() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             if (isDark) {
                 document.documentElement.removeAttribute('data-theme');
                 localStorage.setItem('dict-theme', 'light');
-                updateThemeIcon(false);
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('dict-theme', 'dark');
-                updateThemeIcon(true);
-            }
-        }
-
-        function updateThemeIcon(isDark) {
-            const icon = document.getElementById('themeIcon');
-            if (isDark) {
-                icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
-            } else {
-                icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
             }
         }
 
@@ -487,6 +576,9 @@
             document.getElementById('welcomeView').style.display = 'none';
             const results = document.getElementById('searchResultsView');
             results.style.display = 'block';
+            document.getElementById('settingsPanel').classList.remove('show');
+            document.getElementById('gearBtn').classList.remove('active');
+
             const found = filterExactSearch(query);
             let html = '';
             if (found.length === 0) {
@@ -513,27 +605,36 @@
                     }
                     const langLabel = item.lang === 'jp' ? '日本語' : 'English';
                     const speakLang = item.lang === 'jp' ? 'ja' : 'en';
+
+                    let imgHtml = '';
+                    if (item.image) {
+                        imgHtml = `<img class="dict-image" src="${escapeAttr(item.image)}" alt="" onerror="this.classList.add('hidden')">`;
+                    }
+
                     html += `
                         <article class="dict-card">
-                            <div class="card-top">
-                                <div class="word-block">
-                                    <div class="main-word">${escapeHtml(item.word)} <span class="pos-tag">[${escapeHtml(item.pos || '名詞')}]</span></div>
-                                    <div class="meta-row">
-                                        <span class="lang-badge">${langLabel}</span>
-                                        <span class="type-tag">${escapeHtml(item.type || '')}</span>
-                                        ${item.romaji ? `<span class="romaji">${escapeHtml(item.romaji)}</span>` : ''}
+                            <div class="dict-body">
+                                <div class="card-top">
+                                    <div class="word-block">
+                                        <div class="main-word">${escapeHtml(item.word)} <span class="pos-tag">[${escapeHtml(item.pos || '名詞')}]</span></div>
+                                        <div class="meta-row">
+                                            <span class="lang-badge">${langLabel}</span>
+                                            <span class="type-tag">${escapeHtml(item.type || '')}</span>
+                                            ${item.romaji ? `<span class="romaji">${escapeHtml(item.romaji)}</span>` : ''}
+                                        </div>
                                     </div>
+                                    <button class="speak-btn" onclick="speakWord('${escapeAttr(item.word)}', '${speakLang}')" title="発音を聞く" aria-label="発音">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                        </svg>
+                                    </button>
                                 </div>
-                                <button class="speak-btn" onclick="speakWord('${escapeAttr(item.word)}', '${speakLang}')" title="発音を聞く" aria-label="発音">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                    </svg>
-                                </button>
+                                <div class="meaning">${meaning}</div>
+                                ${enHtml}
+                                ${exHtml}
                             </div>
-                            <div class="meaning">${meaning}</div>
-                            ${enHtml}
-                            ${exHtml}
+                            ${imgHtml}
                         </article>`;
                 });
             }
@@ -555,6 +656,8 @@
             document.getElementById('welcomeView').style.display = 'block';
             document.getElementById('searchResultsView').style.display = 'none';
             document.getElementById('searchResultsView').innerHTML = '';
+            document.getElementById('settingsPanel').classList.remove('show');
+            document.getElementById('gearBtn').classList.remove('active');
             renderRecent();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -566,13 +669,6 @@
         function escapeAttr(str) {
             return String(str).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
-
-        document.addEventListener('click', (e) => {
-            const area = document.querySelector('.search-area');
-            if (!area.contains(e.target)) {
-                document.getElementById('suggestions').classList.remove('show');
-            }
-        });
     </script>
 </body>
 </html>
