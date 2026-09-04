@@ -8,56 +8,32 @@
     <title>簡単辞典WEB - Easy Web Dictionary</title>
     <style>
         :root {
-            --bg-primary: #f5f5f7;
-            --bg-secondary: #ffffff;
-            --bg-tertiary: #e8e8ed;
-            --bg-card: #ffffff;
-            --text-primary: #1d1d1f;
-            --text-secondary: #424245;
-            --text-tertiary: #6e6e73;
-            --accent: #0071e3;
-            --accent-hover: #0077ed;
-            --accent-soft: rgba(0, 113, 227, 0.12);
-            --border: rgba(0, 0, 0, 0.1);
-            --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.1);
-            --radius: 6px;
-            --nav-height: 58px;
-            --base-size: 16px;
-            --transition: 0.2s ease;
+            --bg-primary: #f5f5f7; --bg-secondary: #ffffff; --bg-tertiary: #e8e8ed; --bg-card: #ffffff;
+            --text-primary: #1d1d1f; --text-secondary: #424245; --text-tertiary: #6e6e73;
+            --accent: #0071e3; --accent-hover: #0077ed; --accent-soft: rgba(0, 113, 227, 0.12);
+            --border: rgba(0, 0, 0, 0.1); --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.1); --radius: 6px; --nav-height: 58px;
+            --base-size: 16px; --transition: 0.2s ease;
         }
         [data-theme="dark"] {
-            --bg-primary: #000000;
-            --bg-secondary: #1c1c1e;
-            --bg-tertiary: #2c2c2e;
-            --bg-card: #1c1c1e;
-            --text-primary: #f5f5f7;
-            --text-secondary: #c7c7cc;
-            --text-tertiary: #8e8e93;
-            --accent: #0a84ff;
-            --accent-hover: #409cff;
-            --accent-soft: rgba(10, 132, 255, 0.18);
-            --border: rgba(255, 255, 255, 0.12);
-            --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+            --bg-primary: #000000; --bg-secondary: #1c1c1e; --bg-tertiary: #2c2c2e; --bg-card: #1c1c1e;
+            --text-primary: #f5f5f7; --text-secondary: #c7c7cc; --text-tertiary: #8e8e93;
+            --accent: #0a84ff; --accent-hover: #409cff; --accent-soft: rgba(10, 132, 255, 0.18);
+            --border: rgba(255, 255, 255, 0.12); --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         html { font-size: var(--base-size); }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.5;
-            min-height: 100vh;
-            transition: background var(--transition), color var(--transition);
+            background: var(--bg-primary); color: var(--text-primary); line-height: 1.5;
+            min-height: 100vh; transition: background var(--transition), color var(--transition);
             -webkit-font-smoothing: antialiased;
         }
         .navbar {
             position: sticky; top: 0; z-index: 1000; height: var(--nav-height);
-            background: rgba(255, 255, 255, 0.88);
-            backdrop-filter: saturate(180%) blur(16px);
-            -webkit-backdrop-filter: saturate(180%) blur(16px);
-            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.88); backdrop-filter: saturate(180%) blur(16px);
+            -webkit-backdrop-filter: saturate(180%) blur(16px); border-bottom: 1px solid var(--border);
             display: flex; align-items: center; padding: 0 16px; gap: 12px;
             transition: background var(--transition), border-color var(--transition);
         }
@@ -125,142 +101,63 @@
             animation: panelIn 0.18s ease;
         }
         .settings-panel.show { display: block; }
-        @keyframes panelIn {
-            from { opacity: 0; transform: translateY(-6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .settings-title {
-            font-size: 0.78rem; font-weight: 600; color: var(--text-tertiary);
-            text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px;
-        }
-        .settings-row {
-            display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
-        }
+        @keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+        .settings-title { font-size: 0.78rem; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px; }
+        .settings-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
         .settings-row:last-child { margin-bottom: 0; }
         .settings-label { font-size: 0.92rem; color: var(--text-primary); }
-        .font-controls {
-            display: flex; align-items: center; background: var(--bg-tertiary);
-            border-radius: 6px; padding: 2px; gap: 1px;
-        }
-        .font-btn {
-            width: 32px; height: 28px; border: none; background: transparent;
-            color: var(--text-secondary); font-weight: 600; border-radius: 4px;
-            cursor: pointer; transition: all 0.12s;
-        }
-        .font-btn:nth-child(1) { font-size: 0.75rem; }
-        .font-btn:nth-child(2) { font-size: 0.85rem; }
-        .font-btn:nth-child(3) { font-size: 1rem; }
-        .font-btn.active {
-            background: var(--bg-secondary); color: var(--text-primary);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
-        }
-        .theme-toggle {
-            width: 48px; height: 28px; border-radius: 14px; border: none;
-            background: var(--bg-tertiary); position: relative; cursor: pointer; transition: background 0.2s;
-        }
-        .theme-toggle::after {
-            content: ""; position: absolute; top: 3px; left: 3px;
-            width: 22px; height: 22px; border-radius: 50%;
-            background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.2); transition: transform 0.2s;
-        }
+        .font-controls { display: flex; align-items: center; background: var(--bg-tertiary); border-radius: 6px; padding: 2px; gap: 1px; }
+        .font-btn { width: 32px; height: 28px; border: none; background: transparent; color: var(--text-secondary); font-weight: 600; border-radius: 4px; cursor: pointer; transition: all 0.12s; }
+        .font-btn:nth-child(1) { font-size: 0.75rem; } .font-btn:nth-child(2) { font-size: 0.85rem; } .font-btn:nth-child(3) { font-size: 1rem; }
+        .font-btn.active { background: var(--bg-secondary); color: var(--text-primary); box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+        .theme-toggle { width: 48px; height: 28px; border-radius: 14px; border: none; background: var(--bg-tertiary); position: relative; cursor: pointer; transition: background 0.2s; }
+        .theme-toggle::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.2); transition: transform 0.2s; }
         [data-theme="dark"] .theme-toggle { background: var(--accent); }
         [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
         .main { max-width: 720px; margin: 0 auto; padding: 28px 18px 70px; }
         .hero { text-align: center; margin-bottom: 36px; }
-        .hero-icon {
-            width: 56px; height: 56px; border-radius: 14px; background: var(--accent); color: white;
-            display: inline-flex; align-items: center; justify-content: center;
-            font-size: 26px; font-weight: 700; margin-bottom: 14px;
-        }
-        .hero-title {
-            font-size: 2.3rem; font-weight: 700; letter-spacing: -0.03em;
-            margin-bottom: 6px; color: var(--text-primary);
-        }
+        .hero-icon { width: 56px; height: 56px; border-radius: 14px; background: var(--accent); color: white; display: inline-flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 700; margin-bottom: 14px; }
+        .hero-title { font-size: 2.3rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 6px; color: var(--text-primary); }
         .hero-sub { font-size: 1.1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 10px; }
         .hero-desc { font-size: 0.95rem; color: var(--text-secondary); max-width: 400px; margin: 0 auto; }
         .section { margin-bottom: 32px; }
-        .section-title {
-            font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);
-            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; padding-left: 2px;
-        }
-        .card {
-            background: var(--bg-card); border-radius: 6px;
-            box-shadow: var(--shadow); border: 1px solid var(--border); padding: 18px 20px;
-        }
+        .section-title { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; padding-left: 2px; }
+        .card { background: var(--bg-card); border-radius: 6px; box-shadow: var(--shadow); border: 1px solid var(--border); padding: 18px 20px; }
         .how-to-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
         .recent-list { display: flex; flex-wrap: wrap; gap: 6px; }
-        .recent-chip {
-            display: inline-flex; align-items: center;
-            padding: 6px 12px; background: var(--bg-tertiary); border-radius: 4px;
-            font-size: 0.88rem; color: var(--text-primary); cursor: pointer; border: none;
-            transition: background var(--transition);
-        }
+        .recent-chip { display: inline-flex; align-items: center; padding: 6px 12px; background: var(--bg-tertiary); border-radius: 4px; font-size: 0.88rem; color: var(--text-primary); cursor: pointer; border: none; transition: background var(--transition); }
         .recent-chip:hover { background: var(--accent-soft); color: var(--accent); }
         .recent-empty { font-size: 0.9rem; color: var(--text-tertiary); }
         .results-header { text-align: center; margin-bottom: 24px; }
         .results-title { font-size: 1rem; color: var(--text-secondary); font-weight: 400; }
-        .dict-card {
-            background: var(--bg-card); border-radius: 6px;
-            box-shadow: var(--shadow); border: 1px solid var(--border);
-            padding: 22px 24px; margin-bottom: 16px;
-            display: flex; gap: 24px; align-items: flex-start;
-        }
+        .dict-card { background: var(--bg-card); border-radius: 6px; box-shadow: var(--shadow); border: 1px solid var(--border); padding: 22px 24px; margin-bottom: 16px; display: flex; gap: 24px; align-items: flex-start; }
         .dict-body { flex: 1; min-width: 0; }
-        .dict-image {
-            flex-shrink: 0; width: 200px; height: 200px;
-            border-radius: 8px; object-fit: contain;
-            background: var(--bg-tertiary); border: 1px solid var(--border);
-        }
+        .dict-image { flex-shrink: 0; width: 200px; height: 200px; border-radius: 8px; object-fit: contain; background: var(--bg-tertiary); border: 1px solid var(--border); }
         .dict-image.hidden { display: none; }
-        .card-top {
-            display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
-            margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
-        }
+        .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
         .word-block { flex: 1; min-width: 0; }
-        .main-word {
-            font-size: 1.7rem; font-weight: 700; letter-spacing: -0.02em;
-            line-height: 1.25; word-break: break-word;
-        }
+        .main-word { font-size: 1.7rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; word-break: break-word; }
         .pos-tag { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); margin-left: 5px; }
         .meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 5px; }
-        .lang-badge {
-            font-size: 0.68rem; font-weight: 600; padding: 2px 7px; border-radius: 3px;
-            background: var(--accent-soft); color: var(--accent);
-        }
+        .lang-badge { font-size: 0.68rem; font-weight: 600; padding: 2px 7px; border-radius: 3px; background: var(--accent-soft); color: var(--accent); }
         .type-tag { font-size: 0.8rem; color: var(--text-tertiary); }
         .romaji { font-size: 0.84rem; color: var(--text-secondary); }
-        .speak-btn {
-            flex-shrink: 0; width: 36px; height: 36px; border: none;
-            background: var(--bg-tertiary); color: var(--accent); border-radius: 4px;
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-            transition: background var(--transition), transform 0.12s;
-        }
+        .speak-btn { flex-shrink: 0; width: 36px; height: 36px; border: none; background: var(--bg-tertiary); color: var(--accent); border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background var(--transition), transform 0.12s; }
         .speak-btn:hover { background: var(--accent-soft); }
         .speak-btn:active { transform: scale(0.94); }
         .speak-btn.speaking { background: var(--accent); color: white; }
         .speak-btn svg { width: 16px; height: 16px; }
         .meaning { font-size: 1rem; line-height: 1.7; color: var(--text-primary); margin-bottom: 12px; }
-        .en-meaning {
-            font-size: 0.94rem; color: var(--text-secondary); margin-bottom: 14px;
-            padding: 10px 12px; background: var(--bg-tertiary); border-radius: 3px;
-        }
-        .clickable-word {
-            color: var(--accent); cursor: pointer; font-weight: 500; transition: opacity 0.12s;
-        }
+        .en-meaning { font-size: 0.94rem; color: var(--text-secondary); margin-bottom: 14px; padding: 10px 12px; background: var(--bg-tertiary); border-radius: 3px; }
+        .clickable-word { color: var(--accent); cursor: pointer; font-weight: 500; transition: opacity 0.12s; }
         .clickable-word:hover { text-decoration: underline; opacity: 0.85; }
         .examples { list-style: none; margin-top: 6px; }
-        .examples li {
-            font-size: 0.94rem; color: var(--text-secondary); line-height: 1.65;
-            padding: 4px 0 4px 14px; position: relative;
-        }
+        .examples li { font-size: 0.94rem; color: var(--text-secondary); line-height: 1.65; padding: 4px 0 4px 14px; position: relative; }
         .examples li::before { content: "・"; position: absolute; left: 0; color: var(--text-tertiary); }
         .empty-state { text-align: center; padding: 50px 20px; color: var(--text-tertiary); }
         .empty-state p { font-size: 1.05rem; margin-bottom: 6px; }
         .empty-hint { font-size: 0.9rem; }
-        .footer {
-            text-align: center; font-size: 0.78rem; color: var(--text-tertiary);
-            margin-top: 40px; padding-bottom: 16px;
-        }
+        .footer { text-align: center; font-size: 0.78rem; color: var(--text-tertiary); margin-top: 40px; padding-bottom: 16px; }
         @media (max-width: 640px) {
             .navbar { padding: 0 10px; gap: 8px; height: 54px; }
             .logo-sub { display: none; }
@@ -378,9 +275,7 @@
                 btn.classList.remove('active');
             }
             const area = document.querySelector('.search-area');
-            if (!area.contains(e.target)) {
-                document.getElementById('suggestions').classList.remove('show');
-            }
+            if (!area.contains(e.target)) document.getElementById('suggestions').classList.remove('show');
         });
         function toggleTheme() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -399,58 +294,57 @@
             });
             if (save) localStorage.setItem('dict-font-size', size);
         }
-        function toHiragana(str) {
-            return str.replace(/[\u30A1-\u30F6]/g, ch =>
-                String.fromCharCode(ch.charCodeAt(0) - 0x60)
-            );
+
+        // そのエントリがクエリにヒットするか（word / readings / romaji を全部見る）
+        function matchesQuery(item, query) {
+            const q = query.toLowerCase().replace(/\s+/g, '');
+            if (!q) return false;
+            // 見出し語
+            if (item.word && item.word.toLowerCase().includes(q)) return true;
+            // readings 配列（ひらがな・カタカナなど）
+            if (item.readings && Array.isArray(item.readings)) {
+                for (const r of item.readings) {
+                    if (String(r).toLowerCase().includes(q)) return true;
+                }
+            }
+            // romaji（互換用）
+            if (item.romaji && String(item.romaji).toLowerCase().includes(q)) return true;
+            // 英訳
+            if (item.enTranslation && item.enTranslation.toLowerCase().includes(q)) return true;
+            return false;
         }
-        function cleanText(str) {
-            return toHiragana(
-                str.toLowerCase().replace(/[Ａ-Ｚａ-ｚ０-９]/g, s =>
-                    String.fromCharCode(s.charCodeAt(0) - 0xFEE0)
-                )
-            ).replace(/\s+/g, '');
+
+        function isExactMatch(item, query) {
+            const q = query.toLowerCase().replace(/\s+/g, '');
+            if (item.word && item.word.toLowerCase() === q) return true;
+            if (item.readings && item.readings.some(r => String(r).toLowerCase() === q)) return true;
+            if (item.romaji && String(item.romaji).toLowerCase() === q) return true;
+            return false;
         }
+
         function filterSuggestions(query) {
             if (!query) return [];
-            const target = cleanText(query);
-            return combinedData.filter(item => {
-                const word = cleanText(item.word);
-                const romaji = item.romaji ? cleanText(item.romaji) : '';
-                if (target.length === 1) return word.startsWith(target) || romaji.startsWith(target);
-                return word.includes(target) || romaji.includes(target);
-            });
+            return combinedData.filter(item => matchesQuery(item, query));
         }
+
         function filterSearch(query) {
             if (!query) return [];
-            const target = cleanText(query);
             const exact = [];
             const partial = [];
             combinedData.forEach(item => {
-                const word = cleanText(item.word);
-                const romaji = item.romaji ? cleanText(item.romaji) : '';
-                if (word === target || romaji === target) {
-                    exact.push(item);
-                } else if (word.includes(target) || romaji.includes(target)) {
-                    partial.push(item);
-                }
+                if (isExactMatch(item, query)) exact.push(item);
+                else if (matchesQuery(item, query)) partial.push(item);
             });
             return exact.length > 0 ? exact : partial;
         }
+
         function onInput() {
             const query = document.getElementById('searchInput').value.trim();
             updateClearBtn();
             const box = document.getElementById('suggestions');
-            if (!query) {
-                box.classList.remove('show');
-                box.innerHTML = '';
-                return;
-            }
+            if (!query) { box.classList.remove('show'); box.innerHTML = ''; return; }
             const matches = filterSuggestions(query).slice(0, 10);
-            if (matches.length === 0) {
-                box.classList.remove('show');
-                return;
-            }
+            if (matches.length === 0) { box.classList.remove('show'); return; }
             box.innerHTML = matches.map(m =>
                 `<div class="suggestion-item" role="option" onclick="selectSuggestion('${escapeAttr(m.word)}')">${escapeHtml(m.word)}</div>`
             ).join('');
@@ -531,7 +425,7 @@
             const found = filterSearch(query);
             let html = '';
             if (found.length === 0) {
-                html = `<div class="empty-state"><p>「${escapeHtml(query)}」に一致する単語は見つかりませんでした</p><p class="empty-hint">別の表記やローマ字でも試してみてください</p></div>`;
+                html = `<div class="empty-state"><p>「${escapeHtml(query)}」に一致する単語は見つかりませんでした</p><p class="empty-hint">別の表記でも試してみてください</p></div>`;
             } else {
                 const countLabel = found.length === 1 ? '1件' : found.length + '件';
                 html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果（${countLabel}）</p></div>`;
@@ -543,15 +437,9 @@
                         enHtml = `<div class="en-meaning">英訳：${links}</div>`;
                     }
                     let meaning = item.meaning || '';
-                    if (item.lang === 'en' && meaning.includes('和訳：')) {
-                        meaning = meaning.replace(/和訳：([^<>\n]+)/g, (m, p1) => {
-                            const t = p1.trim();
-                            return `和訳：<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`;
-                        });
-                    }
                     let exHtml = '';
                     if (item.examples && item.examples.length) {
-                        exHtml = '<ul class="examples">' + item.examples.map(ex => `<li>${escapeHtml(String(ex).replace(/^・\s*/, ''))}</li>`).join('') + '</ul>';
+                        exHtml = '<ul class="examples">' + item.examples.map(ex => `<li>${escapeHtml(String(ex).replace(/^・\\s*/, ''))}</li>`).join('') + '</ul>';
                     }
                     const langLabel = item.lang === 'jp' ? '日本語' : 'English';
                     const speakLang = item.lang === 'jp' ? 'ja' : 'en';
