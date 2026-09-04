@@ -26,7 +26,6 @@
             --base-size: 16px;
             --transition: 0.2s ease;
         }
-
         [data-theme="dark"] {
             --bg-primary: #000000;
             --bg-secondary: #1c1c1e;
@@ -42,7 +41,6 @@
             --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         html { font-size: var(--base-size); }
         body {
@@ -54,7 +52,6 @@
             transition: background var(--transition), color var(--transition);
             -webkit-font-smoothing: antialiased;
         }
-
         .navbar {
             position: sticky; top: 0; z-index: 1000; height: var(--nav-height);
             background: rgba(255, 255, 255, 0.88);
@@ -65,22 +62,15 @@
             transition: background var(--transition), border-color var(--transition);
         }
         [data-theme="dark"] .navbar { background: rgba(28, 28, 30, 0.88); }
-
-        .logo {
-            cursor: pointer; flex-shrink: 0; user-select: none;
-            display: flex; align-items: center; gap: 8px;
-        }
+        .logo { cursor: pointer; flex-shrink: 0; user-select: none; display: flex; align-items: center; gap: 8px; }
         .logo-icon {
-            width: 32px; height: 32px; border-radius: 8px;
-            background: var(--accent);
+            width: 32px; height: 32px; border-radius: 8px; background: var(--accent);
             display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 16px; font-weight: 700;
-            flex-shrink: 0;
+            color: white; font-size: 16px; font-weight: 700; flex-shrink: 0;
         }
         .logo-text { line-height: 1.15; }
         .logo-main { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary); }
         .logo-sub { font-size: 0.65rem; color: var(--text-tertiary); }
-
         .search-area { flex: 1; max-width: 460px; position: relative; display: flex; align-items: center; }
         .search-box {
             width: 100%; display: flex; align-items: center;
@@ -107,7 +97,6 @@
             cursor: pointer; transition: background var(--transition); white-space: nowrap;
         }
         .search-btn:hover { background: var(--accent-hover); }
-
         .suggestions {
             position: absolute; top: calc(100% + 4px); left: 0; right: 0;
             background: var(--bg-secondary); border-radius: 4px;
@@ -121,25 +110,18 @@
         }
         .suggestion-item:last-child { border-bottom: none; }
         .suggestion-item:hover { background: var(--accent-soft); }
-
         .gear-btn {
             width: 38px; height: 38px; border: none; background: transparent;
             color: var(--text-secondary); border-radius: 8px; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            transition: background var(--transition), color var(--transition);
-            flex-shrink: 0;
+            transition: background var(--transition), color var(--transition); flex-shrink: 0;
         }
-        .gear-btn:hover, .gear-btn.active {
-            background: var(--bg-tertiary); color: var(--text-primary);
-        }
+        .gear-btn:hover, .gear-btn.active { background: var(--bg-tertiary); color: var(--text-primary); }
         .gear-btn svg { width: 20px; height: 20px; }
-
         .settings-panel {
-            position: fixed; top: var(--nav-height); right: 12px;
-            width: 260px; background: var(--bg-secondary);
-            border: 1px solid var(--border); border-radius: 10px;
-            box-shadow: var(--shadow-lg); padding: 16px;
-            z-index: 1500; display: none;
+            position: fixed; top: var(--nav-height); right: 12px; width: 260px;
+            background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 10px;
+            box-shadow: var(--shadow-lg); padding: 16px; z-index: 1500; display: none;
             animation: panelIn 0.18s ease;
         }
         .settings-panel.show { display: block; }
@@ -152,12 +134,10 @@
             text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px;
         }
         .settings-row {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 14px;
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
         }
         .settings-row:last-child { margin-bottom: 0; }
         .settings-label { font-size: 0.92rem; color: var(--text-primary); }
-
         .font-controls {
             display: flex; align-items: center; background: var(--bg-tertiary);
             border-radius: 6px; padding: 2px; gap: 1px;
@@ -174,27 +154,21 @@
             background: var(--bg-secondary); color: var(--text-primary);
             box-shadow: 0 1px 2px rgba(0,0,0,0.08);
         }
-
         .theme-toggle {
             width: 48px; height: 28px; border-radius: 14px; border: none;
-            background: var(--bg-tertiary); position: relative; cursor: pointer;
-            transition: background 0.2s;
+            background: var(--bg-tertiary); position: relative; cursor: pointer; transition: background 0.2s;
         }
         .theme-toggle::after {
             content: ""; position: absolute; top: 3px; left: 3px;
             width: 22px; height: 22px; border-radius: 50%;
-            background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
+            background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.2); transition: transform 0.2s;
         }
         [data-theme="dark"] .theme-toggle { background: var(--accent); }
         [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
-
         .main { max-width: 720px; margin: 0 auto; padding: 28px 18px 70px; }
-
         .hero { text-align: center; margin-bottom: 36px; }
         .hero-icon {
-            width: 56px; height: 56px; border-radius: 14px;
-            background: var(--accent); color: white;
+            width: 56px; height: 56px; border-radius: 14px; background: var(--accent); color: white;
             display: inline-flex; align-items: center; justify-content: center;
             font-size: 26px; font-weight: 700; margin-bottom: 14px;
         }
@@ -204,7 +178,6 @@
         }
         .hero-sub { font-size: 1.1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 10px; }
         .hero-desc { font-size: 0.95rem; color: var(--text-secondary); max-width: 400px; margin: 0 auto; }
-
         .section { margin-bottom: 32px; }
         .section-title {
             font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);
@@ -212,11 +185,9 @@
         }
         .card {
             background: var(--bg-card); border-radius: 6px;
-            box-shadow: var(--shadow); border: 1px solid var(--border);
-            padding: 18px 20px;
+            box-shadow: var(--shadow); border: 1px solid var(--border); padding: 18px 20px;
         }
         .how-to-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
-
         .recent-list { display: flex; flex-wrap: wrap; gap: 6px; }
         .recent-chip {
             display: inline-flex; align-items: center;
@@ -226,10 +197,8 @@
         }
         .recent-chip:hover { background: var(--accent-soft); color: var(--accent); }
         .recent-empty { font-size: 0.9rem; color: var(--text-tertiary); }
-
         .results-header { text-align: center; margin-bottom: 24px; }
         .results-title { font-size: 1rem; color: var(--text-secondary); font-weight: 400; }
-
         .dict-card {
             background: var(--bg-card); border-radius: 6px;
             box-shadow: var(--shadow); border: 1px solid var(--border);
@@ -243,7 +212,6 @@
             background: var(--bg-tertiary); border: 1px solid var(--border);
         }
         .dict-image.hidden { display: none; }
-
         .card-top {
             display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
             margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
@@ -261,7 +229,6 @@
         }
         .type-tag { font-size: 0.8rem; color: var(--text-tertiary); }
         .romaji { font-size: 0.84rem; color: var(--text-secondary); }
-
         .speak-btn {
             flex-shrink: 0; width: 36px; height: 36px; border: none;
             background: var(--bg-tertiary); color: var(--accent); border-radius: 4px;
@@ -272,7 +239,6 @@
         .speak-btn:active { transform: scale(0.94); }
         .speak-btn.speaking { background: var(--accent); color: white; }
         .speak-btn svg { width: 16px; height: 16px; }
-
         .meaning { font-size: 1rem; line-height: 1.7; color: var(--text-primary); margin-bottom: 12px; }
         .en-meaning {
             font-size: 0.94rem; color: var(--text-secondary); margin-bottom: 14px;
@@ -282,23 +248,19 @@
             color: var(--accent); cursor: pointer; font-weight: 500; transition: opacity 0.12s;
         }
         .clickable-word:hover { text-decoration: underline; opacity: 0.85; }
-
         .examples { list-style: none; margin-top: 6px; }
         .examples li {
             font-size: 0.94rem; color: var(--text-secondary); line-height: 1.65;
             padding: 4px 0 4px 14px; position: relative;
         }
         .examples li::before { content: "・"; position: absolute; left: 0; color: var(--text-tertiary); }
-
         .empty-state { text-align: center; padding: 50px 20px; color: var(--text-tertiary); }
         .empty-state p { font-size: 1.05rem; margin-bottom: 6px; }
         .empty-hint { font-size: 0.9rem; }
-
         .footer {
             text-align: center; font-size: 0.78rem; color: var(--text-tertiary);
             margin-top: 40px; padding-bottom: 16px;
         }
-
         @media (max-width: 640px) {
             .navbar { padding: 0 10px; gap: 8px; height: 54px; }
             .logo-sub { display: none; }
@@ -337,7 +299,6 @@
             </svg>
         </button>
     </nav>
-
     <div class="settings-panel" id="settingsPanel">
         <div class="settings-title">設定</div>
         <div class="settings-row">
@@ -353,7 +314,6 @@
             <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="ダークモード切替"></button>
         </div>
     </div>
-
     <main class="main" id="mainContent">
         <div id="welcomeView">
             <div class="hero">
@@ -379,45 +339,37 @@
                     </div>
                 </div>
             </div>
-            <div class="footer">© Mildex</div>
+            <div class="footer">© Saito · GitHub Pages</div>
         </div>
         <div id="searchResultsView" style="display: none;"></div>
     </main>
-
     <script src="jpdata.js"></script>
     <script src="endata.js"></script>
     <script>
         let combinedData = [];
-
         window.addEventListener('DOMContentLoaded', () => {
             if (window.jpData) combinedData = combinedData.concat(window.jpData);
             if (window.enData) combinedData = combinedData.concat(window.enData);
-
             const savedTheme = localStorage.getItem('dict-theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
-
             const savedSize = localStorage.getItem('dict-font-size');
             if (savedSize) setFontSize(parseInt(savedSize, 10), false);
-
             renderRecent();
             updateClearBtn();
-
             const input = document.getElementById('searchInput');
             input.addEventListener('input', onInput);
             input.addEventListener('keydown', onKeydown);
             input.addEventListener('focus', onInput);
         });
-
         function toggleSettings() {
             const panel = document.getElementById('settingsPanel');
             const btn = document.getElementById('gearBtn');
             const isOpen = panel.classList.toggle('show');
             btn.classList.toggle('active', isOpen);
         }
-
         document.addEventListener('click', (e) => {
             const panel = document.getElementById('settingsPanel');
             const btn = document.getElementById('gearBtn');
@@ -430,7 +382,6 @@
                 document.getElementById('suggestions').classList.remove('show');
             }
         });
-
         function toggleTheme() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             if (isDark) {
@@ -441,7 +392,6 @@
                 localStorage.setItem('dict-theme', 'dark');
             }
         }
-
         function setFontSize(size, save = true) {
             document.documentElement.style.setProperty('--base-size', size + 'px');
             document.querySelectorAll('.font-btn').forEach(btn => {
@@ -449,15 +399,11 @@
             });
             if (save) localStorage.setItem('dict-font-size', size);
         }
-
-        // カタカナ → ひらがな
         function toHiragana(str) {
             return str.replace(/[\u30A1-\u30F6]/g, ch =>
                 String.fromCharCode(ch.charCodeAt(0) - 0x60)
             );
         }
-
-        // 検索用正規化
         function cleanText(str) {
             return toHiragana(
                 str.toLowerCase().replace(/[Ａ-Ｚａ-ｚ０-９]/g, s =>
@@ -465,21 +411,16 @@
                 )
             ).replace(/\s+/g, '');
         }
-
         function filterSuggestions(query) {
             if (!query) return [];
             const target = cleanText(query);
             return combinedData.filter(item => {
                 const word = cleanText(item.word);
                 const romaji = item.romaji ? cleanText(item.romaji) : '';
-                if (target.length === 1) {
-                    return word.startsWith(target) || romaji.startsWith(target);
-                }
+                if (target.length === 1) return word.startsWith(target) || romaji.startsWith(target);
                 return word.includes(target) || romaji.includes(target);
             });
         }
-
-        // 完全一致優先、なければ部分一致
         function filterSearch(query) {
             if (!query) return [];
             const target = cleanText(query);
@@ -496,7 +437,6 @@
             });
             return exact.length > 0 ? exact : partial;
         }
-
         function onInput() {
             const query = document.getElementById('searchInput').value.trim();
             updateClearBtn();
@@ -516,7 +456,6 @@
             ).join('');
             box.classList.add('show');
         }
-
         function onKeydown(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -524,19 +463,16 @@
                 performSearch(document.getElementById('searchInput').value.trim());
             }
         }
-
         function selectSuggestion(word) {
             document.getElementById('searchInput').value = word;
             document.getElementById('suggestions').classList.remove('show');
             performSearch(word);
             document.getElementById('searchInput').blur();
         }
-
         function triggerSearch() {
             document.getElementById('suggestions').classList.remove('show');
             performSearch(document.getElementById('searchInput').value.trim());
         }
-
         function clearSearch() {
             const input = document.getElementById('searchInput');
             input.value = '';
@@ -544,16 +480,13 @@
             updateClearBtn();
             input.focus();
         }
-
         function updateClearBtn() {
             document.getElementById('clearBtn').classList.toggle('visible', document.getElementById('searchInput').value.length > 0);
         }
-
         function getRecent() {
             try { return JSON.parse(localStorage.getItem('dict-recent') || '[]'); }
             catch { return []; }
         }
-
         function addRecent(word) {
             let list = getRecent().filter(w => w !== word);
             list.unshift(word);
@@ -561,7 +494,6 @@
             localStorage.setItem('dict-recent', JSON.stringify(list));
             renderRecent();
         }
-
         function renderRecent() {
             const list = getRecent();
             const el = document.getElementById('recentList');
@@ -573,7 +505,6 @@
                 `<button class="recent-chip" onclick="selectSuggestion('${escapeAttr(w)}')">${escapeHtml(w)}</button>`
             ).join('');
         }
-
         function speakWord(word, lang, btn) {
             if (!window.speechSynthesis) {
                 alert('お使いのブラウザは音声読み上げに対応していません。');
@@ -589,7 +520,6 @@
             utter.onend = utter.onerror = () => { btns.forEach(b => b.classList.remove('speaking')); };
             window.speechSynthesis.speak(utter);
         }
-
         function performSearch(query) {
             if (!query) return;
             addRecent(query);
@@ -598,13 +528,12 @@
             results.style.display = 'block';
             document.getElementById('settingsPanel').classList.remove('show');
             document.getElementById('gearBtn').classList.remove('active');
-
             const found = filterSearch(query);
             let html = '';
             if (found.length === 0) {
                 html = `<div class="empty-state"><p>「${escapeHtml(query)}」に一致する単語は見つかりませんでした</p><p class="empty-hint">別の表記やローマ字でも試してみてください</p></div>`;
             } else {
-                const countLabel = found.length === 1 ? '1件' : `${found.length}件`;
+                const countLabel = found.length === 1 ? '1件' : found.length + '件';
                 html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果（${countLabel}）</p></div>`;
                 found.forEach(item => {
                     let enHtml = '';
@@ -622,16 +551,14 @@
                     }
                     let exHtml = '';
                     if (item.examples && item.examples.length) {
-                        exHtml = '<ul class="examples">' + item.examples.map(ex => `<li>${escapeHtml(ex.replace(/^・\s*/, ''))}</li>`).join('') + '</ul>';
+                        exHtml = '<ul class="examples">' + item.examples.map(ex => `<li>${escapeHtml(String(ex).replace(/^・\s*/, ''))}</li>`).join('') + '</ul>';
                     }
                     const langLabel = item.lang === 'jp' ? '日本語' : 'English';
                     const speakLang = item.lang === 'jp' ? 'ja' : 'en';
-
                     let imgHtml = '';
                     if (item.image) {
                         imgHtml = `<img class="dict-image" src="${escapeAttr(item.image)}" alt="${escapeAttr(item.word)}" onerror="this.classList.add('hidden')">`;
                     }
-
                     html += `
                         <article class="dict-card">
                             <div class="dict-body">
@@ -663,13 +590,11 @@
             results.innerHTML = html;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         function autoSearch(word) {
             document.getElementById('searchInput').value = word;
             updateClearBtn();
             performSearch(word);
         }
-
         function resetPage() {
             document.getElementById('searchInput').value = '';
             document.getElementById('suggestions').classList.remove('show');
@@ -682,11 +607,9 @@
             renderRecent();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         function escapeHtml(str) {
             return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
-
         function escapeAttr(str) {
             return String(str).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
