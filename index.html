@@ -231,15 +231,15 @@
         .results-title { font-size: 1rem; color: var(--text-secondary); font-weight: 400; }
 
         .dict-card {
-            background: var(--bg-card); border-radius: 2px;
+            background: var(--bg-card); border-radius: 6px;
             box-shadow: var(--shadow); border: 1px solid var(--border);
             padding: 22px 24px; margin-bottom: 16px;
-            display: flex; gap: 20px; align-items: flex-start;
+            display: flex; gap: 24px; align-items: flex-start;
         }
         .dict-body { flex: 1; min-width: 0; }
         .dict-image {
-            flex-shrink: 0; width: 100px; height: 100px;
-            border-radius: 6px; object-fit: contain;
+            flex-shrink: 0; width: 200px; height: 200px;
+            border-radius: 8px; object-fit: contain;
             background: var(--bg-tertiary); border: 1px solid var(--border);
         }
         .dict-image.hidden { display: none; }
@@ -305,8 +305,8 @@
             .logo-icon { width: 28px; height: 28px; font-size: 14px; }
             .search-btn { padding: 0 12px; font-size: 0.85rem; }
             .hero-title { font-size: 1.85rem; }
-            .dict-card { flex-direction: column; padding: 18px 16px; }
-            .dict-image { width: 80px; height: 80px; align-self: flex-end; }
+            .dict-card { flex-direction: column; padding: 18px 16px; gap: 16px; }
+            .dict-image { width: 160px; height: 160px; align-self: center; }
             .main-word { font-size: 1.45rem; }
             .main { padding: 22px 12px 50px; }
             .settings-panel { right: 8px; width: calc(100vw - 16px); max-width: 280px; }
@@ -552,7 +552,7 @@
             ).join('');
         }
 
-        function speakWord(word, lang) {
+        function speakWord(word, lang, btn) {
             if (!window.speechSynthesis) {
                 alert('お使いのブラウザは音声読み上げに対応していません。');
                 return;
@@ -563,9 +563,7 @@
             utter.rate = 0.9;
             const btns = document.querySelectorAll('.speak-btn');
             btns.forEach(b => b.classList.remove('speaking'));
-            if (typeof event !== 'undefined' && event.currentTarget) {
-                event.currentTarget.classList.add('speaking');
-            }
+            if (btn) btn.classList.add('speaking');
             utter.onend = utter.onerror = () => { btns.forEach(b => b.classList.remove('speaking')); };
             window.speechSynthesis.speak(utter);
         }
@@ -584,7 +582,8 @@
             if (found.length === 0) {
                 html = `<div class="empty-state"><p>「${escapeHtml(query)}」に一致する単語は見つかりませんでした</p><p class="empty-hint">別の表記やローマ字でも試してみてください</p></div>`;
             } else {
-                html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果</p></div>`;
+                const countLabel = found.length === 1 ? '1件' : `${found.length}件`;
+                html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果（${countLabel}）</p></div>`;
                 found.forEach(item => {
                     let enHtml = '';
                     if (item.enTranslation) {
@@ -608,7 +607,7 @@
 
                     let imgHtml = '';
                     if (item.image) {
-                        imgHtml = `<img class="dict-image" src="${escapeAttr(item.image)}" alt="" onerror="this.classList.add('hidden')">`;
+                        imgHtml = `<img class="dict-image" src="${escapeAttr(item.image)}" alt="${escapeAttr(item.word)}" onerror="this.classList.add('hidden')">`;
                     }
 
                     html += `
@@ -623,7 +622,7 @@
                                             ${item.romaji ? `<span class="romaji">${escapeHtml(item.romaji)}</span>` : ''}
                                         </div>
                                     </div>
-                                    <button class="speak-btn" onclick="speakWord('${escapeAttr(item.word)}', '${speakLang}')" title="発音を聞く" aria-label="発音">
+                                    <button class="speak-btn" onclick="speakWord('${escapeAttr(item.word)}', '${speakLang}', this)" title="発音を聞く" aria-label="発音">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                             <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
