@@ -561,3 +561,704 @@ window.jpData = [
             "週末の高速道路は渋滞しやすいので、早めに出発した方がいい。",
         ]
     },
+    {
+        word: "バッテリー",
+        lang: "jp",
+        pos: "名詞",
+        type: "道具",
+        romaji: "ばってりー",
+        meaning: "電気を蓄えて供給する装置。電池。",
+        enTranslation: "Battery",
+        image: null,
+        examples: [
+            "スマートフォンのバッテリー残量が10%を切ったので、慌てて充電器に繋いだ。",
+            "冬の寒い時期は、車のバッテリーが上がりやすいので注意が必要だ。",
+        ]
+    },
+    {
+        word: "グローバル",
+        lang: "jp",
+        pos: "名詞・形容動詞",
+        type: "属性",
+        romaji: "ぐろーばる",
+        meaning: "地球全体の、世界的なさま。",
+        enTranslation: "Global",
+        image: null,
+        examples: [
+            "これからの時代を生き抜くためには、グローバルな視点を持つことが重要だ。",
+            "我が社は、アジアを中心としたグローバル市場への進出を計画している。",
+        ]
+    },
+    {
+        word: "日本語",
+        lang: "jp",
+        pos: "名詞",
+        type: "言語",
+        romaji: "にほんご",
+        meaning: "日本で主に使われている言語。",
+        enTranslation: "Japanese",
+        image: null,
+        examples: [
+            "留学生の彼は、熱心に勉強して今では日本語を流暢に話すことができる。",
+            "この取扱説明書には、英語だけでなく日本語の解説も付いている。",
+        ]
+    },
+    {
+        word: "アメリカ",
+        lang: "jp",
+        pos: "名詞",
+        type: "場所",
+        romaji: "あめりか",
+        meaning: "北アメリカにある国。アメリカ合衆国。",
+        enTranslation: "America",
+        image: null,
+        examples: [
+            "今年の夏休みを利用して、アメリカへ語学留学に行く計画を立てている。",
+            "ニューヨークはアメリカで最も人口が多い大都市の一つだ。",
+        ]
+    },
+    {
+        word: "ほとんどない（数えられるもの）",
+        lang: "jp",
+        pos: "名詞",
+        type: "数量",
+        romaji: "ほとんどない（かぞえられるもの）",
+        meaning: "ほとんど存在しないこと。数が非常に少ないこと。",
+        enTranslation: "Few",
+        image: null,
+        examples: [
+            "この過疎化が進む村には、若い住人がほとんどない（数えられるもの）。",
+            "平日の昼間ということもあり、劇場に観客はほとんどない（数えられるもの）状態だった。",
+        ]
+    },
+    {
+        word: "多くの（数えられるもの）",
+        lang: "jp",
+        pos: "名詞",
+        type: "数量",
+        romaji: "おおくの（かぞえられるもの）",
+        meaning: "数量がとても多いこと。",
+        enTranslation: "Many",
+        image: null,
+        examples: [
+            "多くの（数えられるもの）本が、図書館の棚に整然と並べられている。",
+            "イベントの会場には、多くの（数えられるもの）参加者が集まった。",
+        ]
+    },
+    {
+        word: "ありがとう",
+        lang: "jp",
+        pos: "挨拶",
+        type: "感動詞",
+        romaji: "ありがとう",
+        meaning: "感謝の気持ちを伝える言葉。",
+        enTranslation: "Thank you",
+        image: null,
+        examples: [
+            "親切に道を教えてくれてありがとう。",
+            "いつも支えてくれて本当にありがとう。",
+        ]
+    },
+    {
+        word: "猫",
+        lang: "jp",
+        pos: "名詞",
+        type: "動物",
+        romaji: "ねこ",
+        meaning: "小さくて柔らかい毛を持つ、一般的なペットの動物。",
+        enTranslation: "Cat",
+        image: null,
+        examples: [
+            "近所の公園で、黒い猫がのんびりと日向ぼっこをしていた。",
+            "彼女は猫を飼っていて、とても大切にしている。",
+        ]
+    },
+    {
+        word: "おはよう",
+        lang: "jp",
+        pos: "挨拶",
+        type: "感動詞",
+        romaji: "おはよう",
+        meaning: "朝に使う挨拶の言葉。",
+        enTranslation: "Good morning",
+        image: null,
+        examples: [
+            "朝、家族に「おはよう」と明るく声をかけた。",
+            "先生が入ってくると、教室全体で「おはようございます」と挨拶した。",
+        ]
+    },
+    {
+        word: "本",
+        lang: "jp",
+        pos: "名詞",
+        type: "道具",
+        romaji: "ほん",
+        meaning: "紙のページをまとめて綴じた読み物。",
+        enTranslation: "Book",
+        image: null,
+        examples: [
+            "図書館で借りた本を、週末にまとめて読んだ。",
+            "この本は内容が面白くて、一気に最後まで読んでしまった。",
+        ]
+    },
+    {
+        word: "味",
+        lang: "jp",
+        pos: "名詞",
+        type: "感覚",
+        romaji: "あじ",
+        meaning: "食べ物や飲み物を口にしたときに感じる感覚。",
+        enTranslation: "Taste / Flavor",
+        image: null,
+        examples: [
+            "このスープは野菜の味がしっかりしていて美味しい。",
+            "初めて食べたその料理の味が、今でも忘れられない。",
+        ]
+    },
+    {
+        word: "医療",
+        lang: "jp",
+        pos: "名詞",
+        type: "社会",
+        romaji: "いりょう",
+        meaning: "病気やケガを治したり、健康を保つための処置や活動。",
+        enTranslation: "Medical care / Treatment",
+        image: null,
+        examples: [
+            "現代医療の進歩により、かつては難病とされた病気も治療可能になった。",
+            "過疎化が進む地域において、充実した医療体制を確保することが課題だ。",
+        ]
+    },
+    {
+        word: "色",
+        lang: "jp",
+        pos: "名詞",
+        type: "色彩",
+        romaji: "いろ",
+        meaning: "光の違いによって目で感じる視覚的な様子。色彩。",
+        enTranslation: "Color",
+        image: null,
+        examples: [
+            "秋の山は、赤や黄色など様々な鮮やかな色に美しく彩られる。",
+            "カラーバリエーションが豊富なので、自分の好きな色を選べます。",
+        ]
+    },
+    {
+        word: "岩",
+        lang: "jp",
+        pos: "名詞",
+        type: "自然",
+        romaji: "いわ",
+        meaning: "石よりも大きく硬い、地殻を構成する鉱物の塊。",
+        enTranslation: "Rock / Crag",
+        image: null,
+        examples: [
+            "海岸沿いには、波の浸食によって削られた巨大な奇岩が立ち並ぶ。",
+            "険しい岩山を登るためには、専用の頑丈な装備が必要だ。",
+        ]
+    },
+    {
+        word: "祝う",
+        lang: "jp",
+        pos: "動詞",
+        type: "社会",
+        romaji: "いわう",
+        meaning: "喜ばしい出来事を喜んで祝いの言葉や儀式を行うこと。",
+        enTranslation: "Celebrate",
+        image: null,
+        examples: [
+            "友人の結婚を祝うために、サプライズパーティーを企画した。",
+            "還暦を迎えた祖父を家族全員で囲み、長寿を盛大に祝う。",
+        ]
+    },
+    {
+        word: "上",
+        lang: "jp",
+        pos: "名詞",
+        type: "空間",
+        romaji: "うえ",
+        meaning: "基準より高い位置。または立場や階級が上であること。",
+        enTranslation: "Up / Above / On",
+        image: null,
+        examples: [
+            "棚の上に置いてある辞書を、手を伸ばして取ってください。",
+            "会社の上司の指示に従って、プロジェクトの報告書を作成する。",
+        ]
+    },
+    {
+        word: "植える",
+        lang: "jp",
+        pos: "動詞",
+        type: "行動",
+        romaji: "うえる",
+        meaning: "植物の苗や種を土に埋めて育てること。",
+        enTranslation: "Plant",
+        image: null,
+        examples: [
+            "春になったので、庭の花壇にチューリップの球根を植える。",
+            "環境保護活動の一環として、砂漠に多くの木を植える。",
+        ]
+    },
+    {
+        word: "魚",
+        lang: "jp",
+        pos: "名詞",
+        type: "動物",
+        romaji: "うお",
+        meaning: "水中に住み、エラで呼吸し、ヒレで泳ぐ動物。",
+        enTranslation: "Fish",
+        image: null,
+        examples: [
+            "水族館の巨大な水槽の中を、無数の魚が群れをなして泳いでいる。",
+            "新鮮な魚を使った寿司は、海外からの観光客にも大人気だ。",
+        ]
+    },
+    {
+        word: "動く",
+        lang: "jp",
+        pos: "動詞",
+        type: "物理",
+        romaji: "うごく",
+        meaning: "位置が変わること。機械が作動すること。",
+        enTranslation: "Move / Operate",
+        image: null,
+        examples: [
+            "写真撮影をする間は、ブレてしまうので絶対に動かないでください。",
+            "ボタンを押しても機械が全く動かない場合は、プラグを確認してほしい。",
+        ]
+    },
+    {
+        word: "動かす",
+        lang: "jp",
+        pos: "動詞",
+        type: "行動",
+        romaji: "うごかす",
+        meaning: "物の位置を変えたり、機械を作動させたりすること。",
+        enTranslation: "Move / Change position",
+        image: null,
+        examples: [
+            "模様替えのために、重いベッドを部屋の隅へと動かす。",
+            "彼の熱意のこもったスピーチは、多くの聴衆の心を激しく動かした。",
+        ]
+    },
+    {
+        word: "嘘",
+        lang: "jp",
+        pos: "名詞",
+        type: "コミュニケーション",
+        romaji: "うそ",
+        meaning: "事実と違う、人を欺くための偽りの言葉。",
+        enTranslation: "Lie / Falsehood",
+        image: null,
+        examples: [
+            "信頼関係を維持するためには、どんな小さな嘘もつくべきではない。",
+            "彼の話が嘘であることは、その怯えた表情を見ればすぐに分かる。",
+        ]
+    },
+    {
+        word: "歌",
+        lang: "jp",
+        pos: "名詞",
+        type: "芸術",
+        romaji: "うた",
+        meaning: "言葉にメロディを乗せて声で表現する音楽。",
+        enTranslation: "Song",
+        image: null,
+        examples: [
+            "彼女の透き通るような美しい歌を聴くと、心がとても癒される。",
+            "子供たちが音楽の授業で、元気な声で歌を歌っている。",
+        ]
+    },
+    {
+        word: "歌う",
+        lang: "jp",
+        pos: "動詞",
+        type: "芸術",
+        romaji: "うたう",
+        meaning: "メロディに合わせて声で音楽的に言葉を発すること。",
+        enTranslation: "Sing",
+        image: null,
+        examples: [
+            "休日に友人とカラオケに行き、大好きな流行歌を思い切り歌う。",
+            "小鳥が朝早くから、窓の外で心地よい声でさえずり歌っている。",
+        ]
+    },
+    {
+        word: "家",
+        lang: "jp",
+        pos: "名詞",
+        type: "生活",
+        romaji: "うち",
+        meaning: "自分が住んでいる建物や、所属している家庭。",
+        enTranslation: "Home / Inside / My family",
+        image: null,
+        examples: [
+            "学校が終わったら、寄り道をせずにまっすぐ自分のうちへ帰る。",
+            "私たちのうちでは、毎週日曜日の朝に家族全員で大掃除をする。",
+        ]
+    },
+    {
+        word: "宇宙",
+        lang: "jp",
+        pos: "名詞",
+        type: "自然",
+        romaji: "うちゅう",
+        meaning: "地球の外に広がる、すべての天体や空間を含む全体。",
+        enTranslation: "Universe / Space",
+        image: null,
+        examples: [
+            "人類は宇宙の謎を解き明かすために、多くの探査機を打ち上げている。",
+            "夜空を見上げると、壮大な宇宙の広がりを想像してワクワクする。",
+        ]
+    },
+    {
+        word: "美しい",
+        lang: "jp",
+        pos: "形容詞",
+        type: "評価",
+        romaji: "うつくしい",
+        meaning: "形や色、様子が見事で、見ていて快く感じる状態。",
+        enTranslation: "Beautiful",
+        image: null,
+        examples: [
+            "美術館で、何百年も前に描かれた美しい絵画を鑑賞した。",
+            "夕暮れ時の、グラデーションが美しい空の写真を撮影する。",
+        ]
+    },
+    {
+        word: "写す",
+        lang: "jp",
+        pos: "動詞",
+        type: "行動",
+        romaji: "うつす",
+        meaning: "写真に撮ること。または文字などを写し取ること。",
+        enTranslation: "Copy / Photograph / Transcribe",
+        image: null,
+        examples: [
+            "スマートフォンの最新機能を使って、目の前の綺麗な景色を写真に写す。",
+            "黒板に書かれた数式を、急いで自分のノートに写した。",
+        ]
+    },
+    {
+        word: "映す",
+        lang: "jp",
+        pos: "動詞",
+        type: "物理",
+        romaji: "うつす",
+        meaning: "鏡や水面、スクリーンに像を表すこと。",
+        enTranslation: "Project / Reflect",
+        image: null,
+        examples: [
+            "姿見の大きな鏡に自分の全身を映して、服装に乱れがないかチェックする。",
+            "プロジェクターを使って、白い壁に映画の大画面を映し出す。",
+        ]
+    },
+    {
+        word: "移る",
+        lang: "jp",
+        pos: "動詞",
+        type: "物理",
+        romaji: "うつる",
+        meaning: "ある場所から別の場所へ位置や状態が変わること。",
+        enTranslation: "Move (house) / Shift / Change",
+        image: null,
+        examples: [
+            "オフィスが都心から郊外へ移ることになり、通勤ルートが変わった。",
+            "時代の経過とともに、若者の流行は目まぐるしく移り変わる。",
+        ]
+    },
+    {
+        word: "海",
+        lang: "jp",
+        pos: "名詞",
+        type: "自然",
+        romaji: "うみ",
+        meaning: "陸地を囲む、塩水で満たされた広大な水域。",
+        enTranslation: "Sea / Ocean",
+        image: null,
+        examples: [
+            "夏休みには家族と一緒に海へ行き、海水浴や砂遊びを楽しみたい。",
+            "水平線の彼方から昇る太陽が、海の水をキラキラと輝かせる。",
+        ]
+    },
+    {
+        word: "有無",
+        lang: "jp",
+        pos: "名詞",
+        type: "存在",
+        romaji: "うむ",
+        meaning: "あることとないことの両方の状況。",
+        enTranslation: "Presence / Existence / Yes or no",
+        image: null,
+        examples: [
+            "経験の有無を問わず、やる気のある人材を幅広く募集しています。",
+            "アレルギー物質の有無を、製品のパッケージの成分表で確認する。",
+        ]
+    },
+    {
+        word: "生む",
+        lang: "jp",
+        pos: "動詞",
+        type: "生物",
+        romaji: "うむ",
+        meaning: "子や卵を産むこと。新しいものを生み出すこと。",
+        enTranslation: "Give birth / Produce",
+        image: null,
+        examples: [
+            "その鳥は、毎年春になると巣の中に小さな卵を数個生む。",
+            "新しいアイディアの融合が、これまでにない画期的なビジネスを生む。",
+        ]
+    },
+    {
+        word: "売る",
+        lang: "jp",
+        pos: "動詞",
+        type: "経済",
+        romaji: "うる",
+        meaning: "物や権利を金銭と交換して相手に渡すこと。",
+        enTranslation: "Sell",
+        image: null,
+        examples: [
+            "使わなくなった古いスマートフォンを、リサイクルショップに売る。",
+            "市場では、農家がその日に収穫したばかりの新鮮な野菜を売っている。",
+        ]
+    },
+    {
+        word: "嬉しい",
+        lang: "jp",
+        pos: "形容詞",
+        type: "心理",
+        romaji: "うれしい",
+        meaning: "望ましいことが起きて、心が喜びで満たされた状態。",
+        enTranslation: "Happy / Glad",
+        image: null,
+        examples: [
+            "長年の努力が実を結び、難関試験に合格できたことが本当に嬉しい。",
+            "友人から突然心のこもった誕生日プレゼントを貰って、とても嬉しい。",
+        ]
+    },
+    {
+        word: "噂",
+        lang: "jp",
+        pos: "名詞",
+        type: "コミュニケーション",
+        romaji: "うわさ",
+        meaning: "根拠がはっきりしないまま人づてに広まる話。",
+        enTranslation: "Rumor / Gossip",
+        image: null,
+        examples: [
+            "根拠のない悪い噂をむやみに流すのは、他者を傷つける行為だ。",
+            "あのレストランが近々閉店するという噂を耳にしたが、本当だろうか。",
+        ]
+    },
+    {
+        word: "運",
+        lang: "jp",
+        pos: "名詞",
+        type: "精神",
+        romaji: "うん",
+        meaning: "努力ではコントロールできない、幸・不幸の巡り合わせ。",
+        enTranslation: "Luck / Fortune",
+        image: null,
+        examples: [
+            "たまたま買った宝くじが当選するなんて、今回は本当に運が良かった。",
+            "運にばかり頼るのではなく、日頃からの地道な努力が最も重要だ。",
+        ]
+    },
+    {
+        word: "運転",
+        lang: "jp",
+        pos: "名詞",
+        type: "行動",
+        romaji: "うんてん",
+        meaning: "乗り物や機械を操作して動かすこと。",
+        enTranslation: "Driving / Operation",
+        image: null,
+        examples: [
+            "安全に自動車を運転するためには、高い集中力とルールの遵守が不可欠だ。",
+            "父は週末になると、私たちを乗せてよく長距離のドライブを運転する。",
+        ]
+    },
+    {
+        word: "運動",
+        lang: "jp",
+        pos: "名詞",
+        type: "身体",
+        romaji: "うんどう",
+        meaning: "体を積極的に動かすこと。健康のために行う活動。",
+        enTranslation: "Exercise / Movement",
+        image: null,
+        examples: [
+            "健康的な生活を維持するために、毎日30分程度の軽い運動を心がける。",
+            "地域の住民たちが一体となり、環境保護のための社会運動を開始した。",
+        ]
+    },
+    {
+        word: "絵",
+        lang: "jp",
+        pos: "名詞",
+        type: "芸術",
+        romaji: "え",
+        meaning: "線や色を使って平面に表した視覚的な作品。",
+        enTranslation: "Picture / Painting / Drawing",
+        image: null,
+        examples: [
+            "彼女は幼い頃から絵を描くことが得意で、将来は画家を目指している。",
+            "リビングの壁に、お気に入りの美しい風景画の絵を飾る。",
+        ]
+    },
+    {
+        word: "映画",
+        lang: "jp",
+        pos: "名詞",
+        type: "芸術",
+        romaji: "えいが",
+        meaning: "連続した映像と音で物語を表現する芸術作品。",
+        enTranslation: "Movie / Film",
+        image: null,
+        examples: [
+            "映画館の迫力ある音響と大画面で、最新のSF映画を鑑賞する。",
+            "この映画は、世界中で大ヒットし多くの賞を受賞した。",
+        ]
+    },
+    {
+        word: "営業",
+        lang: "jp",
+        pos: "名詞",
+        type: "経済",
+        romaji: "えいぎょう",
+        meaning: "利益を目的に、継続して商売や取引を行うこと。",
+        enTranslation: "Business / Sales / Open (shop)",
+        image: null,
+        examples: [
+            "あのデパートは、年中無休で夜の21時まで営業している。",
+            "彼は営業職として、新規顧客の開拓に日々励んでいる。",
+        ]
+    },
+    {
+        word: "影響",
+        lang: "jp",
+        pos: "名詞",
+        type: "社会",
+        romaji: "えいきょう",
+        meaning: "ある物事が他の物事に変化を与えること。",
+        enTranslation: "Influence / Effect",
+        image: null,
+        examples: [
+            "子供の人間性の形成には、家庭環境が非常に大きな影響を与える。",
+            "スマートフォンの普及は、人々のコミュニケーション様式に影響を及ぼした。",
+        ]
+    },
+    {
+        word: "英語",
+        lang: "jp",
+        pos: "名詞",
+        type: "言語",
+        romaji: "えいご",
+        meaning: "イギリスやアメリカなどで使われる言語。国際共通語としても広く使われる。",
+        enTranslation: "English",
+        image: null,
+        examples: [
+            "グローバルに活躍するために、毎日オンラインで英語のスピーキングを学ぶ。",
+            "英語で書かれた論文を読み解き、最新の技術動向を調査する。",
+        ]
+    },
+    {
+        word: "衛生",
+        lang: "jp",
+        pos: "名詞",
+        type: "生活",
+        romaji: "えいせい",
+        meaning: "病気を防ぎ、健康を保つために清潔を保つこと。",
+        enTranslation: "Hygiene / Sanitation",
+        image: null,
+        examples: [
+            "飲食店の厨房では、食中毒を防ぐために徹底した衛生管理が求められる。",
+            "手洗いやうがいは、個人の公衆衛生を守るための基本行動だ。",
+        ]
+    },
+    {
+        word: "駅",
+        lang: "jp",
+        pos: "名詞",
+        type: "社会",
+        romaji: "えき",
+        meaning: "電車が止まり、乗り降りするための施設。",
+        enTranslation: "Station",
+        image: null,
+        examples: [
+            "毎朝、自宅から最寄りの駅まで15分間歩いて通勤している。",
+            "駅の改札口の前で、友人と待ち合わせの約束をする。",
+        ]
+    },
+    {
+        word: "笑顔",
+        lang: "jp",
+        pos: "名詞",
+        type: "身体",
+        romaji: "えがお",
+        meaning: "喜びや親しみを表す、目や口元が緩んだ表情。",
+        enTranslation: "Smile / Smiling face",
+        image: null,
+        examples: [
+            "彼女の絶え間ない明るい笑顔は、周囲の雰囲気を一瞬で和ませる。",
+            "写真を撮影するときは、カメラに向かって最高の笑顔を作ってください。",
+        ]
+    },
+    {
+        word: "多い",
+        lang: "jp",
+        pos: "形容詞",
+        type: "数量",
+        romaji: "おおい",
+        meaning: "数量や程度が基準より上回っていること。",
+        enTranslation: "Many / Much",
+        image: null,
+        examples: [
+            "この時期になると、観光地は世界中からの旅行客で多くなる。",
+            "今年は例年に比べて、雨が降る日が非常に多い。",
+        ]
+    },
+    {
+        word: "少ない",
+        lang: "jp",
+        pos: "形容詞",
+        type: "数量",
+        romaji: "すくない",
+        meaning: "数量や程度が基準より下回っていること。",
+        enTranslation: "Few / Little",
+        image: null,
+        examples: [
+            "平日の昼間ということもあり、映画館の客席は数が少ない。",
+            "彼は口数が少ないが、いつも的確な意見を述べる。",
+        ]
+    },
+    {
+        word: "重い",
+        lang: "jp",
+        pos: "形容詞",
+        type: "属性",
+        romaji: "おもい",
+        meaning: "重量が大きいこと。負担や責任が大きい様子。",
+        enTranslation: "Heavy",
+        image: null,
+        examples: [
+            "このスーツケースは荷物がたくさん詰まっていて非常に重い。",
+            "責任ある役職を任され、プレッシャーで心が重い。",
+        ]
+    },
+    {
+        word: "軽い",
+        lang: "jp",
+        pos: "形容詞",
+        type: "属性",
+        romaji: "かるい",
+        meaning: "重量が小さいこと。負担や程度が少ない様子。",
+        enTranslation: "Light",
+        image: null,
+        examples: [
+            "この新しいスマートフォンは驚くほど薄くて軽い。",
+            "幸いにも風邪の症状は軽いので、薬を飲んで寝れば治るだろう。",
+        ]
+    }
+];
