@@ -22,7 +22,7 @@ window.jpData = [
         romaji: "kuruma",
         meaning: "人や荷物を運ぶために車輪で走る乗り物。主に自動車を指す。",
         enTranslation: "Car / Automobile / Vehicle",
-        image: null,
+        image: images/car.png,
         examples: [
             "新しい車を買うために、家族でディーラーへ行った。",
             "休日は車に乗ってドライブに出かけるのが楽しみだ。",
