@@ -6,7 +6,7 @@ window.jpData = [
         type: "間投詞",
         romaji: "こんにちは",
         readings: ["こんにちは", "コンニチハ"],
-        meaning: "日中に使う基本的な挨拶。",
+        meaning: "日中に相手へ声を掛けるときに使う、日本語の基本的な挨拶である。相手の関係に関係なく幅広い相手に使える表現である。",
         enTranslation: "Hello",
         image: null,
         examples: [
@@ -20,7 +20,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "がっこう",
         readings: ["がっこう", "ガッコウ"],
-        meaning: "勉強をしたり、友達と過ごしたりするための場所。先生からいろいろなことを教えてもらう。",
+        meaning: "児童・生徒・学生が教師から教育を施すための施設。学校教育法では、幼稚園・小学校・中学校・高等学校・中等教育学校・高等専門学校・特別支援学校・大学・専修学校・各種学校を指す。",
         enTranslation: "School",
         image: null,
         examples: [
@@ -36,7 +36,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "せんせい",
         readings: ["せんせい", "センセイ"],
-        meaning: "学校などで、勉強や生活について教えてくれる人。",
+        meaning: "学校や塾などで、児童・生徒・学生に教育を施す人。また、学識のある人や指導的立場にある人・敬っている人に対して呼びかけるときの敬称。",
         enTranslation: "Teacher",
         image: null,
         examples: [
@@ -52,7 +52,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "ともだち",
         readings: ["ともだち", "トモダチ"],
-        meaning: "一緒に遊んだり、話したり、助け合ったりする仲のよい人。",
+        meaning: "互いに心を許し合って、対等に付き合う関係にある人。一緒に遊んだり、話したりすることができる親しい人。",
         enTranslation: "Friend",
         image: null,
         examples: [
@@ -68,7 +68,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "いえ",
         readings: ["いえ", "イエ", "うち", "ウチ"],
-        meaning: "人が住んでいる建物や、その人が生活している場所。",
+        meaning: "人間が居住する固定式あるいは移動式の建物のこと。 祖先から代々続いてきた血族としてのまとまり。",
         enTranslation: "House / Home",
         image: null,
         examples: [
@@ -84,7 +84,7 @@ window.jpData = [
         type: "一段動詞",
         romaji: "たべる",
         readings: ["たべる", "タベル"],
-        meaning: "食べ物を口に入れて、体の中に取り入れること。",
+        meaning: "口から食べ物を体の中に入れて、栄養を取る行為のこと。また、食事をすること。",
         enTranslation: "Eat",
         image: null,
         examples: [
@@ -100,7 +100,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "のむ",
         readings: ["のむ", "ノム"],
-        meaning: "水や飲み物などを口から体の中に入れること。",
+        meaning: "口から水や他の液体を摂取する行為のこと。また、薬を服用することや、酒を飲むことも含まれる。",
         enTranslation: "Drink",
         image: null,
         examples: [
@@ -115,8 +115,8 @@ window.jpData = [
         pos: "動詞",
         type: "五段動詞",
         romaji: "いく",
-        readings: ["いく", "イク"],
-        meaning: "今いる場所から、別の場所へ移動すること。",
+        readings: ["いく", "イク","ゆく", "ユク"],
+        meaning: "自分のいる場所から目的地へ向かって移動すること。また、「ゆく」と「いく」は、意味の違いはほとんどないが、「ゆく」は文学的表現や詩的表現で使われることが多い。",
         enTranslation: "Go",
         image: null,
         examples: [
@@ -132,7 +132,7 @@ window.jpData = [
         type: "カ変動詞",
         romaji: "くる",
         readings: ["くる", "クル"],
-        meaning: "別の場所にいる人や物が、自分のいる場所へ移動すること。",
+        meaning: "自分のいる場所に、他の場所から移動して到着すること。主に、人や物が自分のいる場所に近づいてくることを表し、三人称・二人称の動作を表す場合に使われる。「行く」の対義語。",
         enTranslation: "Come",
         image: null,
         examples: [
@@ -148,7 +148,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "かえる",
         readings: ["かえる", "カエル"],
-        meaning: "学校や会社などから、自分の家などへ戻ること。",
+        meaning: "自分の家や元の場所に戻ること。また、学校や会社などから自宅に戻ることを指す場合もある。",
         enTranslation: "Return / Go home",
         image: null,
         examples: [
