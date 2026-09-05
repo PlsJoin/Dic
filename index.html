@@ -59,7 +59,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Navbar */
         .navbar {
             position: sticky;
             top: 0;
@@ -79,7 +78,6 @@
             user-select: none;
             display: flex;
             align-items: center;
-            gap: 0;
         }
 
         .logo-mark {
@@ -94,11 +92,6 @@
             color: var(--accent);
         }
 
-        .logo-sub {
-            display: none;
-        }
-
-        /* Search */
         .search-area {
             flex: 1;
             max-width: 460px;
@@ -208,7 +201,6 @@
             background: var(--accent-soft);
         }
 
-        /* Gear */
         .gear-btn {
             width: 36px;
             height: 36px;
@@ -233,7 +225,6 @@
             height: 18px;
         }
 
-        /* Settings */
         .settings-panel {
             position: fixed;
             top: calc(var(--nav-height) + 6px);
@@ -332,14 +323,12 @@
             transform: translateX(20px);
         }
 
-        /* Main */
         .main {
             max-width: 680px;
             margin: 0 auto;
             padding: 24px 16px 60px;
         }
 
-        /* Hero */
         .hero {
             text-align: center;
             margin-bottom: 28px;
@@ -373,7 +362,6 @@
             line-height: 1.55;
         }
 
-        /* Sections */
         .section {
             margin-bottom: 22px;
         }
@@ -428,7 +416,6 @@
             color: var(--text-tertiary);
         }
 
-        /* Results */
         .results-header {
             text-align: center;
             margin-bottom: 16px;
@@ -560,7 +547,7 @@
             margin-bottom: 10px;
         }
 
-        .en-meaning {
+        .trans-meaning {
             font-size: 0.9rem;
             color: var(--text-secondary);
             margin-bottom: 10px;
@@ -621,7 +608,6 @@
             padding-bottom: 12px;
         }
 
-        /* Mobile */
         @media (max-width: 640px) {
             :root {
                 --nav-height: 50px;
@@ -839,6 +825,7 @@
             }
             if (item.romaji && String(item.romaji).toLowerCase().includes(q)) return true;
             if (item.enTranslation && item.enTranslation.toLowerCase().includes(q)) return true;
+            if (item.jaTranslation && item.jaTranslation.toLowerCase().includes(q)) return true;
             return false;
         }
 
@@ -952,6 +939,24 @@
             window.speechSynthesis.speak(utter);
         }
 
+        function buildTranslationHtml(item) {
+            if (item.lang === 'jp' && item.enTranslation) {
+                const tokens = item.enTranslation.split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
+                const links = tokens.map(t =>
+                    `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`
+                ).join(' <span style="color:var(--text-tertiary)">/</span> ');
+                return `<div class="trans-meaning">英訳：${links}</div>`;
+            }
+            if (item.lang === 'en' && item.jaTranslation) {
+                const tokens = item.jaTranslation.split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
+                const links = tokens.map(t =>
+                    `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`
+                ).join(' <span style="color:var(--text-tertiary)">/</span> ');
+                return `<div class="trans-meaning">和訳：${links}</div>`;
+            }
+            return '';
+        }
+
         function performSearch(query) {
             if (!query) return;
             addRecent(query);
@@ -971,17 +976,13 @@
                 html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果（${countLabel}）</p></div>`;
 
                 found.forEach(item => {
-                    let enHtml = '';
-                    if (item.enTranslation) {
-                        const tokens = item.enTranslation.split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
-                        const links = tokens.map(t => `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`).join(' <span style="color:var(--text-tertiary)">/</span> ');
-                        enHtml = `<div class="en-meaning">英訳：${links}</div>`;
-                    }
-
+                    const transHtml = buildTranslationHtml(item);
                     let meaning = item.meaning || '';
                     let exHtml = '';
                     if (item.examples && item.examples.length) {
-                        exHtml = '<ul class="examples">' + item.examples.map(ex => `<li>${escapeHtml(String(ex).replace(/^・\\s*/, ''))}</li>`).join('') + '</ul>';
+                        exHtml = '<ul class="examples">' + item.examples.map(ex =>
+                            `<li>${escapeHtml(String(ex).replace(/^・\s*/, ''))}</li>`
+                        ).join('') + '</ul>';
                     }
 
                     const langLabel = item.lang === 'jp' ? '日本語' : 'English';
@@ -997,7 +998,7 @@
                             <div class="dict-body">
                                 <div class="card-top">
                                     <div class="word-block">
-                                        <div class="main-word">${escapeHtml(item.word)} <span class="pos-tag">[${escapeHtml(item.pos || '名詞')}]</span></div>
+                                        <div class="main-word">${escapeHtml(item.word)} <span class="pos-tag">[${escapeHtml(item.pos || '')}]</span></div>
                                         <div class="meta-row">
                                             <span class="lang-badge">${langLabel}</span>
                                             <span class="type-tag">${escapeHtml(item.type || '')}</span>
@@ -1012,7 +1013,7 @@
                                     </button>
                                 </div>
                                 <div class="meaning">${meaning}</div>
-                                ${enHtml}
+                                ${transHtml}
                                 ${exHtml}
                             </div>
                             ${imgHtml}
