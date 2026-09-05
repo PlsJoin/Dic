@@ -387,6 +387,31 @@
             line-height: 1.65;
         }
 
+        .recent-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .recent-header .section-title {
+            margin-bottom: 0;
+        }
+
+        .clear-history-btn {
+            border: none;
+            background: transparent;
+            color: var(--text-tertiary);
+            font-size: 0.78rem;
+            cursor: pointer;
+            padding: 2px 6px;
+            transition: color var(--transition);
+        }
+
+        .clear-history-btn:hover {
+            color: var(--accent);
+        }
+
         .recent-list {
             display: flex;
             flex-wrap: wrap;
@@ -396,7 +421,8 @@
         .recent-chip {
             display: inline-flex;
             align-items: center;
-            padding: 5px 11px;
+            gap: 4px;
+            padding: 5px 8px 5px 11px;
             background: var(--bg-tertiary);
             font-size: 0.85rem;
             color: var(--text-primary);
@@ -409,6 +435,17 @@
         .recent-chip:hover {
             background: var(--accent-soft);
             color: var(--accent);
+        }
+
+        .recent-chip-del {
+            font-size: 0.9rem;
+            line-height: 1;
+            opacity: 0.5;
+            margin-left: 2px;
+        }
+
+        .recent-chip-del:hover {
+            opacity: 1;
         }
 
         .recent-empty {
@@ -736,7 +773,10 @@
             </div>
 
             <div class="section" id="recentSection">
-                <div class="section-title">最近の検索</div>
+                <div class="recent-header">
+                    <div class="section-title">最近の検索</div>
+                    <button class="clear-history-btn" id="clearHistoryBtn" onclick="clearAllRecent()" style="display:none;">履歴を消す</button>
+                </div>
                 <div class="card">
                     <div id="recentList" class="recent-list">
                         <span class="recent-empty">まだ検索履歴がありません</span>
@@ -911,15 +951,32 @@
             renderRecent();
         }
 
+        function removeRecent(word) {
+            const list = getRecent().filter(w => w !== word);
+            localStorage.setItem('dict-recent', JSON.stringify(list));
+            renderRecent();
+        }
+
+        function clearAllRecent() {
+            localStorage.removeItem('dict-recent');
+            renderRecent();
+        }
+
         function renderRecent() {
             const list = getRecent();
             const el = document.getElementById('recentList');
+            const clearBtn = document.getElementById('clearHistoryBtn');
             if (!list.length) {
                 el.innerHTML = '<span class="recent-empty">まだ検索履歴がありません</span>';
+                if (clearBtn) clearBtn.style.display = 'none';
                 return;
             }
+            if (clearBtn) clearBtn.style.display = 'block';
             el.innerHTML = list.map(w =>
-                `<button class="recent-chip" onclick="selectSuggestion('${escapeAttr(w)}')">${escapeHtml(w)}</button>`
+                `<button class="recent-chip" onclick="selectSuggestion('${escapeAttr(w)}')">
+                    ${escapeHtml(w)}
+                    <span class="recent-chip-del" onclick="event.stopPropagation();removeRecent('${escapeAttr(w)}')" title="削除">×</span>
+                </button>`
             ).join('');
         }
 
@@ -940,6 +997,7 @@
         }
 
         function buildTranslationHtml(item) {
+            // JP → 英訳, EN → 和訳
             if (item.lang === 'jp' && item.enTranslation) {
                 const tokens = item.enTranslation.split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
                 const links = tokens.map(t =>
