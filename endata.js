@@ -981,7 +981,7 @@ window.enData = [
         "meaning": "「Cat」はネコ科の動物「猫」を指す言葉。世界中でペットとして広く愛されており、気まぐれな行動や愛らしい見た目が特徴。ことわざや日常の慣用表現にもよく登場する。",
         "jaTranslation": "猫",
         "enTranslation": null,
-        "image": null,
+        "image": "images/cat.png",
         "examples": [
             "The cat chased a mouse under the sofa.（猫がソファの下でネズミを追いかけた。）"
         ]
@@ -998,7 +998,7 @@ window.enData = [
         "meaning": "「Dog」はイヌ科の動物「犬」を指す。人間の良きパートナーとして古くから飼育されており、忠実な性格が特徴。",
         "jaTranslation": "犬",
         "enTranslation": null,
-        "image": null,
+        "image": "images/dog.png",
         "examples": [
             "I walk my dog in the park every morning.（私は毎朝、公園で犬の散歩をします。）"
         ]
@@ -1015,7 +1015,7 @@ window.enData = [
         "meaning": "「Apple」は果物の「リンゴ」を指す。健康に良い果物の代表格であり、IT企業の社名やブランド名としても有名。",
         "jaTranslation": "リンゴ",
         "enTranslation": null,
-        "image": null,
+        "image": "images/apple.png",
         "examples": [
             "She ate a fresh apple for breakfast.（彼女は朝食に新鮮なリンゴを食べた。）"
         ]
@@ -1032,7 +1032,7 @@ window.enData = [
         "meaning": "「Book」は文字や絵が印刷された「本」や「書籍」を指す。動詞として使う場合は「予約する」という意味になる。",
         "jaTranslation": "本",
         "enTranslation": null,
-        "image": null,
+        "image": "images/book.png",
         "examples": [
             "I am reading an interesting book about history.（私は歴史に関する面白い本を読んでいます。）"
         ]
@@ -1049,7 +1049,7 @@ window.enData = [
         "meaning": "「Water」は生命に不可欠な液体である「水」を指す。環境や文脈によって、お湯や飲料水を指すこともある。",
         "jaTranslation": "水",
         "enTranslation": null,
-        "image": null,
+        "image": "images/water.png",
         "examples": [
             "Please give me a glass of cold water.（冷たいお水を一杯ください。）"
         ]
@@ -1236,7 +1236,7 @@ window.enData = [
         "meaning": "「House」は人が住むための「家」や「一戸建ての建物」を指す。精神的な「家庭（home）」と区別して、物理的な建物を指すことが多い。",
         "jaTranslation": "家 / 住宅",
         "enTranslation": null,
-        "image": null,
+        "image": "images/house.png",
         "examples": [
             "They built a new house near the station.（彼らは駅の近くに新しい家を建てた。）"
         ]
@@ -1270,7 +1270,7 @@ window.enData = [
         "meaning": "「Food」は人間や動物が生命を維持するために食べる「食べ物」や「食品」を指す。特定の地域の料理（Japanese foodなど）にも使われる。",
         "jaTranslation": "食べ物",
         "enTranslation": null,
-        "image": null,
+        "image": "images/food.png",
         "examples": [
             "Italian food is very popular all over the world.（イタリア料理は世界中でとても人気があります。）"
         ]
@@ -1457,7 +1457,7 @@ window.enData = [
         "meaning": "「Train」は線路の上を走る「電車」や「列車」を指す。動詞として使う場合は「訓練する」「鍛える」という意味になる。",
         "jaTranslation": "電車",
         "enTranslation": null,
-        "image": null,
+        "image": "images/train.png",
         "examples": [
             "The train was crowded with commuters this morning.（今朝の電車は通勤客で混雑していた。）"
         ]
@@ -1474,7 +1474,7 @@ window.enData = [
         "meaning": "「Station」は電車やバスが止まる「駅」や「停留所」を指す。また、テレビ局（TV station）や警察署（police station）など特定の施設も指す。",
         "jaTranslation": "駅",
         "enTranslation": null,
-        "image": null,
+        "image": "images/station.png",
         "examples": [
             "I will meet you in front of the ticket gate at the station.（駅の改札口の前で会いましょう。）"
         ]
@@ -1491,7 +1491,7 @@ window.enData = [
         "meaning": "「Airport」は飛行機が離着陸し、乗客が乗り降りする「空港」を指す。国際線や国内線の拠点となる場所。",
         "jaTranslation": "空港",
         "enTranslation": null,
-        "image": null,
+        "image": "images/airport.png",
         "examples": [
             "We arrived at the airport two hours before our flight.（私たちはフライトの2時間前に空港に到着した。）"
         ]
@@ -1542,7 +1542,7 @@ window.enData = [
         "meaning": "「Sun」は地球に光と熱をもたらす恒星である「太陽」を指す。通常、世界に一つしかないため「the sun」と表現される。",
         "jaTranslation": "太陽",
         "enTranslation": null,
-        "image": null,
+        "image": "images/sun.png",
         "examples": [
             "The sun rises in the east and sets in the west.（太陽は東から昇り、西に沈む。）"
         ]
@@ -1559,7 +1559,7 @@ window.enData = [
         "meaning": "「Moon」は地球の周りを回る衛星である「月」を指す。太陽と同様に、通常は「the moon」と表現される。",
         "jaTranslation": "月",
         "enTranslation": null,
-        "image": null,
+        "image": "images/moon.png",
         "examples": [
             "The full moon was shining brightly in the dark sky.（暗い夜空に満月が明るく輝いていた。）"
         ]
@@ -1576,7 +1576,7 @@ window.enData = [
         "meaning": "「Sky」は地球を包む大気圏、つまり「空」を指す。天気によって blue sky（青空）や cloudy sky（曇り空）などと表現される。",
         "jaTranslation": "空",
         "enTranslation": null,
-        "image": null,
+        "image": "images/sky.png",
         "examples": [
             "There is not a single cloud in the sky today.（今日は空に雲が一つもない。）"
         ]
@@ -1593,7 +1593,7 @@ window.enData = [
         "meaning": "「Rain」は空から降ってくる水滴、つまり「雨」を指す。動詞として「雨が降る」という意味でも非常によく使われる。",
         "jaTranslation": "雨",
         "enTranslation": null,
-        "image": null,
+        "image": "images/rain.png",
         "examples": [
             "We stayed indoors all day because of the heavy rain.（大雨のため、私たちは一日中室内にとどまった。）"
         ]
@@ -1610,7 +1610,7 @@ window.enData = [
         "meaning": "「Snow」は空気中の水分が凍って降ってくる「雪」を指す。rainと同様に、動詞として「雪が降る」という意味でも使われる。",
         "jaTranslation": "雪",
         "enTranslation": null,
-        "image": null,
+        "image": "images/snow.png",
         "examples": [
             "The mountains were covered with white snow.（山々は白い雪で覆われていた。）"
         ]
@@ -1627,7 +1627,7 @@ window.enData = [
         "meaning": "「Sea」は地球の表面を覆う塩水の広がり、つまり「海」を指す。大洋（ocean）よりも陸地に近い海を指すことが多い。",
         "jaTranslation": "海",
         "enTranslation": null,
-        "image": null,
+        "image": "images/sea.png",
         "examples": [
             "We enjoyed swimming in the sea last summer.（私たちは去年の夏、海で泳ぐのを楽しみました。）"
         ]
@@ -1644,7 +1644,7 @@ window.enData = [
         "meaning": "「Mountain」は周囲の土地より著しく高く隆起した地形、つまり「山」を指す。頭文字を大文字にして山の名前に添える（Mt. Fujiなど）。",
         "jaTranslation": "山",
         "enTranslation": null,
-        "image": null,
+        "image": "images/mountain.png",
         "examples": [
             "They plan to climb the highest mountain next week.（彼らは来週、一番高い山に登る計画を立てている。）"
         ]
@@ -1661,7 +1661,7 @@ window.enData = [
         "meaning": "「River」は絶えず水が流れる自然の水路、つまり「川」や「河川」を指す。通常、海や湖へと流れ込む。",
         "jaTranslation": "川",
         "enTranslation": null,
-        "image": null,
+        "image": "images/river.png",
         "examples": [
             "The river flows through the center of the town.（その川は町の中心部を流れている。）"
         ]
@@ -1678,7 +1678,7 @@ window.enData = [
         "meaning": "「Tree」は幹が木質化して自立する多年生の植物、つまり「木」や「樹木」を指す。草（grass）と区別される。",
         "jaTranslation": "木",
         "enTranslation": null,
-        "image": null,
+        "image": "images/tree.png",
         "examples": [
             "Birds are singing on the branches of the big tree.（大きな木の枝で鳥たちが鳴いている。）"
         ]
@@ -1695,7 +1695,7 @@ window.enData = [
         "meaning": "「Flower」は植物が子孫を残すために咲かせる「花」を指す。観賞用の美しい花を指すことが多い。",
         "jaTranslation": "花",
         "enTranslation": null,
-        "image": null,
+        "image": "images/flower.png",
         "examples": [
             "He gave a beautiful bouquet of flowers to his mother.（彼は母親に美しい花束を贈った。）"
         ]
@@ -1712,7 +1712,7 @@ window.enData = [
         "meaning": "「Computer」はデータの計算や処理を行う電子機器、つまり「パソコン」や「計算機」を指す。現代社会に不可欠な道具。",
         "jaTranslation": "コンピューター",
         "enTranslation": null,
-        "image": null,
+        "image": "images/computer.png",
         "examples": [
             "I use my computer to write reports and send emails.（私はレポートの作成やメールの送信にパソコンを使います。）"
         ]
@@ -1729,7 +1729,7 @@ window.enData = [
         "meaning": "「Phone」は遠く離れた人と通話するための「電話」や「スマートフォン」を指す。telephoneの略称として日常的に使われる。",
         "jaTranslation": "電話",
         "enTranslation": null,
-        "image": null,
+        "image": "images/phone.png",
         "examples": [
             "My phone rang while I was having a meeting.（会議中に私の電話が鳴った。）"
         ]
@@ -1746,7 +1746,7 @@ window.enData = [
         "meaning": "「Clock」は時間を示す「時計」を指す。主に壁掛け時計や置き時計を指し、身につける腕時計（watch）とは区別される。",
         "jaTranslation": "時計",
         "enTranslation": null,
-        "image": null,
+        "image": "images/clock.png",
         "examples": [
             "The clock on the wall shows it is exactly three o'clock.（壁の時計はちょうど3時を示している。）"
         ]
@@ -1763,7 +1763,7 @@ window.enData = [
         "meaning": "「Chair」は人が座るための、通常は背もたれのある「椅子」を指す。複数人が座る長椅子（sofaやbench）と区別される。",
         "jaTranslation": "椅子",
         "enTranslation": null,
-        "image": null,
+        "image": "images/chair.png",
         "examples": [
             "Please take a chair and wait for a moment.（椅子にかけて少々お待ちください。）"
         ]
@@ -1780,7 +1780,7 @@ window.enData = [
         "meaning": "「Desk」は勉強や仕事、書き物をするための「机」や「事務机」を指す。引き出しがついていることが多い。食事用のテーブル（table）と区別される。",
         "jaTranslation": "机",
         "enTranslation": null,
-        "image": null,
+        "image": "images/desk.png",
         "examples": [
             "He keeps his textbooks and pens on his desk.（彼は机の上に教科書やペンを置いている。）"
         ]
@@ -1797,7 +1797,7 @@ window.enData = [
         "meaning": "「Pen」はインクを使って文字や絵を書く「ペン」や「筆記具」を指す。ボールペンや万年筆などの総称。",
         "jaTranslation": "ペン",
         "enTranslation": null,
-        "image": null,
+        "image": "images/pen.png",
         "examples": [
             "Can I borrow your pen to fill out this form?（この用紙に記入するためにペンを借りてもいいですか？）"
         ]
@@ -1814,7 +1814,7 @@ window.enData = [
         "meaning": "「Bag」は物を入れて持ち運ぶための「かばん」や「袋」を指す。リュック、ハンドバッグ、紙袋なども含まれる。",
         "jaTranslation": "かばん",
         "enTranslation": null,
-        "image": null,
+        "image": "images/bag.png",
         "examples": [
             "She put her wallet and keys into her bag.（彼女は財布と鍵をかばんに入れた。）"
         ]
@@ -1831,7 +1831,7 @@ window.enData = [
         "meaning": "「Shoes」は足を保護するために履く「靴」を指す。通常は左右一対で使うため、複数形の「shoes」で表現されることが多い。",
         "jaTranslation": "靴",
         "enTranslation": null,
-        "image": null,
+        "image": "images/shoes.png",
         "examples": [
             "Take off your shoes before entering the house.（家に入る前に靴を脱いでください。）"
         ]
@@ -1848,7 +1848,7 @@ window.enData = [
         "meaning": "「Clothes」は人間が身にまとう「衣服」や「服」「着物」を指す。常に複数形で扱われる名詞である。",
         "jaTranslation": "服",
         "enTranslation": null,
-        "image": null,
+        "image": "images/clothes.png",
         "examples": [
             "He bought some warm clothes for the winter season.（彼は冬の季節に向けて温かい服を買った。）"
         ]
@@ -1865,7 +1865,7 @@ window.enData = [
         "meaning": "「Window」は建物や乗り物の壁にある、光や空気を取り入れるための「窓」を指す。パソコンの画面上の「ウィンドウ」の意味もある。",
         "jaTranslation": "窓",
         "enTranslation": null,
-        "image": null,
+        "image": "images/window.png",
         "examples": [
             "Could you please open the window to let some fresh air in?（新鮮な空気を入れるために窓を開けていただけますか？）"
         ]
@@ -1882,7 +1882,7 @@ window.enData = [
         "meaning": "「Door」は部屋や建物の出入り口にある「戸」や「扉」「ドア」を指す。比喩的に「〜への扉・道」という意味でも使われる。",
         "jaTranslation": "ドア",
         "enTranslation": null,
-        "image": null,
+        "image": "images/door.png",
         "examples": [
             "Please make sure to lock the front door when you leave.（出かけるときは必ず玄関のドアを施錠してください。）"
         ]
@@ -1899,7 +1899,7 @@ window.enData = [
         "meaning": "「Room」は壁で区切られた建物の中の「部屋」や「室」を指す。また、不可算名詞（数えられない名詞）としては「空間」や「余地」という意味になる。",
         "jaTranslation": "部屋",
         "enTranslation": null,
-        "image": null,
+        "image": "images/room.png",
         "examples": [
             "My room is small but very cozy and quiet.（私の部屋は狭いですが、とても居心地がよくて静かです。）"
         ]
@@ -1916,7 +1916,7 @@ window.enData = [
         "meaning": "「Store」は商品を販売する「店」や「店舗」を指す。主にアメリカ英語でよく使われ、イギリス英語の shop に相当する。動詞では「蓄える」という意味。",
         "jaTranslation": "店",
         "enTranslation": null,
-        "image": null,
+        "image": "images/store.png",
         "examples": [
             "There is a convenient grocery store near my apartment.（私のマンションの近くに便利な食料品店があります。）"
         ]
@@ -1933,7 +1933,7 @@ window.enData = [
         "meaning": "「Hospital」は病気やケガをした人が治療や入院をするための「病院」を指す。規模の大きな総合病院を指すことが多い。",
         "jaTranslation": "病院",
         "enTranslation": null,
-        "image": null,
+        "image": "images/hospital.png",
         "examples": [
             "He was taken to the hospital after the accident.（彼は事故の後、病院に搬送された。）"
         ]
@@ -1950,7 +1950,7 @@ window.enData = [
         "meaning": "「Park」は公衆が憩いや運動のために利用する「公園」や「広場」を指す。動詞として使う場合は車を「駐車する」という意味になる。",
         "jaTranslation": "公園",
         "enTranslation": null,
-        "image": null,
+        "image": "images/park.png",
         "examples": [
             "Many people enjoy picnicking in the park on sunny days.（晴れた日には多くの人が公園でピクニックを楽しんでいます。）"
         ]
@@ -2290,7 +2290,7 @@ window.enData = [
         "meaning": "「Home」は自分が住んでいる家や、心が落ち着く場所、故郷を表す言葉。単なる建物（house）より、感情的なつながりを含むことが多い。",
         "jaTranslation": "家 / 家庭 / 故郷",
         "enTranslation": null,
-        "image": null,
+        "image": "images/house.png",
         "examples": [
             "I want to go home.（家に帰りたい。）",
             "There is no place like home.（家ほど良い場所はない。）"
