@@ -1440,7 +1440,7 @@ window.enData = [
         "meaning": "「Car」は主に個人や家族が移動に使う「自動車」や「乗用車」を指す。一般的な乗り物の代表格。",
         "jaTranslation": "車",
         "enTranslation": null,
-        "image": null,
+        "image": "images/car.png",
         "examples": [
             "He washed his new car in the driveway.（彼は車道で新しい車を洗った。）"
         ]
