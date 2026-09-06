@@ -1916,7 +1916,7 @@ window.enData = [
         "meaning": "「Store」は商品を販売する「店」や「店舗」を指す。主にアメリカ英語でよく使われ、イギリス英語の shop に相当する。動詞では「蓄える」という意味。",
         "jaTranslation": "店",
         "enTranslation": null,
-        "image": "images/store.png",
+        "image": "images/shop.png",
         "examples": [
             "There is a convenient grocery store near my apartment.（私のマンションの近くに便利な食料品店があります。）"
         ]
