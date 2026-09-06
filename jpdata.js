@@ -13,7 +13,7 @@ window.jpData = [
             "こんにちは！"
         ]
     },
-        {
+    {
         word: "学校",
         lang: "jp",
         pos: "名詞",
@@ -70,7 +70,7 @@ window.jpData = [
         readings: ["いえ", "イエ", "うち", "ウチ"],
         meaning: "人間が居住する固定式あるいは移動式の建物のこと。 祖先から代々続いてきた血族としてのまとまり。",
         enTranslation: "House / Home",
-        image: null,
+        image: "images/house.png",
         examples: [
             "学校から家に帰る。",
             "家でご飯を食べた。",
@@ -758,7 +758,7 @@ window.jpData = [
         readings: ["あめ", "アメ"],
         meaning: "空から水のつぶが降ってくる自然現象。",
         enTranslation: "Rain",
-        image: null,
+        image: "images/rain.png",
         examples: [
             "雨が降っている。",
             "雨なので傘を持っていく。",
@@ -774,7 +774,7 @@ window.jpData = [
         readings: ["ゆき", "ユキ"],
         meaning: "空から降ってくる、白くて小さな氷のつぶ。",
         enTranslation: "Snow",
-        image: null,
+        image: "images/snow.png",
         examples: [
             "雪が降っている。",
             "雪がたくさん積もった。",
@@ -790,7 +790,7 @@ window.jpData = [
         readings: ["みず", "ミズ"],
         meaning: "透明な液体で、人や動物が生きるためにも必要なもの。",
         enTranslation: "Water",
-        image: null,
+        image: "images/water.png",
         examples: [
             "水を飲む。",
             "コップに水を入れる。",
@@ -806,7 +806,7 @@ window.jpData = [
         readings: ["たべもの", "タベモノ"],
         meaning: "人や動物が食べるもの。ご飯、パン、野菜、肉など。",
         enTranslation: "Food",
-        image: null,
+        image: "images/food.png",
         examples: [
             "好きな食べ物は何ですか？",
             "食べ物を買いに行く。",
@@ -838,7 +838,7 @@ window.jpData = [
         readings: ["みせ", "ミセ"],
         meaning: "商品や食べ物などを売っている場所。",
         enTranslation: "Shop / Store",
-        image: null,
+        image: "images/shop.png",
         examples: [
             "店でパンを買う。",
             "この店は人気があります。",
@@ -854,7 +854,7 @@ window.jpData = [
         readings: ["えき", "エキ"],
         meaning: "電車や地下鉄などに乗ったり降りたりするための場所。",
         enTranslation: "Station",
-        image: null,
+        image: "images/station.png",
         examples: [
             "駅まで歩く。",
             "駅で友達と会った。",
@@ -870,7 +870,7 @@ window.jpData = [
         readings: ["でんしゃ", "デンシャ"],
         meaning: "電気の力で線路の上を走り、人や荷物を運ぶ乗り物。",
         enTranslation: "Train",
-        image: null,
+        image: "images/train.png",
         examples: [
             "電車に乗る。",
             "電車で学校へ行く。",
@@ -950,7 +950,7 @@ window.jpData = [
         readings: ["ほん", "ホン"],
         meaning: "文字や写真、絵などが書かれた紙をまとめたもの。知識や物語を読むために使う。",
         enTranslation: "Book",
-        image: null,
+        image: "images/book.png",
         examples: [
             "本を読む。",
             "図書館で本を借りた。",
@@ -998,7 +998,7 @@ window.jpData = [
         readings: ["こども", "コドモ"],
         meaning: "大人になる前の年齢の人。",
         enTranslation: "Child / Kid",
-        image: null,
+        image: "images/child.png",
         examples: [
             "子供が公園で遊んでいる。",
             "子供のころによく遊んだ。",
@@ -1030,7 +1030,7 @@ window.jpData = [
         readings: ["いぬ", "イヌ"],
         meaning: "人と一緒に暮らすことが多い動物。四本の足を持ち、よく「ワンワン」と鳴く。",
         enTranslation: "Dog",
-        image: null,
+        image: "images/dog.png",
         examples: [
             "犬を飼っている。",
             "公園で犬を見た。",
@@ -1046,7 +1046,7 @@ window.jpData = [
         readings: ["ねこ", "ネコ"],
         meaning: "人と一緒に暮らすことが多い動物。四本の足を持ち、「ニャー」と鳴く。",
         enTranslation: "Cat",
-        image: null,
+        image: "images/cat.png",
         examples: [
             "猫を飼っている。",
             "猫が窓の近くにいる。",
@@ -1062,7 +1062,7 @@ window.jpData = [
         readings: ["そら", "ソラ"],
         meaning: "地面より上に広がっている空間。太陽や月、星、雲などが見える場所。",
         enTranslation: "Sky",
-        image: null,
+        image: "images/sky.png",
         examples: [
             "空が青い。",
             "空に雲が浮かんでいる。",
@@ -1078,7 +1078,7 @@ window.jpData = [
         readings: ["ほし", "ホシ"],
         meaning: "夜の空などで光って見える天体。",
         enTranslation: "Star",
-        image: null,
+        image: "images/star.png",
         examples: [
             "夜空に星が見える。",
             "星がたくさん出ている。",
