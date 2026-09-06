@@ -13,6 +13,22 @@ window.jpData = [
             "こんにちは！"
         ]
     },
+     {
+        word: "フォートナイト",
+        lang: "jp",
+        pos: "名詞",
+        type: "普通名詞",
+        romaji: "ふぉーとないと",
+        readings: ["ふぉーとないと", "フォートナイト"],
+        meaning: "EpicGamesが提供するバトロワ形式をメインとしたTPSゲーム。代表的な作品は「バトルロイヤル」「リロード」などがある。",
+        enTranslation: "Fortnite",
+        image: null,
+        examples: [
+            "フォートナイトをする。",
+            "フォートナイトのリロードで負けてしまった。",
+            "明日、フォートナイトをしよう。"
+        ]
+    },
     {
         word: "学校",
         lang: "jp",
