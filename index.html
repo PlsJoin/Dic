@@ -784,7 +784,7 @@
                 </div>
             </div>
 
-            <div class="footer">© Mildex</div>
+            <div class="footer">© Kanji-production</div>
         </div>
 
         <div id="searchResultsView" style="display: none;"></div>
@@ -854,43 +854,49 @@
             if (save) localStorage.setItem('dict-font-size', size);
         }
 
-        function matchesQuery(item, query) {
+        // 検索精度向上：スコアリング
+        function getMatchScore(item, query) {
             const q = query.toLowerCase().replace(/\s+/g, '');
-            if (!q) return false;
-            if (item.word && item.word.toLowerCase().includes(q)) return true;
-            if (item.readings && Array.isArray(item.readings)) {
-                for (const r of item.readings) {
-                    if (String(r).toLowerCase().includes(q)) return true;
-                }
-            }
-            if (item.romaji && String(item.romaji).toLowerCase().includes(q)) return true;
-            if (item.enTranslation && item.enTranslation.toLowerCase().includes(q)) return true;
-            if (item.jaTranslation && item.jaTranslation.toLowerCase().includes(q)) return true;
-            return false;
-        }
+            if (!q) return 0;
+            let score = 0;
 
-        function isExactMatch(item, query) {
-            const q = query.toLowerCase().replace(/\s+/g, '');
-            if (item.word && item.word.toLowerCase() === q) return true;
-            if (item.readings && item.readings.some(r => String(r).toLowerCase() === q)) return true;
-            if (item.romaji && String(item.romaji).toLowerCase() === q) return true;
-            return false;
+            const check = (str, exactScore, startScore, includeScore) => {
+                if (!str) return;
+                const s = String(str).toLowerCase().replace(/\s+/g, '');
+                if (s === q) score = Math.max(score, exactScore);
+                else if (s.startsWith(q)) score = Math.max(score, startScore);
+                else if (s.includes(q)) score = Math.max(score, includeScore);
+            };
+
+            // 優先度：単語 > 読み > ローマ字 > 対訳
+            check(item.word, 100, 70, 40);
+            if (Array.isArray(item.readings)) {
+                item.readings.forEach(r => check(r, 90, 60, 30));
+            }
+            check(item.romaji, 80, 50, 25);
+            check(item.enTranslation, 50, 30, 15);
+            check(item.jaTranslation, 50, 30, 15);
+
+            return score;
         }
 
         function filterSuggestions(query) {
             if (!query) return [];
-            return combinedData.filter(item => matchesQuery(item, query));
+            return combinedData
+                .map(item => ({ item, score: getMatchScore(item, query) }))
+                .filter(x => x.score > 0)
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 10)
+                .map(x => x.item);
         }
 
         function filterSearch(query) {
             if (!query) return [];
-            const exact = [];
-            const partial = [];
-            combinedData.forEach(item => {
-                if (isExactMatch(item, query)) exact.push(item);
-                else if (matchesQuery(item, query)) partial.push(item);
-            });
-            return exact.length > 0 ? exact : partial;
+            return combinedData
+                .map(item => ({ item, score: getMatchScore(item, query) }))
+                .filter(x => x.score > 0)
+                .sort((a, b) => b.score - a.score)
+                .map(x => x.item);
         }
 
         function onInput() {
@@ -898,7 +904,7 @@
             updateClearBtn();
             const box = document.getElementById('suggestions');
             if (!query) { box.classList.remove('show'); box.innerHTML = ''; return; }
-            const matches = filterSuggestions(query).slice(0, 10);
+            const matches = filterSuggestions(query);
             if (matches.length === 0) { box.classList.remove('show'); return; }
             box.innerHTML = matches.map(m =>
                 `<div class="suggestion-item" role="option" onclick="selectSuggestion('${escapeAttr(m.word)}')">${escapeHtml(m.word)}</div>`
@@ -997,22 +1003,24 @@
         }
 
         function buildTranslationHtml(item) {
-            // JP → 英訳, EN → 和訳
-            if (item.lang === 'jp' && item.enTranslation) {
+            // 表示を統一：存在する対訳を同じ形式で出す
+            let parts = [];
+            if (item.enTranslation) {
                 const tokens = item.enTranslation.split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
                 const links = tokens.map(t =>
                     `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`
                 ).join(' <span style="color:var(--text-tertiary)">/</span> ');
-                return `<div class="trans-meaning">英訳：${links}</div>`;
+                parts.push(`英訳：${links}`);
             }
-            if (item.lang === 'en' && item.jaTranslation) {
+            if (item.jaTranslation) {
                 const tokens = item.jaTranslation.split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
                 const links = tokens.map(t =>
                     `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`
                 ).join(' <span style="color:var(--text-tertiary)">/</span> ');
-                return `<div class="trans-meaning">和訳：${links}</div>`;
+                parts.push(`和訳：${links}`);
             }
-            return '';
+            if (parts.length === 0) return '';
+            return `<div class="trans-meaning">${parts.join('<br>')}</div>`;
         }
 
         function performSearch(query) {
@@ -1035,7 +1043,7 @@
 
                 found.forEach(item => {
                     const transHtml = buildTranslationHtml(item);
-                    let meaning = item.meaning || '';
+                    const meaning = item.meaning || '';
                     let exHtml = '';
                     if (item.examples && item.examples.length) {
                         exHtml = '<ul class="examples">' + item.examples.map(ex =>
@@ -1046,6 +1054,7 @@
                     const langLabel = item.lang === 'jp' ? '日本語' : 'English';
                     const speakLang = item.lang === 'jp' ? 'ja' : 'en';
 
+                    // 画像は存在するときだけ表示（en側は基本なし）
                     let imgHtml = '';
                     if (item.image) {
                         imgHtml = `<img class="dict-image" src="${escapeAttr(item.image)}" alt="${escapeAttr(item.word)}" onerror="this.classList.add('hidden')">`;
@@ -1070,7 +1079,7 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <div class="meaning">${meaning}</div>
+                                <div class="meaning">${escapeHtml(meaning)}</div>
                                 ${transHtml}
                                 ${exHtml}
                             </div>
@@ -1079,7 +1088,7 @@
                 });
             }
 
-            html += `<div class="footer">© Saito · GitHub Pages</div>`;
+            html += `<div class="footer">© Kanji-production</div>`;
             results.innerHTML = html;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
