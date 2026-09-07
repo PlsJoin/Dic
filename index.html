@@ -23,6 +23,8 @@
             --ease: 0.14s ease;
             --sky: #7dd3fc;
             --sky-mid: #38bdf8;
+            --accent-jp: #ea580c;   /* オレンジ */
+            --accent-en: #9333ea;   /* 紫 */
         }
         [data-theme="dark"] {
             --bg: #0c0e12;
@@ -36,6 +38,8 @@
             --border: #2a2f3a;
             --sky: #38bdf8;
             --sky-mid: #0ea5e9;
+            --accent-jp: #f97316;
+            --accent-en: #a855f7;
         }
         * {
             box-sizing: border-box;
@@ -449,6 +453,12 @@
             display: flex;
             gap: 18px;
             align-items: flex-start;
+        }
+        .dict-card-jp {
+            border-left-color: var(--accent-jp);
+        }
+        .dict-card-en {
+            border-left-color: var(--accent-en);
         }
         .dict-body { flex: 1; min-width: 0; }
         .dict-image {
@@ -933,12 +943,13 @@
                     }
                     const langLabel = item.lang === 'jp' ? '日本語' : 'English';
                     const speakLang = item.lang === 'jp' ? 'ja' : 'en';
+                    const cardClass = item.lang === 'jp' ? 'dict-card-jp' : 'dict-card-en';
                     let imgHtml = '';
                     if (item.image) {
                         imgHtml = `<img class="dict-image" src="${escapeAttr(item.image)}" alt="${escapeAttr(item.word)}" onerror="this.classList.add('hidden')">`;
                     }
                     html += `
-                        <article class="dict-card">
+                        <article class="dict-card ${cardClass}">
                             <div class="dict-body">
                                 <div class="card-top">
                                     <div class="word-block">
