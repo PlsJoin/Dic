@@ -13,4 +13,11 @@ window.adData = [
     image: "pr/koukoku2.png",
     url: "https://tracking.games.dmm.com/redirect?location=b26b2974-2f3d-4f11-9d07-b167e2f24f5d&viewer=pc&url=https%3A%2F%2Frcv.ixd.dmm.com%2Fapi%2Fsurl%3Furid%3DHWd2HKLn&signature=cf63984195841e36d95597e67029e5569307d96773667fccbb578841f08e1a96&ebnrFlag=0&detailId=hr-default&recommendId=games-pc-top-gen-s&widgetId=rotate&trackingId=po-default&_gl=1*9q29o5*_gcl_au*ODUyMzc3MzMyLjE3ODg3ODM4NTE.*FPAU*MTk0NzAwNDIwNi4xNzgzMjQzMDA0"
   },
+    {
+    id: "ad-bottom-003",
+    title: "ふるさと納税",
+    description: "",
+    image: "pr/koukoku3.png",
+    url: "https://spdlvlogging-direct.i-mobile.co.jp/adnwImage/v1/click?pid=9402&mid=188220&asid=1646859&advid=2782346&vh=9424efa82fb750c4055a71cd8176d74a&imuid=i.dlHE_4pKT0uRXktos5O6Bg&rid=bd728aa0-4c79-4a16-8853-aa4aea3b8f1b"
+  },
 ];
