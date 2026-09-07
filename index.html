@@ -21,6 +21,10 @@
             --nav-h: 52px;
             --base: 16px;
             --ease: 0.14s ease;
+            --sky: #7dd3fc;
+            --sky-mid: #38bdf8;
+            --accent-jp: #ea580c;
+            --accent-en: #9333ea;
         }
         [data-theme="dark"] {
             --bg: #0c0e12;
@@ -32,6 +36,10 @@
             --accent: #3b82f6;
             --accent-soft: rgba(59, 130, 246, 0.12);
             --border: #2a2f3a;
+            --sky: #38bdf8;
+            --sky-mid: #0ea5e9;
+            --accent-jp: #f97316;
+            --accent-en: #a855f7;
         }
         * {
             box-sizing: border-box;
@@ -55,11 +63,18 @@
             z-index: 1000;
             height: var(--nav-h);
             background: var(--surface);
-            border-bottom: 1px solid var(--border);
+            border-bottom: none;
             display: flex;
             align-items: center;
             padding: 0 14px;
             gap: 12px;
+        }
+        .accent-line {
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--sky), var(--sky-mid), var(--sky));
+            position: sticky;
+            top: var(--nav-h);
+            z-index: 999;
         }
         .logo {
             cursor: pointer;
@@ -166,7 +181,7 @@
         /* ── Settings ── */
         .settings-panel {
             position: fixed;
-            top: calc(var(--nav-h) + 6px);
+            top: calc(var(--nav-h) + 10px);
             right: 10px;
             width: 236px;
             background: var(--surface);
@@ -287,6 +302,29 @@
             color: var(--text-2);
             line-height: 1.65;
         }
+        /* ── Featured ── */
+        .featured-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .featured-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 12px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            font-size: 0.86rem;
+            color: var(--text);
+            cursor: pointer;
+            font-weight: 500;
+            transition: background var(--ease), border-color var(--ease), color var(--ease);
+        }
+        .featured-chip:hover {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
         /* ── Recent ── */
         .recent-header {
             display: flex;
@@ -338,39 +376,63 @@
         /* ── Request button ── */
         .request-btn {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 5px;
+            justify-content: space-between;
+            gap: 14px;
             width: 100%;
-            padding: 14px 16px;
+            padding: 16px 18px;
             background: var(--surface);
             border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
             color: var(--text);
             text-decoration: none;
-            transition: border-color var(--ease), background var(--ease);
+            transition: border-color var(--ease), background var(--ease), box-shadow var(--ease);
         }
         .request-btn:hover {
             border-color: var(--accent);
             background: var(--accent-soft);
+            box-shadow: 0 2px 10px rgba(29, 78, 216, 0.08);
+        }
+        .request-text {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            flex: 1;
+            min-width: 0;
         }
         .request-main {
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.92rem;
+            font-weight: 650;
             color: var(--text);
             transition: color var(--ease);
         }
         .request-sub {
-            font-size: 0.76rem;
+            font-size: 0.78rem;
             font-weight: 500;
             color: var(--text-3);
             letter-spacing: 0.01em;
             transition: color var(--ease);
         }
-        .request-btn:hover .request-main {
-            color: var(--accent);
-        }
+        .request-btn:hover .request-main,
         .request-btn:hover .request-sub {
             color: var(--accent);
+        }
+        .request-arrow {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: background var(--ease), color var(--ease);
+        }
+        .request-btn:hover .request-arrow {
+            background: var(--accent);
+            color: #fff;
         }
         /* ── Results ── */
         .results-header {
@@ -392,17 +454,20 @@
             gap: 18px;
             align-items: flex-start;
         }
+        .dict-card-jp {
+            border-left-color: var(--accent-jp);
+        }
+        .dict-card-en {
+            border-left-color: var(--accent-en);
+        }
         .dict-body { flex: 1; min-width: 0; }
-        /* 画像：少し大きく + containで確実に全体表示 + 中央寄せ */
         .dict-image {
             flex-shrink: 0;
-            width: 160px;
-            height: 160px;
+            width: 140px;
+            height: 140px;
             object-fit: contain;
-            object-position: center;
             background: var(--surface-2);
             border: 1px solid var(--border);
-            display: block;
         }
         .dict-image.hidden { display: none; }
         .card-top {
@@ -523,6 +588,79 @@
             margin-top: 28px;
             padding-bottom: 8px;
         }
+        /* ── Bottom Ad Banner ── */
+        .ad-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 3000;
+            background: rgba(0, 0, 0, 0.32);
+            padding: 12px 14px 14px;
+            display: none;
+        }
+        .ad-banner.show {
+            display: block;
+        }
+        .ad-close {
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: rgba(255, 255, 255, 0.22);
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ad-close:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+        .ad-sheet {
+            max-width: 420px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .ad-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .ad-image {
+            width: 100%;
+            height: 78px;          /* チャット入力欄くらいの高さに固定 */
+            display: block;
+            object-fit: cover;
+        }
+        .ad-text {
+            padding: 9px 14px 11px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1d4ed8;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            line-height: 1.35;
+        }
+        [data-theme="dark"] .ad-sheet {
+            background: #1e222b;
+        }
+        [data-theme="dark"] .ad-text {
+            color: #60a5fa;
+        }
+        body.has-ad-banner {
+            padding-bottom: 150px;
+        }
         /* ── Mobile ── */
         @media (max-width: 640px) {
             :root { --nav-h: 48px; }
@@ -537,13 +675,11 @@
             .dict-card {
                 flex-direction: column;
                 padding: 14px;
-                gap: 14px;
+                gap: 12px;
             }
-            /* スマホでも少し大きめにしつつ、文字を確実に優先 */
             .dict-image {
-                width: 140px;
-                height: 140px;
-                max-width: 100%;
+                width: 120px;
+                height: 120px;
                 align-self: center;
             }
             .main-word { font-size: 1.28rem; }
@@ -551,6 +687,39 @@
                 right: 8px;
                 width: calc(100vw - 16px);
                 max-width: 260px;
+            }
+            .request-btn { padding: 14px 14px; }
+            .ad-banner {
+                padding: 10px 10px 12px;
+            }
+            .ad-close {
+                top: 5px;
+                right: 8px;
+                width: 26px;
+                height: 26px;
+                font-size: 1rem;
+            }
+            .ad-sheet {
+                max-width: 100%;
+                border-radius: 9px;
+            }
+            .ad-image {
+                height: 70px;
+            }
+            .ad-text {
+                padding: 8px 12px 10px;
+                font-size: 0.88rem;
+            }
+            body.has-ad-banner {
+                padding-bottom: 135px;
+            }
+        }
+        @media (max-width: 380px) {
+            .ad-image {
+                height: 64px;
+            }
+            body.has-ad-banner {
+                padding-bottom: 125px;
             }
         }
     </style>
@@ -575,6 +744,7 @@
             </svg>
         </button>
     </nav>
+    <div class="accent-line"></div>
     <div class="settings-panel" id="settingsPanel">
         <div class="settings-title">設定</div>
         <div class="settings-row">
@@ -606,6 +776,12 @@
                     </p>
                 </div>
             </div>
+            <div class="section">
+                <div class="section-title">おすすめの単語</div>
+                <div class="card">
+                    <div class="featured-list" id="featuredList"></div>
+                </div>
+            </div>
             <div class="section" id="recentSection">
                 <div class="recent-header">
                     <div class="section-title">最近の検索</div>
@@ -619,16 +795,22 @@
             </div>
             <div class="section">
                 <a href="https://forms.gle/jHLszF9ndrR9MXMy6" target="_blank" rel="noopener noreferrer" class="request-btn">
-                    <span class="request-main">単語追加の申請はこちらから</span>
-                    <span class="request-sub">クリックして申請ページへ →</span>
+                    <div class="request-text">
+                        <span class="request-main">単語追加の申請はこちらから</span>
+                        <span class="request-sub">クリックして申請ページへ</span>
+                    </div>
+                    <div class="request-arrow">→</div>
                 </a>
             </div>
             <div class="footer">© Entry-Production</div>
         </div>
         <div id="searchResultsView" style="display: none;"></div>
     </main>
+    <!-- ボトム広告バナー -->
+    <div id="adBanner" class="ad-banner" aria-label="広告"></div>
     <script src="jpdata.js"></script>
     <script src="endata.js"></script>
+    <script src="ads.js"></script>
     <script>
         let combinedData = [];
         window.addEventListener('DOMContentLoaded', () => {
@@ -642,11 +824,14 @@
             const savedSize = localStorage.getItem('dict-font-size');
             if (savedSize) setFontSize(parseInt(savedSize, 10), false);
             renderRecent();
+            renderFeatured();
             updateClearBtn();
             const input = document.getElementById('searchInput');
             input.addEventListener('input', onInput);
             input.addEventListener('keydown', onKeydown);
             input.addEventListener('focus', onInput);
+            incrementAdCounter();
+            renderBottomAd();
         });
         function toggleSettings() {
             const panel = document.getElementById('settingsPanel');
@@ -794,6 +979,17 @@
                 </button>`
             ).join('');
         }
+        function renderFeatured() {
+            const featured = [
+                "こんにちは", "Thank you", "学校", "Hello", "食べる", "Beautiful",
+                "友達", "Good morning", "行く", "Happy", "雨", "Time"
+            ];
+            const el = document.getElementById('featuredList');
+            if (!el) return;
+            el.innerHTML = featured.map(w =>
+                `<button class="featured-chip" onclick="selectSuggestion('${escapeAttr(w)}')">${escapeHtml(w)}</button>`
+            ).join('');
+        }
         function speakWord(word, lang, btn) {
             if (!window.speechSynthesis) {
                 alert('お使いのブラウザは音声読み上げに対応していません。');
@@ -809,17 +1005,20 @@
             utter.onend = utter.onerror = () => { btns.forEach(b => b.classList.remove('speaking')); };
             window.speechSynthesis.speak(utter);
         }
+        function hasValidTranslation(val) {
+            return val != null && String(val).trim() !== '';
+        }
         function buildTranslationHtml(item) {
             let parts = [];
-            if (item.enTranslation) {
-                const tokens = item.enTranslation.split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
+            if (hasValidTranslation(item.enTranslation)) {
+                const tokens = String(item.enTranslation).split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
                 const links = tokens.map(t =>
                     `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`
                 ).join(' <span style="color:var(--text-3)">/</span> ');
                 parts.push(`英訳：${links}`);
             }
-            if (item.jaTranslation) {
-                const tokens = item.jaTranslation.split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
+            if (hasValidTranslation(item.jaTranslation)) {
+                const tokens = String(item.jaTranslation).split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
                 const links = tokens.map(t =>
                     `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`
                 ).join(' <span style="color:var(--text-3)">/</span> ');
@@ -854,12 +1053,13 @@
                     }
                     const langLabel = item.lang === 'jp' ? '日本語' : 'English';
                     const speakLang = item.lang === 'jp' ? 'ja' : 'en';
+                    const cardClass = item.lang === 'jp' ? 'dict-card-jp' : 'dict-card-en';
                     let imgHtml = '';
                     if (item.image) {
                         imgHtml = `<img class="dict-image" src="${escapeAttr(item.image)}" alt="${escapeAttr(item.word)}" onerror="this.classList.add('hidden')">`;
                     }
                     html += `
-                        <article class="dict-card">
+                        <article class="dict-card ${cardClass}">
                             <div class="dict-body">
                                 <div class="card-top">
                                     <div class="word-block">
@@ -888,13 +1088,18 @@
             html += `
                 <div class="section" style="margin-top: 28px;">
                     <a href="https://forms.gle/jHLszF9ndrR9MXMy6" target="_blank" rel="noopener noreferrer" class="request-btn">
-                        <span class="request-main">単語追加の申請はこちらから</span>
-                        <span class="request-sub">クリックして申請ページへ →</span>
+                        <div class="request-text">
+                            <span class="request-main">単語追加の申請はこちらから</span>
+                            <span class="request-sub">クリックして申請ページへ</span>
+                        </div>
+                        <div class="request-arrow">→</div>
                     </a>
                 </div>
                 <div class="footer">© Entry-Production</div>`;
             results.innerHTML = html;
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            incrementAdCounter();
+            renderBottomAd();
         }
         function autoSearch(word) {
             document.getElementById('searchInput').value = word;
@@ -911,6 +1116,7 @@
             document.getElementById('settingsPanel').classList.remove('show');
             document.getElementById('gearBtn').classList.remove('active');
             renderRecent();
+            renderFeatured();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         function escapeHtml(str) {
@@ -918,6 +1124,55 @@
         }
         function escapeAttr(str) {
             return String(str).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        /* ── 広告バナー制御 ── */
+        function getAdSuppressCount() {
+            return parseInt(sessionStorage.getItem('ad-suppress-count') || '0', 10);
+        }
+        function setAdSuppressCount(n) {
+            sessionStorage.setItem('ad-suppress-count', String(n));
+        }
+        function incrementAdCounter() {
+            if (sessionStorage.getItem('ad-closed') === '1') {
+                const count = getAdSuppressCount() + 1;
+                setAdSuppressCount(count);
+                if (count >= 2) {
+                    sessionStorage.removeItem('ad-closed');
+                    setAdSuppressCount(0);
+                }
+            }
+        }
+        function renderBottomAd() {
+            const banner = document.getElementById('adBanner');
+            if (!banner || !window.adData || !window.adData.length) return;
+            if (sessionStorage.getItem('ad-closed') === '1') {
+                banner.classList.remove('show');
+                banner.innerHTML = '';
+                document.body.classList.remove('has-ad-banner');
+                return;
+            }
+            const ad = window.adData[Math.floor(Math.random() * window.adData.length)];
+            banner.innerHTML = `
+                <button class="ad-close" onclick="closeAd()" aria-label="閉じる">×</button>
+                <div class="ad-sheet">
+                    <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="ad-link">
+                        <img class="ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title)}" loading="lazy">
+                        <div class="ad-text">${escapeHtml(ad.title)}</div>
+                    </a>
+                </div>
+            `;
+            banner.classList.add('show');
+            document.body.classList.add('has-ad-banner');
+        }
+        function closeAd() {
+            const banner = document.getElementById('adBanner');
+            if (banner) {
+                banner.classList.remove('show');
+                banner.innerHTML = '';
+            }
+            document.body.classList.remove('has-ad-banner');
+            sessionStorage.setItem('ad-closed', '1');
+            setAdSuppressCount(0);
         }
     </script>
 </body>
