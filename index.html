@@ -596,7 +596,7 @@
             right: 0;
             z-index: 3000;
             background: rgba(0, 0, 0, 0.32);
-            padding: 14px 14px 18px;
+            padding: 12px 14px 14px;
             display: none;
         }
         .ad-banner.show {
@@ -604,14 +604,14 @@
         }
         .ad-close {
             position: absolute;
-            top: 8px;
+            top: 6px;
             right: 10px;
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             border: none;
             background: rgba(255, 255, 255, 0.22);
             color: #fff;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1;
             cursor: pointer;
             border-radius: 50%;
@@ -624,12 +624,12 @@
             background: rgba(255, 255, 255, 0.35);
         }
         .ad-sheet {
-            max-width: 460px;
+            max-width: 420px;
             margin: 0 auto;
             background: #ffffff;
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
             position: relative;
         }
         .ad-link {
@@ -639,19 +639,18 @@
         }
         .ad-image {
             width: 100%;
-            height: auto;
+            height: 78px;          /* チャット入力欄くらいの高さに固定 */
             display: block;
-            max-height: 170px;
             object-fit: cover;
         }
         .ad-text {
-            padding: 12px 16px 14px;
-            font-size: 0.98rem;
+            padding: 9px 14px 11px;
+            font-size: 0.9rem;
             font-weight: 600;
             color: #1d4ed8;
             text-decoration: underline;
-            text-underline-offset: 3px;
-            line-height: 1.4;
+            text-underline-offset: 2px;
+            line-height: 1.35;
         }
         [data-theme="dark"] .ad-sheet {
             background: #1e222b;
@@ -660,7 +659,7 @@
             color: #60a5fa;
         }
         body.has-ad-banner {
-            padding-bottom: 220px;
+            padding-bottom: 150px;
         }
         /* ── Mobile ── */
         @media (max-width: 640px) {
@@ -691,36 +690,36 @@
             }
             .request-btn { padding: 14px 14px; }
             .ad-banner {
-                padding: 12px 10px 16px;
+                padding: 10px 10px 12px;
             }
             .ad-close {
-                top: 6px;
+                top: 5px;
                 right: 8px;
-                width: 28px;
-                height: 28px;
-                font-size: 1.05rem;
+                width: 26px;
+                height: 26px;
+                font-size: 1rem;
             }
             .ad-sheet {
                 max-width: 100%;
-                border-radius: 10px;
+                border-radius: 9px;
             }
             .ad-image {
-                max-height: 150px;
+                height: 70px;
             }
             .ad-text {
-                padding: 11px 14px 13px;
-                font-size: 0.94rem;
+                padding: 8px 12px 10px;
+                font-size: 0.88rem;
             }
             body.has-ad-banner {
-                padding-bottom: 200px;
+                padding-bottom: 135px;
             }
         }
         @media (max-width: 380px) {
             .ad-image {
-                max-height: 130px;
+                height: 64px;
             }
             body.has-ad-banner {
-                padding-bottom: 185px;
+                padding-bottom: 125px;
             }
         }
     </style>
@@ -833,7 +832,6 @@
             input.addEventListener('input', onInput);
             input.addEventListener('keydown', onKeydown);
             input.addEventListener('focus', onInput);
-            // リロード時にカウントを進めて表示判定
             incrementAdCounter();
             renderBottomAd();
         });
@@ -1103,7 +1101,6 @@
             results.innerHTML = html;
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // 検索時にも広告カウンターを進めて再表示判定
             incrementAdCounter();
             renderBottomAd();
         }
@@ -1140,11 +1137,9 @@
             sessionStorage.setItem('ad-suppress-count', String(n));
         }
         function incrementAdCounter() {
-            // 閉じられている状態のときだけカウントを進める
             if (sessionStorage.getItem('ad-closed') === '1') {
                 const count = getAdSuppressCount() + 1;
                 setAdSuppressCount(count);
-                // 2回に達したら閉じ状態を解除
                 if (count >= 2) {
                     sessionStorage.removeItem('ad-closed');
                     setAdSuppressCount(0);
@@ -1155,7 +1150,6 @@
             const banner = document.getElementById('adBanner');
             if (!banner || !window.adData || !window.adData.length) return;
 
-            // 閉じ状態なら表示しない
             if (sessionStorage.getItem('ad-closed') === '1') {
                 banner.classList.remove('show');
                 banner.innerHTML = '';
@@ -1163,12 +1157,13 @@
                 return;
             }
 
-            const ad = window.adData[0];
+            const ad = window.adData[Math.floor(Math.random() * window.adData.length)];
+
             banner.innerHTML = `
                 <button class="ad-close" onclick="closeAd()" aria-label="閉じる">×</button>
                 <div class="ad-sheet">
                     <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="ad-link">
-                        <img class="ad-image" src="${escapeAttr(ad.image)}" alt="${escapeAttr(ad.title)}" loading="lazy">
+                        <img class="ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title)}" loading="lazy">
                         <div class="ad-text">${escapeHtml(ad.title)}</div>
                     </a>
                 </div>
@@ -1184,7 +1179,7 @@
             }
             document.body.classList.remove('has-ad-banner');
             sessionStorage.setItem('ad-closed', '1');
-            setAdSuppressCount(0);   // 閉じた直後はカウント0からスタート
+            setAdSuppressCount(0);
         }
     </script>
 </body>
