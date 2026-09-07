@@ -23,8 +23,8 @@
             --ease: 0.14s ease;
             --sky: #7dd3fc;
             --sky-mid: #38bdf8;
-            --accent-jp: #ea580c;   /* オレンジ */
-            --accent-en: #9333ea;   /* 紫 */
+            --accent-jp: #ea580c;
+            --accent-en: #9333ea;
         }
         [data-theme="dark"] {
             --bg: #0c0e12;
@@ -588,6 +588,81 @@
             margin-top: 28px;
             padding-bottom: 8px;
         }
+        /* ── Bottom Ad Banner ── */
+        .ad-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 3000;
+            background: rgba(0, 0, 0, 0.28);
+            padding: 10px 12px 14px;
+            display: none;
+        }
+        .ad-banner.show {
+            display: block;
+        }
+        .ad-sheet {
+            max-width: 420px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+            position: relative;
+        }
+        .ad-close {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            width: 26px;
+            height: 26px;
+            border: none;
+            background: rgba(0, 0, 0, 0.06);
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .ad-close:hover {
+            background: rgba(0, 0, 0, 0.12);
+        }
+        .ad-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .ad-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 140px;
+            object-fit: cover;
+        }
+        .ad-text {
+            padding: 10px 14px 12px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #1d4ed8;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            line-height: 1.4;
+        }
+        [data-theme="dark"] .ad-sheet {
+            background: #1e222b;
+        }
+        [data-theme="dark"] .ad-text {
+            color: #60a5fa;
+        }
+        [data-theme="dark"] .ad-close {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ccc;
+        }
+        body.has-ad-banner {
+            padding-bottom: 180px;
+        }
         /* ── Mobile ── */
         @media (max-width: 640px) {
             :root { --nav-h: 48px; }
@@ -616,6 +691,12 @@
                 max-width: 260px;
             }
             .request-btn { padding: 14px 14px; }
+            .ad-banner {
+                padding: 8px 8px 12px;
+            }
+            .ad-image {
+                max-height: 120px;
+            }
         }
     </style>
 </head>
@@ -701,8 +782,13 @@
         </div>
         <div id="searchResultsView" style="display: none;"></div>
     </main>
+
+    <!-- ボトム広告バナー -->
+    <div id="adBanner" class="ad-banner" aria-label="広告"></div>
+
     <script src="jpdata.js"></script>
     <script src="endata.js"></script>
+    <script src="ads.js"></script>
     <script>
         let combinedData = [];
         window.addEventListener('DOMContentLoaded', () => {
@@ -722,6 +808,7 @@
             input.addEventListener('input', onInput);
             input.addEventListener('keydown', onKeydown);
             input.addEventListener('focus', onInput);
+            renderBottomAd();
         });
         function toggleSettings() {
             const panel = document.getElementById('settingsPanel');
@@ -1012,6 +1099,35 @@
         }
         function escapeAttr(str) {
             return String(str).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        /* ── 広告バナー ── */
+        function renderBottomAd() {
+            const banner = document.getElementById('adBanner');
+            if (!banner || !window.adData || !window.adData.length) return;
+            if (sessionStorage.getItem('ad-closed') === '1') return;
+
+            const ad = window.adData[0];
+            banner.innerHTML = `
+                <div class="ad-sheet">
+                    <button class="ad-close" onclick="closeAd()" aria-label="閉じる">×</button>
+                    <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="ad-link">
+                        <img class="ad-image" src="${escapeAttr(ad.image)}" alt="${escapeAttr(ad.title)}" loading="lazy">
+                        <div class="ad-text">${escapeHtml(ad.title)}</div>
+                    </a>
+                </div>
+            `;
+            banner.classList.add('show');
+            document.body.classList.add('has-ad-banner');
+        }
+        function closeAd() {
+            const banner = document.getElementById('adBanner');
+            if (banner) {
+                banner.classList.remove('show');
+                banner.innerHTML = '';
+            }
+            document.body.classList.remove('has-ad-banner');
+            sessionStorage.setItem('ad-closed', '1');
         }
     </script>
 </body>
