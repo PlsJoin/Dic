@@ -22,7 +22,6 @@
             --base: 16px;
             --ease: 0.14s ease;
         }
-
         [data-theme="dark"] {
             --bg: #0c0e12;
             --surface: #15181f;
@@ -34,16 +33,13 @@
             --accent-soft: rgba(59, 130, 246, 0.12);
             --border: #2a2f3a;
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             -webkit-tap-highlight-color: transparent;
         }
-
         html { font-size: var(--base); }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
             background: var(--bg);
@@ -52,7 +48,6 @@
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
-
         /* ── Navbar ── */
         .navbar {
             position: sticky;
@@ -66,13 +61,11 @@
             padding: 0 14px;
             gap: 12px;
         }
-
         .logo {
             cursor: pointer;
             flex-shrink: 0;
             user-select: none;
         }
-
         .logo-mark {
             font-size: 1.18rem;
             font-weight: 800;
@@ -80,15 +73,12 @@
             line-height: 1;
             color: var(--text);
         }
-
         .logo-mark span { color: var(--accent); }
-
         .search-area {
             flex: 1;
             max-width: 460px;
             position: relative;
         }
-
         .search-box {
             display: flex;
             align-items: center;
@@ -96,12 +86,10 @@
             border: 1px solid transparent;
             overflow: hidden;
         }
-
         .search-box:focus-within {
             border-color: var(--accent);
             background: var(--surface);
         }
-
         .search-input {
             flex: 1;
             border: none;
@@ -112,9 +100,7 @@
             outline: none;
             min-width: 0;
         }
-
         .search-input::placeholder { color: var(--text-3); }
-
         .clear-btn {
             width: 28px;
             height: 28px;
@@ -127,10 +113,8 @@
             align-items: center;
             justify-content: center;
         }
-
         .clear-btn.visible { display: flex; }
         .clear-btn:hover { color: var(--text-2); }
-
         .search-btn {
             border: none;
             background: var(--accent);
@@ -142,9 +126,7 @@
             cursor: pointer;
             white-space: nowrap;
         }
-
         .search-btn:hover { filter: brightness(1.08); }
-
         .suggestions {
             position: absolute;
             top: calc(100% + 4px);
@@ -157,19 +139,15 @@
             display: none;
             z-index: 2000;
         }
-
         .suggestions.show { display: block; }
-
         .suggestion-item {
             padding: 10px 13px;
             cursor: pointer;
             font-size: 0.92rem;
             border-bottom: 1px solid var(--border);
         }
-
         .suggestion-item:last-child { border-bottom: none; }
         .suggestion-item:hover { background: var(--accent-soft); }
-
         .gear-btn {
             width: 36px;
             height: 36px;
@@ -182,12 +160,9 @@
             justify-content: center;
             flex-shrink: 0;
         }
-
         .gear-btn:hover,
         .gear-btn.active { color: var(--text); }
-
         .gear-btn svg { width: 17px; height: 17px; }
-
         /* ── Settings ── */
         .settings-panel {
             position: fixed;
@@ -200,9 +175,7 @@
             z-index: 1500;
             display: none;
         }
-
         .settings-panel.show { display: block; }
-
         .settings-title {
             font-size: 0.68rem;
             font-weight: 700;
@@ -211,28 +184,23 @@
             letter-spacing: 0.06em;
             margin-bottom: 12px;
         }
-
         .settings-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 12px;
         }
-
         .settings-row:last-child { margin-bottom: 0; }
-
         .settings-label {
             font-size: 0.88rem;
             color: var(--text);
         }
-
         .font-controls {
             display: flex;
             background: var(--surface-2);
             padding: 2px;
             gap: 1px;
         }
-
         .font-btn {
             width: 28px;
             height: 24px;
@@ -242,16 +210,13 @@
             font-weight: 600;
             cursor: pointer;
         }
-
         .font-btn:nth-child(1) { font-size: 0.7rem; }
         .font-btn:nth-child(2) { font-size: 0.82rem; }
         .font-btn:nth-child(3) { font-size: 0.94rem; }
-
         .font-btn.active {
             background: var(--surface);
             color: var(--text);
         }
-
         .theme-toggle {
             width: 42px;
             height: 22px;
@@ -260,7 +225,6 @@
             position: relative;
             cursor: pointer;
         }
-
         .theme-toggle::after {
             content: "";
             position: absolute;
@@ -271,39 +235,32 @@
             background: #fff;
             transition: transform 0.14s;
         }
-
         [data-theme="dark"] .theme-toggle { background: var(--accent); }
         [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
-
         /* ── Main ── */
         .main {
             max-width: 640px;
             margin: 0 auto;
             padding: 28px 16px 56px;
         }
-
         .hero {
             text-align: center;
             margin-bottom: 30px;
             padding: 8px 0 4px;
         }
-
         .hero-title {
             font-size: 1.85rem;
             font-weight: 800;
             letter-spacing: -0.035em;
             margin-bottom: 4px;
         }
-
         .hero-title span { color: var(--accent); }
-
         .hero-sub {
             font-size: 0.92rem;
             color: var(--text-2);
             font-weight: 500;
             margin-bottom: 8px;
         }
-
         .hero-desc {
             font-size: 0.88rem;
             color: var(--text-3);
@@ -311,9 +268,7 @@
             margin: 0 auto;
             line-height: 1.55;
         }
-
         .section { margin-bottom: 22px; }
-
         .section-title {
             font-size: 0.68rem;
             font-weight: 700;
@@ -322,19 +277,16 @@
             letter-spacing: 0.06em;
             margin-bottom: 8px;
         }
-
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
             padding: 14px 16px;
         }
-
         .how-to-text {
             font-size: 0.88rem;
             color: var(--text-2);
             line-height: 1.65;
         }
-
         /* ── Recent ── */
         .recent-header {
             display: flex;
@@ -342,9 +294,7 @@
             justify-content: space-between;
             margin-bottom: 8px;
         }
-
         .recent-header .section-title { margin-bottom: 0; }
-
         .clear-history-btn {
             border: none;
             background: transparent;
@@ -353,15 +303,12 @@
             cursor: pointer;
             padding: 2px 4px;
         }
-
         .clear-history-btn:hover { color: var(--accent); }
-
         .recent-list {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
         }
-
         .recent-chip {
             display: inline-flex;
             align-items: center;
@@ -374,58 +321,67 @@
             border: none;
             font-weight: 500;
         }
-
         .recent-chip:hover {
             background: var(--accent-soft);
             color: var(--accent);
         }
-
         .recent-chip-del {
             font-size: 0.88rem;
             opacity: 0.4;
             margin-left: 1px;
         }
-
         .recent-chip-del:hover { opacity: 1; }
-
         .recent-empty {
             font-size: 0.86rem;
             color: var(--text-3);
         }
-
         /* ── Request button ── */
         .request-btn {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
             width: 100%;
-            padding: 11px 14px;
+            padding: 14px 16px;
             background: var(--surface);
             border: 1px solid var(--border);
             color: var(--text);
-            text-align: center;
             text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 600;
-            transition: border-color var(--ease), color var(--ease), background var(--ease);
+            transition: border-color var(--ease), background var(--ease);
         }
-
         .request-btn:hover {
             border-color: var(--accent);
-            color: var(--accent);
             background: var(--accent-soft);
         }
-
+        .request-main {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+            transition: color var(--ease);
+        }
+        .request-sub {
+            font-size: 0.76rem;
+            font-weight: 500;
+            color: var(--text-3);
+            letter-spacing: 0.01em;
+            transition: color var(--ease);
+        }
+        .request-btn:hover .request-main {
+            color: var(--accent);
+        }
+        .request-btn:hover .request-sub {
+            color: var(--accent);
+        }
         /* ── Results ── */
         .results-header {
             text-align: center;
             margin-bottom: 16px;
         }
-
         .results-title {
             font-size: 0.88rem;
             color: var(--text-2);
             font-weight: 500;
         }
-
         .dict-card {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -436,9 +392,7 @@
             gap: 18px;
             align-items: flex-start;
         }
-
         .dict-body { flex: 1; min-width: 0; }
-
         .dict-image {
             flex-shrink: 0;
             width: 140px;
@@ -447,9 +401,7 @@
             background: var(--surface-2);
             border: 1px solid var(--border);
         }
-
         .dict-image.hidden { display: none; }
-
         .card-top {
             display: flex;
             align-items: flex-start;
@@ -459,9 +411,7 @@
             padding-bottom: 10px;
             border-bottom: 1px solid var(--border);
         }
-
         .word-block { flex: 1; min-width: 0; }
-
         .main-word {
             font-size: 1.45rem;
             font-weight: 750;
@@ -469,14 +419,12 @@
             line-height: 1.25;
             word-break: break-word;
         }
-
         .pos-tag {
             font-size: 0.82rem;
             font-weight: 500;
             color: var(--text-3);
             margin-left: 5px;
         }
-
         .meta-row {
             display: flex;
             flex-wrap: wrap;
@@ -484,7 +432,6 @@
             gap: 6px;
             margin-top: 4px;
         }
-
         .lang-badge {
             font-size: 0.64rem;
             font-weight: 700;
@@ -492,17 +439,14 @@
             background: var(--accent-soft);
             color: var(--accent);
         }
-
         .type-tag {
             font-size: 0.76rem;
             color: var(--text-3);
         }
-
         .romaji {
             font-size: 0.8rem;
             color: var(--text-2);
         }
-
         .speak-btn {
             flex-shrink: 0;
             width: 34px;
@@ -515,24 +459,19 @@
             align-items: center;
             justify-content: center;
         }
-
         .speak-btn:hover { background: var(--accent-soft); }
-
         .speak-btn.speaking {
             background: var(--accent);
             border-color: var(--accent);
             color: #fff;
         }
-
         .speak-btn svg { width: 14px; height: 14px; }
-
         .meaning {
             font-size: 0.94rem;
             line-height: 1.65;
             color: var(--text);
             margin-bottom: 10px;
         }
-
         .trans-meaning {
             font-size: 0.88rem;
             color: var(--text-2);
@@ -541,20 +480,16 @@
             background: var(--surface-2);
             border-left: 2px solid var(--border);
         }
-
         .clickable-word {
             color: var(--accent);
             cursor: pointer;
             font-weight: 550;
         }
-
         .clickable-word:hover { text-decoration: underline; }
-
         .examples {
             list-style: none;
             margin-top: 2px;
         }
-
         .examples li {
             font-size: 0.88rem;
             color: var(--text-2);
@@ -562,27 +497,22 @@
             padding: 3px 0 3px 12px;
             position: relative;
         }
-
         .examples li::before {
             content: "・";
             position: absolute;
             left: 0;
             color: var(--text-3);
         }
-
         .empty-state {
             text-align: center;
             padding: 48px 16px;
             color: var(--text-3);
         }
-
         .empty-state p {
             font-size: 0.96rem;
             margin-bottom: 4px;
         }
-
         .empty-hint { font-size: 0.86rem; }
-
         .footer {
             text-align: center;
             font-size: 0.72rem;
@@ -590,11 +520,9 @@
             margin-top: 28px;
             padding-bottom: 8px;
         }
-
         /* ── Mobile ── */
         @media (max-width: 640px) {
             :root { --nav-h: 48px; }
-
             .navbar { padding: 0 10px; gap: 8px; }
             .logo-mark { font-size: 1.05rem; }
             .search-input { padding: 8px 4px 8px 10px; font-size: 0.9rem; }
@@ -642,7 +570,6 @@
             </svg>
         </button>
     </nav>
-
     <div class="settings-panel" id="settingsPanel">
         <div class="settings-title">設定</div>
         <div class="settings-row">
@@ -658,15 +585,13 @@
             <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="ダークモード切替"></button>
         </div>
     </div>
-
     <main class="main" id="mainContent">
         <div id="welcomeView">
             <div class="hero">
-                <h1 class="hero-title">あああ<span>いいい</span></h1>
-                <p class="hero-sub">Easy Web Dictionary</p>
+                <h1 class="hero-title">簡<span>辞</span></h1>
+                <p class="hero-sub">簡易辞典 - Easy Web Dictionary</p>
                 <p class="hero-desc">知りたい単語だけ検索。わかりやすく短い説明ですぐわかる。</p>
             </div>
-
             <div class="section">
                 <div class="section-title">使い方</div>
                 <div class="card">
@@ -676,7 +601,6 @@
                     </p>
                 </div>
             </div>
-
             <div class="section" id="recentSection">
                 <div class="recent-header">
                     <div class="section-title">最近の検索</div>
@@ -688,53 +612,43 @@
                     </div>
                 </div>
             </div>
-
             <div class="section">
                 <a href="https://forms.gle/jHLszF9ndrR9MXMy6" target="_blank" rel="noopener noreferrer" class="request-btn">
-                    単語追加の申請はこちらから
+                    <span class="request-main">単語追加の申請はこちらから</span>
+                    <span class="request-sub">クリックして申請ページへ →</span>
                 </a>
             </div>
-
             <div class="footer">© Entry-Production</div>
         </div>
-
         <div id="searchResultsView" style="display: none;"></div>
     </main>
-
     <script src="jpdata.js"></script>
     <script src="endata.js"></script>
     <script>
         let combinedData = [];
-
         window.addEventListener('DOMContentLoaded', () => {
             if (window.jpData) combinedData = combinedData.concat(window.jpData);
             if (window.enData) combinedData = combinedData.concat(window.enData);
-
             const savedTheme = localStorage.getItem('dict-theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
-
             const savedSize = localStorage.getItem('dict-font-size');
             if (savedSize) setFontSize(parseInt(savedSize, 10), false);
-
             renderRecent();
             updateClearBtn();
-
             const input = document.getElementById('searchInput');
             input.addEventListener('input', onInput);
             input.addEventListener('keydown', onKeydown);
             input.addEventListener('focus', onInput);
         });
-
         function toggleSettings() {
             const panel = document.getElementById('settingsPanel');
             const btn = document.getElementById('gearBtn');
             const isOpen = panel.classList.toggle('show');
             btn.classList.toggle('active', isOpen);
         }
-
         document.addEventListener('click', (e) => {
             const panel = document.getElementById('settingsPanel');
             const btn = document.getElementById('gearBtn');
@@ -745,7 +659,6 @@
             const area = document.querySelector('.search-area');
             if (!area.contains(e.target)) document.getElementById('suggestions').classList.remove('show');
         });
-
         function toggleTheme() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             if (isDark) {
@@ -756,7 +669,6 @@
                 localStorage.setItem('dict-theme', 'dark');
             }
         }
-
         function setFontSize(size, save = true) {
             document.documentElement.style.setProperty('--base', size + 'px');
             document.querySelectorAll('.font-btn').forEach(btn => {
@@ -764,12 +676,10 @@
             });
             if (save) localStorage.setItem('dict-font-size', size);
         }
-
         function getMatchScore(item, query) {
             const q = query.toLowerCase().replace(/\s+/g, '');
             if (!q) return 0;
             let score = 0;
-
             const check = (str, exactScore, startScore, includeScore) => {
                 if (!str) return;
                 const s = String(str).toLowerCase().replace(/\s+/g, '');
@@ -777,7 +687,6 @@
                 else if (s.startsWith(q)) score = Math.max(score, startScore);
                 else if (s.includes(q)) score = Math.max(score, includeScore);
             };
-
             check(item.word, 100, 70, 40);
             if (Array.isArray(item.readings)) {
                 item.readings.forEach(r => check(r, 90, 60, 30));
@@ -785,10 +694,8 @@
             check(item.romaji, 80, 50, 25);
             check(item.enTranslation, 50, 30, 15);
             check(item.jaTranslation, 50, 30, 15);
-
             return score;
         }
-
         function filterSuggestions(query) {
             if (!query) return [];
             return combinedData
@@ -798,7 +705,6 @@
                 .slice(0, 10)
                 .map(x => x.item);
         }
-
         function filterSearch(query) {
             if (!query) return [];
             return combinedData
@@ -807,7 +713,6 @@
                 .sort((a, b) => b.score - a.score)
                 .map(x => x.item);
         }
-
         function onInput() {
             const query = document.getElementById('searchInput').value.trim();
             updateClearBtn();
@@ -820,7 +725,6 @@
             ).join('');
             box.classList.add('show');
         }
-
         function onKeydown(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -828,19 +732,16 @@
                 performSearch(document.getElementById('searchInput').value.trim());
             }
         }
-
         function selectSuggestion(word) {
             document.getElementById('searchInput').value = word;
             document.getElementById('suggestions').classList.remove('show');
             performSearch(word);
             document.getElementById('searchInput').blur();
         }
-
         function triggerSearch() {
             document.getElementById('suggestions').classList.remove('show');
             performSearch(document.getElementById('searchInput').value.trim());
         }
-
         function clearSearch() {
             const input = document.getElementById('searchInput');
             input.value = '';
@@ -848,16 +749,13 @@
             updateClearBtn();
             input.focus();
         }
-
         function updateClearBtn() {
             document.getElementById('clearBtn').classList.toggle('visible', document.getElementById('searchInput').value.length > 0);
         }
-
         function getRecent() {
             try { return JSON.parse(localStorage.getItem('dict-recent') || '[]'); }
             catch { return []; }
         }
-
         function addRecent(word) {
             let list = getRecent().filter(w => w !== word);
             list.unshift(word);
@@ -865,18 +763,15 @@
             localStorage.setItem('dict-recent', JSON.stringify(list));
             renderRecent();
         }
-
         function removeRecent(word) {
             const list = getRecent().filter(w => w !== word);
             localStorage.setItem('dict-recent', JSON.stringify(list));
             renderRecent();
         }
-
         function clearAllRecent() {
             localStorage.removeItem('dict-recent');
             renderRecent();
         }
-
         function renderRecent() {
             const list = getRecent();
             const el = document.getElementById('recentList');
@@ -894,7 +789,6 @@
                 </button>`
             ).join('');
         }
-
         function speakWord(word, lang, btn) {
             if (!window.speechSynthesis) {
                 alert('お使いのブラウザは音声読み上げに対応していません。');
@@ -910,7 +804,6 @@
             utter.onend = utter.onerror = () => { btns.forEach(b => b.classList.remove('speaking')); };
             window.speechSynthesis.speak(utter);
         }
-
         function buildTranslationHtml(item) {
             let parts = [];
             if (item.enTranslation) {
@@ -930,7 +823,6 @@
             if (parts.length === 0) return '';
             return `<div class="trans-meaning">${parts.join('<br>')}</div>`;
         }
-
         function performSearch(query) {
             if (!query) return;
             addRecent(query);
@@ -939,16 +831,13 @@
             results.style.display = 'block';
             document.getElementById('settingsPanel').classList.remove('show');
             document.getElementById('gearBtn').classList.remove('active');
-
             const found = filterSearch(query);
             let html = '';
-
             if (found.length === 0) {
                 html = `<div class="empty-state"><p>「${escapeHtml(query)}」に一致する単語は見つかりませんでした</p><p class="empty-hint">別の表記でも試してみてください</p></div>`;
             } else {
                 const countLabel = found.length === 1 ? '1件' : found.length + '件';
                 html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果（${countLabel}）</p></div>`;
-
                 found.forEach(item => {
                     const transHtml = buildTranslationHtml(item);
                     const meaning = item.meaning || '';
@@ -958,15 +847,12 @@
                             `<li>${escapeHtml(String(ex).replace(/^・\s*/, ''))}</li>`
                         ).join('') + '</ul>';
                     }
-
                     const langLabel = item.lang === 'jp' ? '日本語' : 'English';
                     const speakLang = item.lang === 'jp' ? 'ja' : 'en';
-
                     let imgHtml = '';
                     if (item.image) {
                         imgHtml = `<img class="dict-image" src="${escapeAttr(item.image)}" alt="${escapeAttr(item.word)}" onerror="this.classList.add('hidden')">`;
                     }
-
                     html += `
                         <article class="dict-card">
                             <div class="dict-body">
@@ -994,24 +880,22 @@
                         </article>`;
                 });
             }
-
             html += `
                 <div class="section" style="margin-top: 28px;">
                     <a href="https://forms.gle/jHLszF9ndrR9MXMy6" target="_blank" rel="noopener noreferrer" class="request-btn">
-                        単語追加の申請はこちらから
+                        <span class="request-main">単語追加の申請はこちらから</span>
+                        <span class="request-sub">クリックして申請ページへ →</span>
                     </a>
                 </div>
                 <div class="footer">© Entry-Production</div>`;
             results.innerHTML = html;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         function autoSearch(word) {
             document.getElementById('searchInput').value = word;
             updateClearBtn();
             performSearch(word);
         }
-
         function resetPage() {
             document.getElementById('searchInput').value = '';
             document.getElementById('suggestions').classList.remove('show');
@@ -1024,11 +908,9 @@
             renderRecent();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         function escapeHtml(str) {
             return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
-
         function escapeAttr(str) {
             return String(str).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
