@@ -9,34 +9,34 @@
     <title>【簡辞】簡単辞典｜Easy Web Dictionary</title>
     <style>
         :root {
-            --bg-primary: #f2f3f5;
+            --bg-primary: #f0f1f3;
             --bg-secondary: #ffffff;
-            --bg-tertiary: #e6e8ec;
+            --bg-tertiary: #e4e6eb;
             --bg-card: #ffffff;
-            --text-primary: #14171c;
-            --text-secondary: #3d4450;
+            --text-primary: #111318;
+            --text-secondary: #3a3f4a;
             --text-tertiary: #6b7280;
             --accent: #2563eb;
             --accent-hover: #1d4ed8;
-            --accent-soft: rgba(37, 99, 235, 0.1);
-            --border: rgba(0, 0, 0, 0.1);
+            --accent-soft: rgba(37, 99, 235, 0.09);
+            --border: rgba(0, 0, 0, 0.09);
             --nav-height: 54px;
             --base-size: 16px;
             --transition: 0.15s ease;
         }
 
         [data-theme="dark"] {
-            --bg-primary: #0c0e12;
-            --bg-secondary: #15181f;
-            --bg-tertiary: #22262f;
-            --bg-card: #15181f;
+            --bg-primary: #0b0d11;
+            --bg-secondary: #14171e;
+            --bg-tertiary: #1e222b;
+            --bg-card: #14171e;
             --text-primary: #eef0f4;
             --text-secondary: #9ca3af;
             --text-tertiary: #6b7280;
             --accent: #3b82f6;
             --accent-hover: #60a5fa;
-            --accent-soft: rgba(59, 130, 246, 0.14);
-            --border: rgba(255, 255, 255, 0.1);
+            --accent-soft: rgba(59, 130, 246, 0.13);
+            --border: rgba(255, 255, 255, 0.09);
         }
 
         * {
@@ -69,8 +69,8 @@
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
-            padding: 0 14px;
-            gap: 12px;
+            padding: 0 16px;
+            gap: 14px;
         }
 
         .logo {
@@ -82,7 +82,7 @@
         }
 
         .logo-mark {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 800;
             letter-spacing: -0.04em;
             color: var(--text-primary);
@@ -95,7 +95,7 @@
 
         .search-area {
             flex: 1;
-            max-width: 460px;
+            max-width: 480px;
             position: relative;
             display: flex;
             align-items: center;
@@ -106,7 +106,7 @@
             display: flex;
             align-items: center;
             background: var(--bg-tertiary);
-            border-radius: 6px;
+            border-radius: 5px;
             overflow: hidden;
             transition: box-shadow var(--transition);
         }
@@ -119,7 +119,7 @@
             flex: 1;
             border: none;
             background: transparent;
-            padding: 9px 8px 9px 14px;
+            padding: 10px 8px 10px 14px;
             font-size: 0.95rem;
             color: var(--text-primary);
             outline: none;
@@ -156,8 +156,8 @@
             border: none;
             background: var(--accent);
             color: white;
-            padding: 0 14px;
-            height: 36px;
+            padding: 0 16px;
+            height: 38px;
             font-size: 0.88rem;
             font-weight: 600;
             cursor: pointer;
@@ -171,15 +171,20 @@
 
         .suggestions {
             position: absolute;
-            top: calc(100% + 4px);
+            top: calc(100% + 5px);
             left: 0;
             right: 0;
             background: var(--bg-secondary);
             border: 1px solid var(--border);
-            max-height: 260px;
+            max-height: 280px;
             overflow-y: auto;
             display: none;
             z-index: 2000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="dark"] .suggestions {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
         }
 
         .suggestions.show {
@@ -187,7 +192,7 @@
         }
 
         .suggestion-item {
-            padding: 10px 14px;
+            padding: 11px 14px;
             cursor: pointer;
             font-size: 0.93rem;
             border-bottom: 1px solid var(--border);
@@ -203,8 +208,8 @@
         }
 
         .gear-btn {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border: none;
             background: transparent;
             color: var(--text-secondary);
@@ -228,14 +233,19 @@
 
         .settings-panel {
             position: fixed;
-            top: calc(var(--nav-height) + 6px);
-            right: 10px;
-            width: 240px;
+            top: calc(var(--nav-height) + 8px);
+            right: 12px;
+            width: 250px;
             background: var(--bg-secondary);
             border: 1px solid var(--border);
-            padding: 14px;
+            padding: 16px;
             z-index: 1500;
             display: none;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] .settings-panel {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
         }
 
         .settings-panel.show {
@@ -243,19 +253,19 @@
         }
 
         .settings-title {
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: var(--text-tertiary);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 12px;
+            letter-spacing: 0.06em;
+            margin-bottom: 14px;
         }
 
         .settings-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .settings-row:last-child {
@@ -327,20 +337,20 @@
         .main {
             max-width: 680px;
             margin: 0 auto;
-            padding: 24px 16px 60px;
+            padding: 28px 16px 64px;
         }
 
         .hero {
             text-align: center;
-            margin-bottom: 28px;
-            padding-top: 8px;
+            margin-bottom: 32px;
+            padding-top: 12px;
         }
 
         .hero-title {
-            font-size: 1.9rem;
+            font-size: 2rem;
             font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 4px;
+            letter-spacing: -0.04em;
+            margin-bottom: 6px;
             color: var(--text-primary);
         }
 
@@ -352,47 +362,47 @@
             font-size: 0.95rem;
             color: var(--text-secondary);
             font-weight: 500;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .hero-desc {
             font-size: 0.9rem;
             color: var(--text-tertiary);
-            max-width: 340px;
+            max-width: 360px;
             margin: 0 auto;
-            line-height: 1.55;
+            line-height: 1.6;
         }
 
         .section {
-            margin-bottom: 22px;
+            margin-bottom: 24px;
         }
 
         .section-title {
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: var(--text-tertiary);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 8px;
+            letter-spacing: 0.06em;
+            margin-bottom: 9px;
         }
 
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            padding: 14px 16px;
+            padding: 16px 18px;
         }
 
         .how-to-text {
             font-size: 0.9rem;
             color: var(--text-secondary);
-            line-height: 1.65;
+            line-height: 1.7;
         }
 
         .recent-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 8px;
+            margin-bottom: 9px;
         }
 
         .recent-header .section-title {
@@ -416,14 +426,14 @@
         .recent-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 7px;
         }
 
         .recent-chip {
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            padding: 5px 8px 5px 11px;
+            padding: 6px 9px 6px 12px;
             background: var(--bg-tertiary);
             font-size: 0.85rem;
             color: var(--text-primary);
@@ -441,7 +451,7 @@
         .recent-chip-del {
             font-size: 0.9rem;
             line-height: 1;
-            opacity: 0.5;
+            opacity: 0.45;
             margin-left: 2px;
         }
 
@@ -454,19 +464,18 @@
             color: var(--text-tertiary);
         }
 
-        /* 単語追加申請ボタン */
         .request-btn {
             display: block;
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
             margin: 0 auto;
-            padding: 12px 16px;
-            background: var(--bg-tertiary);
+            padding: 13px 18px;
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
             color: var(--text-primary);
             text-align: center;
             text-decoration: none;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 0.01em;
             transition: background var(--transition), border-color var(--transition), color var(--transition);
@@ -480,7 +489,7 @@
 
         .results-header {
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
         .results-title {
@@ -492,11 +501,20 @@
         .dict-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            padding: 16px 18px;
-            margin-bottom: 10px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
             display: flex;
-            gap: 18px;
+            gap: 20px;
             align-items: flex-start;
+            transition: border-color var(--transition);
+        }
+
+        .dict-card:hover {
+            border-color: rgba(37, 99, 235, 0.25);
+        }
+
+        [data-theme="dark"] .dict-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
         }
 
         .dict-body {
@@ -506,8 +524,8 @@
 
         .dict-image {
             flex-shrink: 0;
-            width: 160px;
-            height: 160px;
+            width: 150px;
+            height: 150px;
             object-fit: contain;
             background: var(--bg-tertiary);
             border: 1px solid var(--border);
@@ -521,9 +539,9 @@
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
             border-bottom: 1px solid var(--border);
         }
 
@@ -533,10 +551,10 @@
         }
 
         .main-word {
-            font-size: 1.5rem;
+            font-size: 1.55rem;
             font-weight: 750;
             letter-spacing: -0.02em;
-            line-height: 1.2;
+            line-height: 1.25;
             word-break: break-word;
         }
 
@@ -544,21 +562,21 @@
             font-size: 0.84rem;
             font-weight: 500;
             color: var(--text-tertiary);
-            margin-left: 5px;
+            margin-left: 6px;
         }
 
         .meta-row {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 6px;
-            margin-top: 4px;
+            gap: 7px;
+            margin-top: 5px;
         }
 
         .lang-badge {
             font-size: 0.66rem;
             font-weight: 700;
-            padding: 2px 6px;
+            padding: 2px 7px;
             background: var(--accent-soft);
             color: var(--accent);
             letter-spacing: 0.02em;
@@ -576,8 +594,8 @@
 
         .speak-btn {
             flex-shrink: 0;
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             border: none;
             background: var(--bg-tertiary);
             color: var(--accent);
@@ -603,17 +621,17 @@
         }
 
         .meaning {
-            font-size: 0.96rem;
-            line-height: 1.65;
+            font-size: 0.97rem;
+            line-height: 1.7;
             color: var(--text-primary);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .trans-meaning {
             font-size: 0.9rem;
             color: var(--text-secondary);
-            margin-bottom: 10px;
-            padding: 9px 12px;
+            margin-bottom: 12px;
+            padding: 10px 14px;
             background: var(--bg-tertiary);
         }
 
@@ -635,8 +653,8 @@
         .examples li {
             font-size: 0.9rem;
             color: var(--text-secondary);
-            line-height: 1.6;
-            padding: 3px 0 3px 12px;
+            line-height: 1.65;
+            padding: 4px 0 4px 13px;
             position: relative;
         }
 
@@ -649,13 +667,13 @@
 
         .empty-state {
             text-align: center;
-            padding: 48px 16px;
+            padding: 52px 16px;
             color: var(--text-tertiary);
         }
 
         .empty-state p {
             font-size: 1rem;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .empty-hint {
@@ -666,7 +684,7 @@
             text-align: center;
             font-size: 0.74rem;
             color: var(--text-tertiary);
-            margin-top: 32px;
+            margin-top: 36px;
             padding-bottom: 12px;
         }
 
@@ -681,51 +699,51 @@
             }
 
             .logo-mark {
-                font-size: 1.05rem;
+                font-size: 1.08rem;
             }
 
             .search-input {
-                padding: 8px 6px 8px 12px;
+                padding: 9px 6px 9px 12px;
                 font-size: 0.92rem;
             }
 
             .search-btn {
-                padding: 0 12px;
-                height: 34px;
+                padding: 0 13px;
+                height: 36px;
                 font-size: 0.85rem;
             }
 
             .gear-btn {
-                width: 34px;
-                height: 34px;
+                width: 36px;
+                height: 36px;
             }
 
             .main {
-                padding: 18px 12px 50px;
+                padding: 20px 12px 52px;
             }
 
             .hero {
-                margin-bottom: 22px;
+                margin-bottom: 24px;
             }
 
             .hero-title {
-                font-size: 1.55rem;
+                font-size: 1.65rem;
             }
 
             .dict-card {
                 flex-direction: column;
-                padding: 14px;
-                gap: 12px;
+                padding: 15px;
+                gap: 14px;
             }
 
             .dict-image {
-                width: 130px;
-                height: 130px;
+                width: 120px;
+                height: 120px;
                 align-self: center;
             }
 
             .main-word {
-                font-size: 1.3rem;
+                font-size: 1.35rem;
             }
 
             .settings-panel {
@@ -889,7 +907,6 @@
             if (save) localStorage.setItem('dict-font-size', size);
         }
 
-        // 検索精度向上：スコアリング
         function getMatchScore(item, query) {
             const q = query.toLowerCase().replace(/\s+/g, '');
             if (!q) return 0;
@@ -903,7 +920,6 @@
                 else if (s.includes(q)) score = Math.max(score, includeScore);
             };
 
-            // 優先度：単語 > 読み > ローマ字 > 対訳
             check(item.word, 100, 70, 40);
             if (Array.isArray(item.readings)) {
                 item.readings.forEach(r => check(r, 90, 60, 30));
@@ -1038,7 +1054,6 @@
         }
 
         function buildTranslationHtml(item) {
-            // 表示を統一：存在する対訳を同じ形式で出す
             let parts = [];
             if (item.enTranslation) {
                 const tokens = item.enTranslation.split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
@@ -1089,7 +1104,6 @@
                     const langLabel = item.lang === 'jp' ? '日本語' : 'English';
                     const speakLang = item.lang === 'jp' ? 'ja' : 'en';
 
-                    // 画像は存在するときだけ表示（en側は基本なし）
                     let imgHtml = '';
                     if (item.image) {
                         imgHtml = `<img class="dict-image" src="${escapeAttr(item.image)}" alt="${escapeAttr(item.word)}" onerror="this.classList.add('hidden')">`;
@@ -1124,7 +1138,7 @@
             }
 
             html += `
-                <div class="section" style="margin-top: 28px;">
+                <div class="section" style="margin-top: 32px;">
                     <a href="https://forms.gle/jHLszF9ndrR9MXMy6" target="_blank" rel="noopener noreferrer" class="request-btn">
                         単語追加の申請はこちらから
                     </a>
