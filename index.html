@@ -595,39 +595,42 @@
             left: 0;
             right: 0;
             z-index: 3000;
-            background: rgba(0, 0, 0, 0.28);
-            padding: 10px 12px 14px;
+            background: rgba(0, 0, 0, 0.32);
+            padding: 14px 14px 18px;
             display: none;
         }
         .ad-banner.show {
             display: block;
         }
-        .ad-sheet {
-            max-width: 420px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
-            position: relative;
-        }
         .ad-close {
             position: absolute;
-            top: 6px;
-            right: 8px;
-            width: 26px;
-            height: 26px;
+            top: 8px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
             border: none;
-            background: rgba(0, 0, 0, 0.06);
-            color: #555;
-            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.22);
+            color: #fff;
+            font-size: 1.15rem;
             line-height: 1;
             cursor: pointer;
             border-radius: 50%;
-            z-index: 2;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .ad-close:hover {
-            background: rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.35);
+        }
+        .ad-sheet {
+            max-width: 460px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
+            position: relative;
         }
         .ad-link {
             display: block;
@@ -638,12 +641,12 @@
             width: 100%;
             height: auto;
             display: block;
-            max-height: 140px;
+            max-height: 170px;
             object-fit: cover;
         }
         .ad-text {
-            padding: 10px 14px 12px;
-            font-size: 0.92rem;
+            padding: 12px 16px 14px;
+            font-size: 0.98rem;
             font-weight: 600;
             color: #1d4ed8;
             text-decoration: underline;
@@ -656,12 +659,8 @@
         [data-theme="dark"] .ad-text {
             color: #60a5fa;
         }
-        [data-theme="dark"] .ad-close {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ccc;
-        }
         body.has-ad-banner {
-            padding-bottom: 180px;
+            padding-bottom: 220px;
         }
         /* ── Mobile ── */
         @media (max-width: 640px) {
@@ -692,10 +691,36 @@
             }
             .request-btn { padding: 14px 14px; }
             .ad-banner {
-                padding: 8px 8px 12px;
+                padding: 12px 10px 16px;
+            }
+            .ad-close {
+                top: 6px;
+                right: 8px;
+                width: 28px;
+                height: 28px;
+                font-size: 1.05rem;
+            }
+            .ad-sheet {
+                max-width: 100%;
+                border-radius: 10px;
             }
             .ad-image {
-                max-height: 120px;
+                max-height: 150px;
+            }
+            .ad-text {
+                padding: 11px 14px 13px;
+                font-size: 0.94rem;
+            }
+            body.has-ad-banner {
+                padding-bottom: 200px;
+            }
+        }
+        @media (max-width: 380px) {
+            .ad-image {
+                max-height: 130px;
+            }
+            body.has-ad-banner {
+                padding-bottom: 185px;
             }
         }
     </style>
@@ -808,6 +833,8 @@
             input.addEventListener('input', onInput);
             input.addEventListener('keydown', onKeydown);
             input.addEventListener('focus', onInput);
+            // リロード時にカウントを進めて表示判定
+            incrementAdCounter();
             renderBottomAd();
         });
         function toggleSettings() {
@@ -1075,6 +1102,10 @@
                 <div class="footer">© Entry-Production</div>`;
             results.innerHTML = html;
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 検索時にも広告カウンターを進めて再表示判定
+            incrementAdCounter();
+            renderBottomAd();
         }
         function autoSearch(word) {
             document.getElementById('searchInput').value = word;
@@ -1101,16 +1132,41 @@
             return String(str).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
 
-        /* ── 広告バナー ── */
+        /* ── 広告バナー制御 ── */
+        function getAdSuppressCount() {
+            return parseInt(sessionStorage.getItem('ad-suppress-count') || '0', 10);
+        }
+        function setAdSuppressCount(n) {
+            sessionStorage.setItem('ad-suppress-count', String(n));
+        }
+        function incrementAdCounter() {
+            // 閉じられている状態のときだけカウントを進める
+            if (sessionStorage.getItem('ad-closed') === '1') {
+                const count = getAdSuppressCount() + 1;
+                setAdSuppressCount(count);
+                // 2回に達したら閉じ状態を解除
+                if (count >= 2) {
+                    sessionStorage.removeItem('ad-closed');
+                    setAdSuppressCount(0);
+                }
+            }
+        }
         function renderBottomAd() {
             const banner = document.getElementById('adBanner');
             if (!banner || !window.adData || !window.adData.length) return;
-            if (sessionStorage.getItem('ad-closed') === '1') return;
+
+            // 閉じ状態なら表示しない
+            if (sessionStorage.getItem('ad-closed') === '1') {
+                banner.classList.remove('show');
+                banner.innerHTML = '';
+                document.body.classList.remove('has-ad-banner');
+                return;
+            }
 
             const ad = window.adData[0];
             banner.innerHTML = `
+                <button class="ad-close" onclick="closeAd()" aria-label="閉じる">×</button>
                 <div class="ad-sheet">
-                    <button class="ad-close" onclick="closeAd()" aria-label="閉じる">×</button>
                     <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="ad-link">
                         <img class="ad-image" src="${escapeAttr(ad.image)}" alt="${escapeAttr(ad.title)}" loading="lazy">
                         <div class="ad-text">${escapeHtml(ad.title)}</div>
@@ -1128,6 +1184,7 @@
             }
             document.body.classList.remove('has-ad-banner');
             sessionStorage.setItem('ad-closed', '1');
+            setAdSuppressCount(0);   // 閉じた直後はカウント0からスタート
         }
     </script>
 </body>
