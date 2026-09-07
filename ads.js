@@ -20,4 +20,11 @@ window.adData = [
     image: "pr/koukoku3.png",
     url: "https://spdlvlogging-direct.i-mobile.co.jp/adnwImage/v1/click?pid=9402&mid=188220&asid=1646859&advid=2782346&vh=9424efa82fb750c4055a71cd8176d74a&imuid=i.dlHE_4pKT0uRXktos5O6Bg&rid=bd728aa0-4c79-4a16-8853-aa4aea3b8f1b"
   },
+    {
+    id: "ad-bottom-004",
+    title: "",
+    description: "今だけ無料お試し期間！",
+    image: "pr/koukoku4.png",
+    url: "https://rcv.ixd.dmm.com/api/surl?urid=4QyjH6Gn&_gl=1*p8vso8*_gcl_au*ODUyMzc3MzMyLjE3ODg3ODM4NTE.*FPAU*MTk0NzAwNDIwNi4xNzgzMjQzMDA0"
+  },
 ];
