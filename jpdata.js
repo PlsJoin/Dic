@@ -20,8 +20,8 @@ window.jpData = [
         type: "普通名詞",
         romaji: "ふぉーとないと",
         readings: ["ふぉーとないと", "フォートナイト"],
-        meaning: "EpicGamesが提供するバトロワ形式をメインとしたTPSゲーム。代表的な作品は「バトルロイヤル」「リロード」などがある。",
-        enTranslation: "Fortnite",
+        meaning: "EpicGamesが2017年に公開されたTPSゲームである。バトルロイヤルモードを中心としてPVEアクションやリズムゲームなど幅広いジャンルを提供している。",
+        enTranslation: null,
         image: null,
         examples: [
             "フォートナイトをする。",
