@@ -22,8 +22,8 @@ window.adData = [
   },
     {
     id: "ad-bottom-004",
-    title: "",
-    description: "今だけ無料お試し期間！",
+    title: "今だけ無料お試し期間！",
+    description: "",
     image: "pr/koukoku4.png",
     url: "https://rcv.ixd.dmm.com/api/surl?urid=4QyjH6Gn&_gl=1*p8vso8*_gcl_au*ODUyMzc3MzMyLjE3ODg3ODM4NTE.*FPAU*MTk0NzAwNDIwNi4xNzgzMjQzMDA0"
   },
