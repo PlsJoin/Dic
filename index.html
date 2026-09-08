@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0">
     <meta name="description" content="簡単辞典WEB - 日本語と英語をシンプルに調べられるWeb辞書">
     <meta name="theme-color" content="#0f1115">
     <meta name="google-site-verification" content="D9DbPWUC9j5XLCn4zm7qzfl6lCIW0o7g2DfQY-KdIeE" />
@@ -110,10 +110,12 @@
             border: none;
             background: transparent;
             padding: 9px 6px 9px 12px;
-            font-size: 0.94rem;
+            font-size: 16px; /* 16px未満だとiOSでズームする */
             color: var(--text);
             outline: none;
             min-width: 0;
+            -webkit-appearance: none;
+            border-radius: 0;
         }
         .search-input::placeholder { color: var(--text-3); }
         .clear-btn {
@@ -153,16 +155,18 @@
             overflow-y: auto;
             display: none;
             z-index: 2000;
+            -webkit-overflow-scrolling: touch;
         }
         .suggestions.show { display: block; }
         .suggestion-item {
-            padding: 10px 13px;
+            padding: 12px 13px;
             cursor: pointer;
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             border-bottom: 1px solid var(--border);
         }
         .suggestion-item:last-child { border-bottom: none; }
-        .suggestion-item:hover { background: var(--accent-soft); }
+        .suggestion-item:hover,
+        .suggestion-item:active { background: var(--accent-soft); }
         .gear-btn {
             width: 36px;
             height: 36px;
@@ -311,16 +315,17 @@
         .featured-chip {
             display: inline-flex;
             align-items: center;
-            padding: 7px 12px;
+            padding: 8px 13px;
             background: var(--surface-2);
             border: 1px solid var(--border);
-            font-size: 0.86rem;
+            font-size: 0.88rem;
             color: var(--text);
             cursor: pointer;
             font-weight: 500;
             transition: background var(--ease), border-color var(--ease), color var(--ease);
         }
-        .featured-chip:hover {
+        .featured-chip:hover,
+        .featured-chip:active {
             background: var(--accent-soft);
             border-color: var(--accent);
             color: var(--accent);
@@ -351,15 +356,16 @@
             display: inline-flex;
             align-items: center;
             gap: 3px;
-            padding: 5px 8px 5px 10px;
+            padding: 6px 9px 6px 11px;
             background: var(--surface-2);
-            font-size: 0.84rem;
+            font-size: 0.86rem;
             color: var(--text);
             cursor: pointer;
             border: none;
             font-weight: 500;
         }
-        .recent-chip:hover {
+        .recent-chip:hover,
+        .recent-chip:active {
             background: var(--accent-soft);
             color: var(--accent);
         }
@@ -388,7 +394,8 @@
             text-decoration: none;
             transition: border-color var(--ease), background var(--ease), box-shadow var(--ease);
         }
-        .request-btn:hover {
+        .request-btn:hover,
+        .request-btn:active {
             border-color: var(--accent);
             background: var(--accent-soft);
             box-shadow: 0 2px 10px rgba(29, 78, 216, 0.08);
@@ -588,15 +595,15 @@
             margin-top: 28px;
             padding-bottom: 8px;
         }
-        /* ── Bottom Ad Banner ── */
+        /* ── Bottom Ad Banner（修正版） ── */
         .ad-banner {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 3000;
-            background: rgba(0, 0, 0, 0.32);
-            padding: 12px 14px 14px;
+            background: rgba(0, 0, 0, 0.38);
+            padding: 14px 14px 16px;
             display: none;
         }
         .ad-banner.show {
@@ -604,14 +611,14 @@
         }
         .ad-close {
             position: absolute;
-            top: 6px;
-            right: 10px;
-            width: 28px;
-            height: 28px;
+            top: 8px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
             border: none;
-            background: rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.25);
             color: #fff;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1;
             cursor: pointer;
             border-radius: 50%;
@@ -620,16 +627,17 @@
             align-items: center;
             justify-content: center;
         }
-        .ad-close:hover {
-            background: rgba(255, 255, 255, 0.35);
+        .ad-close:hover,
+        .ad-close:active {
+            background: rgba(255, 255, 255, 0.4);
         }
         .ad-sheet {
-            max-width: 420px;
+            max-width: 440px;
             margin: 0 auto;
             background: #ffffff;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
             position: relative;
         }
         .ad-link {
@@ -639,36 +647,42 @@
         }
         .ad-image {
             width: 100%;
-            height: 78px;          /* チャット入力欄くらいの高さに固定 */
+            height: 110px;          /* 少し大きく */
             display: block;
             object-fit: cover;
+            background: #f0f0f0;
         }
         .ad-text {
-            padding: 9px 14px 11px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            padding: 12px 16px 14px;
+            font-size: 0.95rem;
+            font-weight: 650;
             color: #1d4ed8;
             text-decoration: underline;
             text-underline-offset: 2px;
-            line-height: 1.35;
+            line-height: 1.4;
+            background: #fff;
         }
         [data-theme="dark"] .ad-sheet {
             background: #1e222b;
         }
         [data-theme="dark"] .ad-text {
             color: #60a5fa;
+            background: #1e222b;
         }
         body.has-ad-banner {
-            padding-bottom: 150px;
+            padding-bottom: 180px;
         }
         /* ── Mobile ── */
         @media (max-width: 640px) {
             :root { --nav-h: 48px; }
             .navbar { padding: 0 10px; gap: 8px; }
             .logo-mark { font-size: 1.05rem; }
-            .search-input { padding: 8px 4px 8px 10px; font-size: 0.9rem; }
-            .search-btn { padding: 0 12px; height: 32px; font-size: 0.84rem; }
-            .gear-btn { width: 34px; height: 34px; }
+            .search-input {
+                padding: 10px 4px 10px 10px;
+                font-size: 16px; /* 必須：ズーム防止 */
+            }
+            .search-btn { padding: 0 12px; height: 36px; font-size: 0.88rem; }
+            .gear-btn { width: 36px; height: 36px; }
             .main { padding: 20px 12px 48px; }
             .hero { margin-bottom: 24px; }
             .hero-title { font-size: 1.55rem; }
@@ -689,37 +703,38 @@
                 max-width: 260px;
             }
             .request-btn { padding: 14px 14px; }
+            .suggestion-item { padding: 13px 14px; }
             .ad-banner {
-                padding: 10px 10px 12px;
+                padding: 12px 10px 14px;
             }
             .ad-close {
-                top: 5px;
-                right: 8px;
-                width: 26px;
-                height: 26px;
-                font-size: 1rem;
+                top: 6px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+                font-size: 1.1rem;
             }
             .ad-sheet {
                 max-width: 100%;
-                border-radius: 9px;
+                border-radius: 10px;
             }
             .ad-image {
-                height: 70px;
+                height: 100px; /* モバイルでも少し余裕を持たせる */
             }
             .ad-text {
-                padding: 8px 12px 10px;
-                font-size: 0.88rem;
+                padding: 11px 14px 13px;
+                font-size: 0.92rem;
             }
             body.has-ad-banner {
-                padding-bottom: 135px;
+                padding-bottom: 170px;
             }
         }
         @media (max-width: 380px) {
             .ad-image {
-                height: 64px;
+                height: 92px;
             }
             body.has-ad-banner {
-                padding-bottom: 125px;
+                padding-bottom: 160px;
             }
         }
     </style>
