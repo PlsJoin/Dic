@@ -438,7 +438,7 @@
             color: var(--text-2);
             font-weight: 500;
         }
-        /* ── Inline Ad (検索結果直下・角四角) ── */
+        /* ── Inline Ad (検索結果直下) ── */
         .inline-ad {
             position: relative;
             margin: 0 0 16px;
@@ -447,49 +447,52 @@
             border-radius: 0;
             overflow: hidden;
         }
-        .ad-pr-label {
+        /* 右上の灰色透過コントロール（インライン・ボトム共通） */
+        .ad-controls {
             position: absolute;
-            top: 4px;
-            right: 6px;
-            font-size: 0.65rem;
+            top: 0;
+            right: 0;
+            z-index: 6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.58);
+            padding: 5px 7px 6px;
+            min-width: 42px;
+        }
+        .ad-controls .ad-pr-label {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.62rem;
             font-weight: 500;
-            color: rgba(0, 0, 0, 0.38);
             letter-spacing: 0.02em;
-            z-index: 4;
             text-decoration: none;
             line-height: 1.2;
-            padding: 2px 0;
+            padding: 0 0 3px;
         }
-        .ad-pr-label:hover {
-            color: rgba(0, 0, 0, 0.65);
+        .ad-controls .ad-pr-label:hover {
+            color: #fff;
             text-decoration: underline;
         }
-        [data-theme="dark"] .ad-pr-label {
-            color: rgba(255, 255, 255, 0.38);
-        }
-        [data-theme="dark"] .ad-pr-label:hover {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        .inline-ad-close {
-            position: absolute;
-            top: 22px;
-            right: 6px;
+        .ad-controls .ad-close,
+        .ad-controls .inline-ad-close {
             width: 28px;
             height: 28px;
             border: none;
-            background: rgba(0, 0, 0, 0.55);
+            background: transparent;
             color: #fff;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             line-height: 1;
             cursor: pointer;
-            border-radius: 0;
-            z-index: 5;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0;
         }
-        .inline-ad-close:hover {
-            background: rgba(0, 0, 0, 0.75);
+        .ad-controls .ad-close:hover,
+        .ad-controls .ad-close:active,
+        .ad-controls .inline-ad-close:hover,
+        .ad-controls .inline-ad-close:active {
+            background: rgba(255, 255, 255, 0.15);
         }
         .inline-ad-link {
             display: block;
@@ -677,7 +680,7 @@
             margin-top: 28px;
             padding-bottom: 8px;
         }
-        /* ── Bottom Ad Banner（角四角） ── */
+        /* ── Bottom Ad Banner ── */
         .ad-banner {
             position: fixed;
             bottom: 0;
@@ -699,58 +702,6 @@
             overflow: hidden;
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
             position: relative;
-        }
-        /* 右上の灰色透過コントロール領域 */
-        .ad-controls {
-            position: absolute;
-            top: 0;
-            right: 0;
-            z-index: 6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.58);
-            padding: 5px 7px 6px;
-            min-width: 42px;
-        }
-        .ad-controls .ad-pr-label {
-            position: static;
-            top: auto;
-            right: auto;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.62rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            text-decoration: none;
-            line-height: 1.2;
-            padding: 0 0 3px;
-            z-index: auto;
-        }
-        .ad-controls .ad-pr-label:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-        .ad-controls .ad-close {
-            position: static;
-            top: auto;
-            right: auto;
-            width: 28px;
-            height: 28px;
-            border: none;
-            background: transparent;
-            color: #fff;
-            font-size: 1.15rem;
-            line-height: 1;
-            cursor: pointer;
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-        }
-        .ad-controls .ad-close:hover,
-        .ad-controls .ad-close:active {
-            background: rgba(255, 255, 255, 0.15);
         }
         .ad-link {
             display: block;
@@ -831,20 +782,6 @@
                 padding: 9px 12px 11px;
                 font-size: 0.86rem;
             }
-            .ad-pr-label {
-                right: 6px;
-                font-size: 0.62rem;
-                top: 4px;
-            }
-            .inline-ad-close {
-                top: 20px;
-                right: 6px;
-                width: 28px;
-                height: 28px;
-            }
-            .ad-banner {
-                padding: 12px 10px 16px;
-            }
             .ad-controls {
                 padding: 4px 6px 5px;
                 min-width: 38px;
@@ -852,10 +789,14 @@
             .ad-controls .ad-pr-label {
                 font-size: 0.58rem;
             }
-            .ad-controls .ad-close {
+            .ad-controls .ad-close,
+            .ad-controls .inline-ad-close {
                 width: 26px;
                 height: 26px;
                 font-size: 1.1rem;
+            }
+            .ad-banner {
+                padding: 12px 10px 16px;
             }
             .ad-sheet {
                 max-width: 100%;
@@ -1229,7 +1170,7 @@
             if (parts.length === 0) return '';
             return `<div class="trans-meaning">${parts.join('<br>')}</div>`;
         }
-        /* ── Inline Ad（検索結果直下・角四角・PR表示） ── */
+        /* ── Inline Ad（検索結果直下） ── */
         function buildInlineAdHtml() {
             if (!window.adData || !window.adData.length) return '';
             if (sessionStorage.getItem('inline-ad-closed') === '1') return '';
@@ -1237,8 +1178,10 @@
             const hasTitle = ad.title && String(ad.title).trim() !== '';
             return `
                 <div class="inline-ad" id="inlineAd">
-                    <a href="pr.html" class="ad-pr-label" target="_blank" rel="noopener noreferrer">広告-PR</a>
-                    <button class="inline-ad-close" onclick="closeInlineAd()" aria-label="閉じる">×</button>
+                    <div class="ad-controls">
+                        <a href="pr.html" class="ad-pr-label" target="_blank" rel="noopener noreferrer">広告-PR</a>
+                        <button class="inline-ad-close" onclick="closeInlineAd()" aria-label="閉じる">×</button>
+                    </div>
                     <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="inline-ad-link">
                         <img class="inline-ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">
                         ${hasTitle ? `<div class="inline-ad-text">${escapeHtml(ad.title)}</div>` : ''}
@@ -1266,7 +1209,6 @@
             } else {
                 const countLabel = found.length === 1 ? '1件' : found.length + '件';
                 html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果（${countLabel}）</p></div>`;
-                // ヒット数のすぐ下にインライン広告（再検索時に再生成）
                 html += buildInlineAdHtml();
                 found.forEach(item => {
                     const transHtml = buildTranslationHtml(item);
