@@ -110,7 +110,7 @@
             border: none;
             background: transparent;
             padding: 9px 6px 9px 12px;
-            font-size: 16px; /* 16px未満だとiOSでズームする */
+            font-size: 16px;
             color: var(--text);
             outline: none;
             min-width: 0;
@@ -595,15 +595,15 @@
             margin-top: 28px;
             padding-bottom: 8px;
         }
-        /* ── Bottom Ad Banner（修正版） ── */
+        /* ── Bottom Ad Banner（画像全体表示＋テキスト確保版） ── */
         .ad-banner {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 3000;
-            background: rgba(0, 0, 0, 0.38);
-            padding: 14px 14px 16px;
+            background: rgba(0, 0, 0, 0.42);
+            padding: 14px 14px 18px;
             display: none;
         }
         .ad-banner.show {
@@ -611,14 +611,14 @@
         }
         .ad-close {
             position: absolute;
-            top: 8px;
-            right: 12px;
-            width: 32px;
-            height: 32px;
+            top: 10px;
+            right: 14px;
+            width: 34px;
+            height: 34px;
             border: none;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.28);
             color: #fff;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             line-height: 1;
             cursor: pointer;
             border-radius: 50%;
@@ -629,15 +629,15 @@
         }
         .ad-close:hover,
         .ad-close:active {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.42);
         }
         .ad-sheet {
-            max-width: 440px;
+            max-width: 460px;
             margin: 0 auto;
             background: #ffffff;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
             position: relative;
         }
         .ad-link {
@@ -647,10 +647,11 @@
         }
         .ad-image {
             width: 100%;
-            height: 110px;          /* 少し大きく */
+            max-height: 150px;          /* 上限を設定して全体を縮小表示 */
+            height: auto;
             display: block;
-            object-fit: cover;
-            background: #f0f0f0;
+            object-fit: contain;        /* 切り取り禁止・全体表示 */
+            background: #f0f2f5;        /* 余白部分の背景 */
         }
         .ad-text {
             padding: 12px 16px 14px;
@@ -660,17 +661,22 @@
             text-decoration: underline;
             text-underline-offset: 2px;
             line-height: 1.4;
-            background: #fff;
+            background: #ffffff;
+            border-top: 1px solid #e5e7eb;
         }
         [data-theme="dark"] .ad-sheet {
             background: #1e222b;
         }
+        [data-theme="dark"] .ad-image {
+            background: #15181f;
+        }
         [data-theme="dark"] .ad-text {
             color: #60a5fa;
             background: #1e222b;
+            border-top-color: #2a2f3a;
         }
         body.has-ad-banner {
-            padding-bottom: 180px;
+            padding-bottom: 220px;      /* 画像＋テキスト分を確保 */
         }
         /* ── Mobile ── */
         @media (max-width: 640px) {
@@ -679,7 +685,7 @@
             .logo-mark { font-size: 1.05rem; }
             .search-input {
                 padding: 10px 4px 10px 10px;
-                font-size: 16px; /* 必須：ズーム防止 */
+                font-size: 16px;
             }
             .search-btn { padding: 0 12px; height: 36px; font-size: 0.88rem; }
             .gear-btn { width: 36px; height: 36px; }
@@ -705,36 +711,36 @@
             .request-btn { padding: 14px 14px; }
             .suggestion-item { padding: 13px 14px; }
             .ad-banner {
-                padding: 12px 10px 14px;
+                padding: 12px 10px 16px;
             }
             .ad-close {
-                top: 6px;
+                top: 8px;
                 right: 10px;
-                width: 30px;
-                height: 30px;
-                font-size: 1.1rem;
+                width: 32px;
+                height: 32px;
+                font-size: 1.15rem;
             }
             .ad-sheet {
                 max-width: 100%;
                 border-radius: 10px;
             }
             .ad-image {
-                height: 100px; /* モバイルでも少し余裕を持たせる */
+                max-height: 130px;
             }
             .ad-text {
                 padding: 11px 14px 13px;
                 font-size: 0.92rem;
             }
             body.has-ad-banner {
-                padding-bottom: 170px;
+                padding-bottom: 200px;
             }
         }
         @media (max-width: 380px) {
             .ad-image {
-                height: 92px;
+                max-height: 115px;
             }
             body.has-ad-banner {
-                padding-bottom: 160px;
+                padding-bottom: 190px;
             }
         }
     </style>
