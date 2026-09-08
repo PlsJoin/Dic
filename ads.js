@@ -27,4 +27,11 @@ window.adData = [
     image: "pr/koukoku4.png",
     url: "https://rcv.ixd.dmm.com/api/surl?urid=4QyjH6Gn&_gl=1*p8vso8*_gcl_au*ODUyMzc3MzMyLjE3ODg3ODM4NTE.*FPAU*MTk0NzAwNDIwNi4xNzgzMjQzMDA0"
   },
+    {
+    id: "ad-bottom-005",
+    title: "ウマ娘プリティーダービー ダウンロード",
+    description: "",
+    image: "pr/koukoku5.png",
+    url: "https://tracking.games.dmm.com/redirect?location=5442e0b2-ef85-410a-a595-3432b27fc971&viewer=pc&url=https%3A%2F%2Fdmg.umamusume.jp%2F&signature=ca9555333486b28c5fba39bf7b0108f7a59bfc37848fa0442f430539723e82a9&enabledDevice=pc&_gl=1*yrf2c4*_gcl_au*ODUyMzc3MzMyLjE3ODg3ODM4NTE.*FPAU*MTk0NzAwNDIwNi4xNzgzMjQzMDA0"
+  },
 ];
