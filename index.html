@@ -431,12 +431,67 @@
         /* ── Results ── */
         .results-header {
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .results-title {
             font-size: 0.88rem;
             color: var(--text-2);
             font-weight: 500;
+        }
+        /* ── Inline Ad (検索結果直下) ── */
+        .inline-ad {
+            position: relative;
+            margin: 0 0 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .inline-ad-close {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .inline-ad-close:hover {
+            background: rgba(0, 0, 0, 0.75);
+        }
+        .inline-ad-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .inline-ad-image {
+            width: 100%;
+            max-height: 110px;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            background: var(--surface-2);
+        }
+        .inline-ad-text {
+            display: block;
+            padding: 10px 14px 12px;
+            font-size: 0.9rem;
+            font-weight: 650;
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            line-height: 1.4;
+            border-top: 1px solid var(--border);
+            word-break: break-word;
         }
         .dict-card {
             background: var(--surface);
@@ -716,6 +771,13 @@
             }
             .request-btn { padding: 14px 14px; }
             .suggestion-item { padding: 13px 14px; }
+            .inline-ad-image {
+                max-height: 95px;
+            }
+            .inline-ad-text {
+                padding: 9px 12px 11px;
+                font-size: 0.86rem;
+            }
             .ad-banner {
                 padding: 12px 10px 16px;
             }
@@ -1099,6 +1161,27 @@
             if (parts.length === 0) return '';
             return `<div class="trans-meaning">${parts.join('<br>')}</div>`;
         }
+        /* ── Inline Ad (検索結果直下) ── */
+        function buildInlineAdHtml() {
+            if (!window.adData || !window.adData.length) return '';
+            if (sessionStorage.getItem('inline-ad-closed') === '1') return '';
+            const ad = window.adData[Math.floor(Math.random() * window.adData.length)];
+            const hasTitle = ad.title && String(ad.title).trim() !== '';
+            return `
+                <div class="inline-ad" id="inlineAd">
+                    <button class="inline-ad-close" onclick="closeInlineAd()" aria-label="閉じる">×</button>
+                    <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="inline-ad-link">
+                        <img class="inline-ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">
+                        ${hasTitle ? `<div class="inline-ad-text">${escapeHtml(ad.title)}</div>` : ''}
+                    </a>
+                </div>
+            `;
+        }
+        function closeInlineAd() {
+            const el = document.getElementById('inlineAd');
+            if (el) el.remove();
+            sessionStorage.setItem('inline-ad-closed', '1');
+        }
         function performSearch(query) {
             if (!query) return;
             addRecent(query);
@@ -1114,6 +1197,8 @@
             } else {
                 const countLabel = found.length === 1 ? '1件' : found.length + '件';
                 html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果（${countLabel}）</p></div>`;
+                // ヒット数のすぐ下にインライン広告
+                html += buildInlineAdHtml();
                 found.forEach(item => {
                     const transHtml = buildTranslationHtml(item);
                     const meaning = item.meaning || '';
