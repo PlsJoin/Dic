@@ -22,7 +22,7 @@ window.jpData = [
         readings: ["ふぉーとないと", "フォートナイト"],
         meaning: "EpicGamesが2017年に公開されたTPSゲームである。バトルロイヤルモードを中心としてPVEアクションやリズムゲームなど幅広いジャンルを提供している。",
         enTranslation: null,
-        image: null,
+        image: "images/fortnite.png",
         examples: [
             "フォートナイトをする。",
             "フォートナイトのリロードで負けてしまった。",
