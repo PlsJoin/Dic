@@ -449,22 +449,30 @@
         }
         .ad-pr-label {
             position: absolute;
-            top: 6px;
-            right: 38px;
+            top: 4px;
+            right: 6px;
             font-size: 0.65rem;
             font-weight: 500;
             color: rgba(0, 0, 0, 0.38);
             letter-spacing: 0.02em;
             z-index: 4;
-            pointer-events: none;
-            user-select: none;
+            text-decoration: none;
+            line-height: 1.2;
+            padding: 2px 0;
+        }
+        .ad-pr-label:hover {
+            color: rgba(0, 0, 0, 0.65);
+            text-decoration: underline;
         }
         [data-theme="dark"] .ad-pr-label {
             color: rgba(255, 255, 255, 0.38);
         }
+        [data-theme="dark"] .ad-pr-label:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
         .inline-ad-close {
             position: absolute;
-            top: 6px;
+            top: 22px;
             right: 6px;
             width: 28px;
             height: 28px;
@@ -694,7 +702,7 @@
         }
         .ad-close {
             position: absolute;
-            top: 8px;
+            top: 24px;
             right: 8px;
             width: 32px;
             height: 32px;
@@ -794,14 +802,21 @@
                 font-size: 0.86rem;
             }
             .ad-pr-label {
-                right: 36px;
+                right: 6px;
                 font-size: 0.62rem;
+                top: 4px;
+            }
+            .inline-ad-close {
+                top: 20px;
+                right: 6px;
+                width: 28px;
+                height: 28px;
             }
             .ad-banner {
                 padding: 12px 10px 16px;
             }
             .ad-close {
-                top: 6px;
+                top: 22px;
                 right: 6px;
                 width: 30px;
                 height: 30px;
@@ -1187,7 +1202,7 @@
             const hasTitle = ad.title && String(ad.title).trim() !== '';
             return `
                 <div class="inline-ad" id="inlineAd">
-                    <span class="ad-pr-label">広告-PR</span>
+                    <a href="pr.html" class="ad-pr-label" target="_blank" rel="noopener noreferrer">広告-PR</a>
                     <button class="inline-ad-close" onclick="closeInlineAd()" aria-label="閉じる">×</button>
                     <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="inline-ad-link">
                         <img class="inline-ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">
@@ -1339,7 +1354,7 @@
             const hasTitle = ad.title && String(ad.title).trim() !== '';
             banner.innerHTML = `
                 <div class="ad-sheet">
-                    <span class="ad-pr-label">広告-PR</span>
+                    <a href="pr.html" class="ad-pr-label" target="_blank" rel="noopener noreferrer">広告-PR</a>
                     <button class="ad-close" onclick="closeAd()" aria-label="閉じる">×</button>
                     <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="ad-link">
                         <img class="ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">
