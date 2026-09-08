@@ -1173,7 +1173,7 @@
         /* ── Inline Ad（検索結果直下） ── */
         function buildInlineAdHtml() {
             if (!window.adData || !window.adData.length) return '';
-            if (sessionStorage.getItem('inline-ad-closed') === '1') return '';
+            // 毎回検索するたびに必ず表示（閉じても次の検索で復活）
             const ad = window.adData[Math.floor(Math.random() * window.adData.length)];
             const hasTitle = ad.title && String(ad.title).trim() !== '';
             return `
@@ -1192,7 +1192,7 @@
         function closeInlineAd() {
             const el = document.getElementById('inlineAd');
             if (el) el.remove();
-            sessionStorage.setItem('inline-ad-closed', '1');
+            // sessionStorageには保存しない → 次の検索でまた表示される
         }
         function performSearch(query) {
             if (!query) return;
