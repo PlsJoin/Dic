@@ -438,14 +438,29 @@
             color: var(--text-2);
             font-weight: 500;
         }
-        /* ── Inline Ad (検索結果直下) ── */
+        /* ── Inline Ad (検索結果直下・角四角) ── */
         .inline-ad {
             position: relative;
             margin: 0 0 16px;
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: 0;
             overflow: hidden;
+        }
+        .ad-pr-label {
+            position: absolute;
+            top: 6px;
+            right: 38px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.38);
+            letter-spacing: 0.02em;
+            z-index: 4;
+            pointer-events: none;
+            user-select: none;
+        }
+        [data-theme="dark"] .ad-pr-label {
+            color: rgba(255, 255, 255, 0.38);
         }
         .inline-ad-close {
             position: absolute;
@@ -459,7 +474,7 @@
             font-size: 1.1rem;
             line-height: 1;
             cursor: pointer;
-            border-radius: 50%;
+            border-radius: 0;
             z-index: 5;
             display: flex;
             align-items: center;
@@ -654,7 +669,7 @@
             margin-top: 28px;
             padding-bottom: 8px;
         }
-        /* ── Bottom Ad Banner ── */
+        /* ── Bottom Ad Banner（角四角） ── */
         .ad-banner {
             position: fixed;
             bottom: 0;
@@ -672,7 +687,7 @@
             max-width: 460px;
             margin: 0 auto;
             background: #ffffff;
-            border-radius: 12px;
+            border-radius: 0;
             overflow: hidden;
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
             position: relative;
@@ -689,7 +704,7 @@
             font-size: 1.2rem;
             line-height: 1;
             cursor: pointer;
-            border-radius: 50%;
+            border-radius: 0;
             z-index: 5;
             display: flex;
             align-items: center;
@@ -778,6 +793,10 @@
                 padding: 9px 12px 11px;
                 font-size: 0.86rem;
             }
+            .ad-pr-label {
+                right: 36px;
+                font-size: 0.62rem;
+            }
             .ad-banner {
                 padding: 12px 10px 16px;
             }
@@ -790,7 +809,6 @@
             }
             .ad-sheet {
                 max-width: 100%;
-                border-radius: 10px;
             }
             .ad-image {
                 max-height: 130px;
@@ -1161,7 +1179,7 @@
             if (parts.length === 0) return '';
             return `<div class="trans-meaning">${parts.join('<br>')}</div>`;
         }
-        /* ── Inline Ad (検索結果直下) ── */
+        /* ── Inline Ad（検索結果直下・角四角・PR表示） ── */
         function buildInlineAdHtml() {
             if (!window.adData || !window.adData.length) return '';
             if (sessionStorage.getItem('inline-ad-closed') === '1') return '';
@@ -1169,6 +1187,7 @@
             const hasTitle = ad.title && String(ad.title).trim() !== '';
             return `
                 <div class="inline-ad" id="inlineAd">
+                    <span class="ad-pr-label">広告-PR</span>
                     <button class="inline-ad-close" onclick="closeInlineAd()" aria-label="閉じる">×</button>
                     <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="inline-ad-link">
                         <img class="inline-ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">
@@ -1197,7 +1216,7 @@
             } else {
                 const countLabel = found.length === 1 ? '1件' : found.length + '件';
                 html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果（${countLabel}）</p></div>`;
-                // ヒット数のすぐ下にインライン広告
+                // ヒット数のすぐ下にインライン広告（再検索時に再生成）
                 html += buildInlineAdHtml();
                 found.forEach(item => {
                     const transHtml = buildTranslationHtml(item);
@@ -1320,6 +1339,7 @@
             const hasTitle = ad.title && String(ad.title).trim() !== '';
             banner.innerHTML = `
                 <div class="ad-sheet">
+                    <span class="ad-pr-label">広告-PR</span>
                     <button class="ad-close" onclick="closeAd()" aria-label="閉じる">×</button>
                     <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="ad-link">
                         <img class="ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">
