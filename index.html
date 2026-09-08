@@ -306,39 +306,18 @@
             color: var(--text-2);
             line-height: 1.65;
         }
-        /* ── Featured ── */
-        .featured-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .featured-chip {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 13px;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            font-size: 0.88rem;
-            color: var(--text);
-            cursor: pointer;
-            font-weight: 500;
-            transition: background var(--ease), border-color var(--ease), color var(--ease);
-        }
-        .featured-chip:hover,
-        .featured-chip:active {
-            background: var(--accent-soft);
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-        /* ── Recent ── */
+        /* ── Favorites / Recent ── */
+        .fav-header,
         .recent-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 8px;
         }
+        .fav-header .section-title,
         .recent-header .section-title { margin-bottom: 0; }
-        .clear-history-btn {
+        .clear-history-btn,
+        .clear-fav-btn {
             border: none;
             background: transparent;
             color: var(--text-3);
@@ -346,12 +325,15 @@
             cursor: pointer;
             padding: 2px 4px;
         }
-        .clear-history-btn:hover { color: var(--accent); }
+        .clear-history-btn:hover,
+        .clear-fav-btn:hover { color: var(--accent); }
+        .fav-list,
         .recent-list {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
         }
+        .fav-chip,
         .recent-chip {
             display: inline-flex;
             align-items: center;
@@ -364,17 +346,22 @@
             border: none;
             font-weight: 500;
         }
+        .fav-chip:hover,
+        .fav-chip:active,
         .recent-chip:hover,
         .recent-chip:active {
             background: var(--accent-soft);
             color: var(--accent);
         }
+        .fav-chip-del,
         .recent-chip-del {
             font-size: 0.88rem;
             opacity: 0.4;
             margin-left: 1px;
         }
+        .fav-chip-del:hover,
         .recent-chip-del:hover { opacity: 1; }
+        .fav-empty,
         .recent-empty {
             font-size: 0.86rem;
             color: var(--text-3);
@@ -522,8 +509,13 @@
             font-size: 0.8rem;
             color: var(--text-2);
         }
-        .speak-btn {
+        .card-actions {
+            display: flex;
+            gap: 6px;
             flex-shrink: 0;
+        }
+        .speak-btn,
+        .fav-btn {
             width: 34px;
             height: 34px;
             border: 1px solid var(--border);
@@ -534,13 +526,25 @@
             align-items: center;
             justify-content: center;
         }
-        .speak-btn:hover { background: var(--accent-soft); }
+        .speak-btn:hover,
+        .fav-btn:hover { background: var(--accent-soft); }
         .speak-btn.speaking {
             background: var(--accent);
             border-color: var(--accent);
             color: #fff;
         }
-        .speak-btn svg { width: 14px; height: 14px; }
+        .fav-btn.active {
+            background: #fef3c7;
+            border-color: #f59e0b;
+            color: #d97706;
+        }
+        [data-theme="dark"] .fav-btn.active {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: #f59e0b;
+            color: #fbbf24;
+        }
+        .speak-btn svg,
+        .fav-btn svg { width: 14px; height: 14px; }
         .meaning {
             font-size: 0.94rem;
             line-height: 1.65;
@@ -595,7 +599,7 @@
             margin-top: 28px;
             padding-bottom: 8px;
         }
-        /* ── Bottom Ad Banner（テキスト確実表示版） ── */
+        /* ── Bottom Ad Banner ── */
         .ad-banner {
             position: fixed;
             bottom: 0;
@@ -609,16 +613,25 @@
         .ad-banner.show {
             display: block;
         }
+        .ad-sheet {
+            max-width: 460px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+            position: relative;
+        }
         .ad-close {
             position: absolute;
-            top: 10px;
-            right: 14px;
-            width: 34px;
-            height: 34px;
+            top: 8px;
+            right: 8px;
+            width: 32px;
+            height: 32px;
             border: none;
-            background: rgba(255, 255, 255, 0.28);
+            background: rgba(0, 0, 0, 0.55);
             color: #fff;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             line-height: 1;
             cursor: pointer;
             border-radius: 50%;
@@ -629,16 +642,7 @@
         }
         .ad-close:hover,
         .ad-close:active {
-            background: rgba(255, 255, 255, 0.42);
-        }
-        .ad-sheet {
-            max-width: 460px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
-            position: relative;
+            background: rgba(0, 0, 0, 0.75);
         }
         .ad-link {
             display: block;
@@ -716,11 +720,11 @@
                 padding: 12px 10px 16px;
             }
             .ad-close {
-                top: 8px;
-                right: 10px;
-                width: 32px;
-                height: 32px;
-                font-size: 1.15rem;
+                top: 6px;
+                right: 6px;
+                width: 30px;
+                height: 30px;
+                font-size: 1.1rem;
             }
             .ad-sheet {
                 max-width: 100%;
@@ -795,14 +799,20 @@
                 <div class="card">
                     <p class="how-to-text">
                         上部の検索バーに単語を入力すると候補が表示されます。候補を選ぶか「検索」を押すと詳細が表示されます。<br>
-                        結果内の青い単語をタップすると、その単語で再検索できます。スピーカーボタンで発音を確認できます。
+                        結果内の青い単語をタップすると、その単語で再検索できます。スピーカーボタンで発音を確認できます。<br>
+                        ★ボタンでお気に入りに登録・解除できます。
                     </p>
                 </div>
             </div>
-            <div class="section">
-                <div class="section-title">おすすめの単語</div>
+            <div class="section" id="favSection">
+                <div class="fav-header">
+                    <div class="section-title">お気に入り</div>
+                    <button class="clear-fav-btn" id="clearFavBtn" onclick="clearAllFavorites()" style="display:none;">すべて消す</button>
+                </div>
                 <div class="card">
-                    <div class="featured-list" id="featuredList"></div>
+                    <div id="favList" class="fav-list">
+                        <span class="fav-empty">まだお気に入りがありません</span>
+                    </div>
                 </div>
             </div>
             <div class="section" id="recentSection">
@@ -847,7 +857,7 @@
             const savedSize = localStorage.getItem('dict-font-size');
             if (savedSize) setFontSize(parseInt(savedSize, 10), false);
             renderRecent();
-            renderFeatured();
+            renderFavorites();
             updateClearBtn();
             const input = document.getElementById('searchInput');
             input.addEventListener('input', onInput);
@@ -965,6 +975,7 @@
         function updateClearBtn() {
             document.getElementById('clearBtn').classList.toggle('visible', document.getElementById('searchInput').value.length > 0);
         }
+        /* ── Recent ── */
         function getRecent() {
             try { return JSON.parse(localStorage.getItem('dict-recent') || '[]'); }
             catch { return []; }
@@ -982,6 +993,7 @@
             renderRecent();
         }
         function clearAllRecent() {
+            if (!confirm('検索履歴をすべて削除しますか？')) return;
             localStorage.removeItem('dict-recent');
             renderRecent();
         }
@@ -1002,15 +1014,52 @@
                 </button>`
             ).join('');
         }
-        function renderFeatured() {
-            const featured = [
-                "こんにちは", "Thank you", "学校", "Hello", "食べる", "Beautiful",
-                "友達", "Good morning", "行く", "Happy", "雨", "Time"
-            ];
-            const el = document.getElementById('featuredList');
-            if (!el) return;
-            el.innerHTML = featured.map(w =>
-                `<button class="featured-chip" onclick="selectSuggestion('${escapeAttr(w)}')">${escapeHtml(w)}</button>`
+        /* ── Favorites ── */
+        function getFavorites() {
+            try { return JSON.parse(localStorage.getItem('dict-favorites') || '[]'); }
+            catch { return []; }
+        }
+        function isFavorite(word) {
+            return getFavorites().includes(word);
+        }
+        function toggleFavorite(word, btn) {
+            let list = getFavorites();
+            if (list.includes(word)) {
+                list = list.filter(w => w !== word);
+                if (btn) btn.classList.remove('active');
+            } else {
+                list.unshift(word);
+                list = list.slice(0, 50);
+                if (btn) btn.classList.add('active');
+            }
+            localStorage.setItem('dict-favorites', JSON.stringify(list));
+            renderFavorites();
+        }
+        function removeFavorite(word) {
+            const list = getFavorites().filter(w => w !== word);
+            localStorage.setItem('dict-favorites', JSON.stringify(list));
+            renderFavorites();
+        }
+        function clearAllFavorites() {
+            if (!confirm('お気に入りをすべて削除しますか？')) return;
+            localStorage.removeItem('dict-favorites');
+            renderFavorites();
+        }
+        function renderFavorites() {
+            const list = getFavorites();
+            const el = document.getElementById('favList');
+            const clearBtn = document.getElementById('clearFavBtn');
+            if (!list.length) {
+                el.innerHTML = '<span class="fav-empty">まだお気に入りがありません</span>';
+                if (clearBtn) clearBtn.style.display = 'none';
+                return;
+            }
+            if (clearBtn) clearBtn.style.display = 'block';
+            el.innerHTML = list.map(w =>
+                `<button class="fav-chip" onclick="selectSuggestion('${escapeAttr(w)}')">
+                    ${escapeHtml(w)}
+                    <span class="fav-chip-del" onclick="event.stopPropagation();removeFavorite('${escapeAttr(w)}')" title="削除">×</span>
+                </button>`
             ).join('');
         }
         function speakWord(word, lang, btn) {
@@ -1077,6 +1126,7 @@
                     const langLabel = item.lang === 'jp' ? '日本語' : 'English';
                     const speakLang = item.lang === 'jp' ? 'ja' : 'en';
                     const cardClass = item.lang === 'jp' ? 'dict-card-jp' : 'dict-card-en';
+                    const isFav = isFavorite(item.word);
                     let imgHtml = '';
                     if (item.image) {
                         imgHtml = `<img class="dict-image" src="${escapeAttr(item.image)}" alt="${escapeAttr(item.word)}" onerror="this.classList.add('hidden')">`;
@@ -1093,12 +1143,19 @@
                                             ${item.romaji ? `<span class="romaji">${escapeHtml(item.romaji)}</span>` : ''}
                                         </div>
                                     </div>
-                                    <button class="speak-btn" onclick="speakWord('${escapeAttr(item.word)}', '${speakLang}', this)" title="発音を聞く" aria-label="発音">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                        </svg>
-                                    </button>
+                                    <div class="card-actions">
+                                        <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${escapeAttr(item.word)}', this)" title="お気に入り" aria-label="お気に入り">
+                                            <svg viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                        </button>
+                                        <button class="speak-btn" onclick="speakWord('${escapeAttr(item.word)}', '${speakLang}', this)" title="発音を聞く" aria-label="発音">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="meaning">${escapeHtml(meaning)}</div>
                                 ${transHtml}
@@ -1139,7 +1196,7 @@
             document.getElementById('settingsPanel').classList.remove('show');
             document.getElementById('gearBtn').classList.remove('active');
             renderRecent();
-            renderFeatured();
+            renderFavorites();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         function escapeHtml(str) {
@@ -1177,8 +1234,8 @@
             const ad = window.adData[Math.floor(Math.random() * window.adData.length)];
             const hasTitle = ad.title && String(ad.title).trim() !== '';
             banner.innerHTML = `
-                <button class="ad-close" onclick="closeAd()" aria-label="閉じる">×</button>
                 <div class="ad-sheet">
+                    <button class="ad-close" onclick="closeAd()" aria-label="閉じる">×</button>
                     <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="ad-link">
                         <img class="ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">
                         ${hasTitle ? `<div class="ad-text">${escapeHtml(ad.title)}</div>` : ''}
