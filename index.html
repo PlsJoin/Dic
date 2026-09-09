@@ -1205,7 +1205,21 @@
             const found = filterSearch(query);
             let html = '';
             if (found.length === 0) {
-                html = `<div class="empty-state"><p>「${escapeHtml(query)}」に一致する単語は見つかりませんでした</p><p class="empty-hint">別の表記でも試してみてください</p></div>`;
+                html = `
+                    <div class="empty-state">
+                        <p>「${escapeHtml(query)}」に一致する単語は見つかりませんでした</p>
+                        <p class="empty-hint">別の表記でも試してみてください</p>
+                    </div>
+                    <div class="section" style="margin-top: 20px;">
+                        <a href="https://forms.gle/jHLszF9ndrR9MXMy6" target="_blank" rel="noopener noreferrer" class="request-btn" style="border-left-width: 4px; box-shadow: 0 2px 12px rgba(29, 78, 216, 0.12);">
+                            <div class="request-text">
+                                <span class="request-main">この単語を追加してほしい場合はこちら</span>
+                                <span class="request-sub">クリックして申請ページへ（すぐに反映されるとは限りません）</span>
+                            </div>
+                            <div class="request-arrow">→</div>
+                        </a>
+                    </div>
+                    <div class="footer">© Entry-Production</div>`;
             } else {
                 const countLabel = found.length === 1 ? '1件' : found.length + '件';
                 html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果（${countLabel}）</p></div>`;
@@ -1260,18 +1274,18 @@
                             ${imgHtml}
                         </article>`;
                 });
+                html += `
+                    <div class="section" style="margin-top: 28px;">
+                        <a href="https://forms.gle/jHLszF9ndrR9MXMy6" target="_blank" rel="noopener noreferrer" class="request-btn">
+                            <div class="request-text">
+                                <span class="request-main">単語追加の申請はこちらから</span>
+                                <span class="request-sub">クリックして申請ページへ</span>
+                            </div>
+                            <div class="request-arrow">→</div>
+                        </a>
+                    </div>
+                    <div class="footer">© Entry-Production</div>`;
             }
-            html += `
-                <div class="section" style="margin-top: 28px;">
-                    <a href="https://forms.gle/jHLszF9ndrR9MXMy6" target="_blank" rel="noopener noreferrer" class="request-btn">
-                        <div class="request-text">
-                            <span class="request-main">単語追加の申請はこちらから</span>
-                            <span class="request-sub">クリックして申請ページへ</span>
-                        </div>
-                        <div class="request-arrow">→</div>
-                    </a>
-                </div>
-                <div class="footer">© Entry-Production</div>`;
             results.innerHTML = html;
             window.scrollTo({ top: 0, behavior: 'smooth' });
             incrementAdCounter();
@@ -1312,7 +1326,7 @@
             if (sessionStorage.getItem('ad-closed') === '1') {
                 const count = getAdSuppressCount() + 1;
                 setAdSuppressCount(count);
-                if (count >= 2) {
+                if (count >= 5) {
                     sessionStorage.removeItem('ad-closed');
                     setAdSuppressCount(0);
                 }
