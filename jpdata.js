@@ -6,27 +6,11 @@ window.jpData = [
         type: "間投詞",
         romaji: "こんにちは",
         readings: ["こんにちは", "コンニチハ"],
-        meaning: "日中に相手へ声を掛けるときに使う、日本語の基本的な挨拶である。相手の関係に関係なく幅広い相手に使える表現である。",
+        meaning: "日中に相手へ声を掛けるときに使う、日本語の基本的な挨拶である。朝の「おはよう」や夜の「こんばんは」と違い、午前中から夕方にかけて幅広く使える表現で、相手との関係性に関係なく使える丁寧で親しみやすい挨拶である。",
         enTranslation: "Hello",
         image: null,
         examples: [
             "こんにちは！"
-        ]
-    },
-     {
-        word: "フォートナイト",
-        lang: "jp",
-        pos: "名詞",
-        type: "普通名詞",
-        romaji: "ふぉーとないと",
-        readings: ["ふぉーとないと", "フォートナイト"],
-        meaning: "EpicGamesが2017年に公開されたTPSゲームである。バトルロイヤルモードを中心としてPVEアクションやリズムゲームなど幅広いジャンルを提供している。",
-        enTranslation: null,
-        image: "images/fortnite.png",
-        examples: [
-            "フォートナイトをする。",
-            "フォートナイトのリロードで負けてしまった。",
-            "明日、フォートナイトをしよう。"
         ]
     },
     {
@@ -36,7 +20,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "がっこう",
         readings: ["がっこう", "ガッコウ"],
-        meaning: "児童・生徒・学生が教師から教育を施すための施設。学校教育法では、幼稚園・小学校・中学校・高等学校・中等教育学校・高等専門学校・特別支援学校・大学・専修学校・各種学校を指す。",
+        meaning: "児童・生徒・学生が教師から教育を受けるための施設。学校教育法では、幼稚園・小学校・中学校・高等学校・中等教育学校・高等専門学校・特別支援学校・大学・専修学校・各種学校などを指す。学びの場としてだけでなく、友人関係を築いたり社会性を身につけたりする場所としても重要な役割を持つ。",
         enTranslation: "School",
         image: null,
         examples: [
@@ -52,7 +36,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "せんせい",
         readings: ["せんせい", "センセイ"],
-        meaning: "学校や塾などで、児童・生徒・学生に教育を施す人。また、学識のある人や指導的立場にある人・敬っている人に対して呼びかけるときの敬称。",
+        meaning: "学校や塾などで、児童・生徒・学生に教育を施す人。また、学識のある人や指導的立場にある人、敬っている人に対して呼びかけるときの敬称としても使われる。医師や弁護士など専門職の人に対しても「先生」と呼ぶ習慣がある。",
         enTranslation: "Teacher",
         image: null,
         examples: [
@@ -68,7 +52,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "ともだち",
         readings: ["ともだち", "トモダチ"],
-        meaning: "互いに心を許し合って、対等に付き合う関係にある人。一緒に遊んだり、話したりすることができる親しい人。",
+        meaning: "互いに心を許し合って、対等に付き合う関係にある人。一緒に遊んだり話したりできる親しい相手を指す。年齢や性別に関係なく、信頼し合える存在を表す言葉である。",
         enTranslation: "Friend",
         image: null,
         examples: [
@@ -84,9 +68,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "いえ",
         readings: ["いえ", "イエ", "うち", "ウチ"],
-        meaning: "人間が居住する固定式あるいは移動式の建物のこと。 祖先から代々続いてきた血族としてのまとまり。",
+        meaning: "人間が居住する建物のこと。固定式の住宅だけでなく、移動式の住居も含む。また、祖先から代々続いてきた血族としてのまとまりや、自分が帰る場所・心の拠り所という意味でも使われる。",
         enTranslation: "House / Home",
-        image: "images/house.png",
+        image: null,
         examples: [
             "学校から家に帰る。",
             "家でご飯を食べた。",
@@ -100,7 +84,7 @@ window.jpData = [
         type: "一段動詞",
         romaji: "たべる",
         readings: ["たべる", "タベル"],
-        meaning: "口から食べ物を体の中に入れて、栄養を取る行為のこと。また、食事をすること。",
+        meaning: "口から食べ物を体の中に入れて栄養を取る行為。食事をすること全般を指す。生きるために必要な基本的な行動であり、「朝食を食べる」「一緒にご飯を食べる」など幅広く使われる。",
         enTranslation: "Eat",
         image: null,
         examples: [
@@ -116,7 +100,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "のむ",
         readings: ["のむ", "ノム"],
-        meaning: "口から水や他の液体を摂取する行為のこと。また、薬を服用することや、酒を飲むことも含まれる。",
+        meaning: "口から水や他の液体を摂取する行為。薬を服用することや、お酒を飲むことも含まれる。液体を体に入れる動作全般を表す基本的な動詞である。",
         enTranslation: "Drink",
         image: null,
         examples: [
@@ -131,8 +115,8 @@ window.jpData = [
         pos: "動詞",
         type: "五段動詞",
         romaji: "いく",
-        readings: ["いく", "イク","ゆく", "ユク"],
-        meaning: "自分のいる場所から目的地へ向かって移動すること。また、「ゆく」と「いく」は、意味の違いはほとんどないが、「ゆく」は文学的表現や詩的表現で使われることが多い。",
+        readings: ["いく", "イク", "ゆく", "ユク"],
+        meaning: "自分のいる場所から目的地へ向かって移動すること。「ゆく」と「いく」はほぼ同じ意味だが、「ゆく」は文学的・詩的な表現で使われることが多い。移動を表す最も基本的な動詞の一つである。",
         enTranslation: "Go",
         image: null,
         examples: [
@@ -148,7 +132,7 @@ window.jpData = [
         type: "カ変動詞",
         romaji: "くる",
         readings: ["くる", "クル"],
-        meaning: "自分のいる場所に、他の場所から移動して到着すること。主に、人や物が自分のいる場所に近づいてくることを表し、三人称・二人称の動作を表す場合に使われる。「行く」の対義語。",
+        meaning: "自分のいる場所に、他の場所から移動して到着すること。主に人や物が自分のいる場所に近づいてくることを表し、三人称・二人称の動作を表す場合に使われる。「行く」の対義語で、到着を強調する表現である。",
         enTranslation: "Come",
         image: null,
         examples: [
@@ -164,7 +148,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "かえる",
         readings: ["かえる", "カエル"],
-        meaning: "自分の家や元の場所に戻ること。また、学校や会社などから自宅に戻ることを指す場合もある。",
+        meaning: "自分の家や元の場所に戻ること。学校や会社などから自宅に戻ることを指す場合も多い。「戻る」と似ているが、特に「自分の場所へ戻る」というニュアンスが強い。",
         enTranslation: "Return / Go home",
         image: null,
         examples: [
@@ -180,7 +164,7 @@ window.jpData = [
         type: "一段動詞",
         romaji: "みる",
         readings: ["みる", "ミル"],
-        meaning: "目を使って、人や物、景色などを確認すること。",
+        meaning: "目を使って人や物、景色などを確認すること。意識して視線を向ける行為を表す。「見る」「観る」「診る」など漢字によって微妙に意味が変わる場合もあるが、基本は視覚で捉えることである。",
         enTranslation: "See / Look / Watch",
         image: null,
         examples: [
@@ -196,7 +180,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "きく",
         readings: ["きく", "キク"],
-        meaning: "音や声を耳で感じたり、人に質問して答えを教えてもらったりすること。",
+        meaning: "音や声を耳で感じ取ること。また、人に質問して答えを教えてもらうことも含まれる。「聞く」は自然に耳に入る場合も意識して聞く場合も両方を表す。",
         enTranslation: "Listen / Hear / Ask",
         image: null,
         examples: [
@@ -212,7 +196,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "はなす",
         readings: ["はなす", "ハナス"],
-        meaning: "言葉を使って、自分の考えや気持ちなどを相手に伝えること。",
+        meaning: "言葉を使って自分の考えや気持ちを相手に伝えること。会話をすること全般を指し、相手と情報を交換したり意思を伝えたりする基本的なコミュニケーション手段である。",
         enTranslation: "Speak / Talk",
         image: null,
         examples: [
@@ -228,7 +212,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "よむ",
         readings: ["よむ", "ヨム"],
-        meaning: "文字を見て、その内容や意味を理解すること。",
+        meaning: "文字を見て、その内容や意味を理解すること。本や新聞、文章などを頭の中で音声化したり意味を取ったりする行為を表す。",
         enTranslation: "Read",
         image: null,
         examples: [
@@ -244,7 +228,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "かく",
         readings: ["かく", "カク"],
-        meaning: "文字や絵などを紙や画面に表すこと。",
+        meaning: "文字や絵などを紙や画面に表すこと。手で書く場合も、キーボードで入力する場合も含まれる。自分の考えや情報を文字として残す行為である。",
         enTranslation: "Write",
         image: null,
         examples: [
@@ -260,7 +244,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "かう",
         readings: ["かう", "カウ"],
-        meaning: "お金を払って、商品や食べ物などを自分のものにすること。",
+        meaning: "お金を払って商品や食べ物などを自分のものにすること。店で物を購入する行為を表し、経済活動の基本となる動作である。",
         enTranslation: "Buy",
         image: null,
         examples: [
@@ -276,7 +260,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "つかう",
         readings: ["つかう", "ツカウ"],
-        meaning: "道具や物などを目的に合わせて動かしたり利用したりすること。",
+        meaning: "道具や物などを目的に合わせて動かしたり利用したりすること。物を役立てる行為全般を表す基本的な動詞である。",
         enTranslation: "Use",
         image: null,
         examples: [
@@ -292,7 +276,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "つくる",
         readings: ["つくる", "ツクル"],
-        meaning: "材料などを使って、新しい物や料理などを完成させること。",
+        meaning: "材料などを使って新しい物や料理などを完成させること。ゼロから何かを生み出す行為を表し、「料理を作る」「作品を作る」など幅広く使われる。",
         enTranslation: "Make / Create",
         image: null,
         examples: [
@@ -308,7 +292,7 @@ window.jpData = [
         type: "五段動詞",
         romaji: "あそぶ",
         readings: ["あそぶ", "アソブ"],
-        meaning: "楽しむために、ゲームをしたりスポーツをしたりすること。",
+        meaning: "楽しむためにゲームをしたりスポーツをしたりすること。仕事や勉強以外の時間に、趣味やレジャーとして過ごす行為を表す。",
         enTranslation: "Play",
         image: null,
         examples: [
@@ -324,7 +308,7 @@ window.jpData = [
         type: "一段動詞",
         romaji: "ねる",
         readings: ["ねる", "ネル"],
-        meaning: "体を休ませるために、横になって眠ること。",
+        meaning: "体を休ませるために横になって眠ること。睡眠を取ること全般を指し、生きるために必要な休息行為である。",
         enTranslation: "Sleep / Go to bed",
         image: null,
         examples: [
@@ -340,7 +324,7 @@ window.jpData = [
         type: "一段動詞",
         romaji: "おきる",
         readings: ["おきる", "オキル"],
-        meaning: "眠っている状態から目を覚まして、起き上がること。",
+        meaning: "眠っている状態から目を覚まして起き上がること。朝起きることや、横になっていた状態から体を起こすことを表す。",
         enTranslation: "Wake up / Get up",
         image: null,
         examples: [
@@ -356,7 +340,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "おおきい",
         readings: ["おおきい", "オオキイ"],
-        meaning: "物の大きさが普通より上であること。",
+        meaning: "物の大きさや規模が普通より上であること。物理的な大きさだけでなく、音量や影響の大きさなどにも使われる。「大きい」は「おおきい」と読むのが一般的である。",
         enTranslation: "Big / Large",
         image: null,
         examples: [
@@ -372,7 +356,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "ちいさい",
         readings: ["ちいさい", "チイサイ"],
-        meaning: "物の大きさが普通より下であること。",
+        meaning: "物の大きさや規模が普通より下であること。物理的に小さいだけでなく、程度が低い場合にも使われる。",
         enTranslation: "Small / Little",
         image: null,
         examples: [
@@ -388,7 +372,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "あたらしい",
         readings: ["あたらしい", "アタラシイ"],
-        meaning: "できてから時間があまりたっていないこと。また、今までになかったこと。",
+        meaning: "できてから時間があまりたっていないこと。また、今までになかった新しいものや状態を表す。新鮮さや新しさを強調する形容詞である。",
         enTranslation: "New",
         image: null,
         examples: [
@@ -404,7 +388,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "ふるい",
         readings: ["ふるい", "フルイ"],
-        meaning: "できてから長い時間がたっていること。",
+        meaning: "できてから長い時間がたっていること。物が古くなったり、時代遅れになったりした状態を表す。歴史があるという意味でポジティブに使われる場合もある。",
         enTranslation: "Old",
         image: null,
         examples: [
@@ -420,7 +404,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "あつい",
         readings: ["あつい", "アツイ"],
-        meaning: "気温が高くて、体が熱く感じること。",
+        meaning: "気温が高くて体が熱く感じること。主に夏の気候や高温の状態を表す。体感温度が高いときに使う。",
         enTranslation: "Hot",
         image: null,
         examples: [
@@ -436,7 +420,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "さむい",
         readings: ["さむい", "サムイ"],
-        meaning: "気温が低くて、体が冷たく感じること。",
+        meaning: "気温が低くて体が冷たく感じること。主に冬の気候や低温の状態を表す。体が震えるほど冷たいときに使う。",
         enTranslation: "Cold",
         image: null,
         examples: [
@@ -452,7 +436,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "たのしい",
         readings: ["たのしい", "タノシイ"],
-        meaning: "好きなことをして、うれしく感じたり、面白く感じたりすること。",
+        meaning: "好きなことをしてうれしく感じたり、面白く感じたりすること。心が満たされて楽しい状態を表す感情の形容詞である。",
         enTranslation: "Fun / Enjoyable",
         image: null,
         examples: [
@@ -468,7 +452,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "むずかしい",
         readings: ["むずかしい", "ムズカシイ"],
-        meaning: "簡単にはできなかったり、理解するのに時間がかかったりすること。",
+        meaning: "簡単にはできなかったり、理解するのに時間がかかったりすること。複雑で手間がかかる状態を表す。",
         enTranslation: "Difficult / Hard",
         image: null,
         examples: [
@@ -484,7 +468,7 @@ window.jpData = [
         type: "ナ形容詞",
         romaji: "かんたん",
         readings: ["かんたん", "カンタン"],
-        meaning: "やり方がわかりやすく、あまり苦労せずにできること。",
+        meaning: "やり方がわかりやすく、あまり苦労せずにできること。複雑でなく、すぐに理解・実行できる状態を表す。",
         enTranslation: "Easy / Simple",
         image: null,
         examples: [
@@ -500,7 +484,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "はやい",
         readings: ["はやい", "ハヤイ"],
-        meaning: "ある時間より前であること。また、時間があまりたっていないこと。",
+        meaning: "ある時間より前であること。また、時間があまりたっていないこと。「早い」は時間的な早さを表し、「速い」とは区別される。",
         enTranslation: "Early",
         image: null,
         examples: [
@@ -516,7 +500,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "はやい",
         readings: ["はやい", "ハヤイ"],
-        meaning: "人や物が移動するときの速さが大きいこと。",
+        meaning: "人や物が移動するときの速さが大きいこと。スピードが速い状態を表し、「早い」とは意味が異なる。",
         enTranslation: "Fast / Quick",
         image: null,
         examples: [
@@ -532,7 +516,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "ちかい",
         readings: ["ちかい", "チカイ"],
-        meaning: "場所と場所の間の距離が短いこと。",
+        meaning: "場所と場所の間の距離が短いこと。物理的な距離だけでなく、関係が近い場合にも使われる。",
         enTranslation: "Near / Close",
         image: null,
         examples: [
@@ -548,7 +532,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "とおい",
         readings: ["とおい", "トオイ"],
-        meaning: "場所と場所の間の距離が長いこと。",
+        meaning: "場所と場所の間の距離が長いこと。物理的に離れている状態を表す。",
         enTranslation: "Far",
         image: null,
         examples: [
@@ -564,7 +548,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "たかい",
         readings: ["たかい", "タカイ"],
-        meaning: "物の値段が普通より多いこと。また、物の位置が上にあること。",
+        meaning: "物の値段が普通より多いこと。また、物の位置が上にあることや、身長が高いことにも使われる。文脈によって「高価」「高所」「高身長」などの意味になる。",
         enTranslation: "Expensive / High / Tall",
         image: null,
         examples: [
@@ -580,7 +564,7 @@ window.jpData = [
         type: "イ形容詞",
         romaji: "やすい",
         readings: ["やすい", "ヤスイ"],
-        meaning: "物の値段が普通より少ないこと。",
+        meaning: "物の値段が普通より少ないこと。手頃な価格であることを表す。",
         enTranslation: "Cheap / Inexpensive",
         image: null,
         examples: [
@@ -596,7 +580,7 @@ window.jpData = [
         type: "ナ形容詞",
         romaji: "すき",
         readings: ["すき", "スキ"],
-        meaning: "人や物、食べ物などを気に入っていて、よいと思う気持ち。",
+        meaning: "人や物、食べ物などを気に入っていて、よいと思う気持ち。好感や好みを表す基本的な感情表現である。",
         enTranslation: "Like / Favorite",
         image: null,
         examples: [
@@ -612,7 +596,7 @@ window.jpData = [
         type: "ナ形容詞",
         romaji: "きらい",
         readings: ["きらい", "キライ"],
-        meaning: "人や物、食べ物などを好きではないと思う気持ち。",
+        meaning: "人や物、食べ物などを好きではないと思う気持ち。嫌悪感や苦手意識を表す。",
         enTranslation: "Dislike / Hate",
         image: null,
         examples: [
@@ -628,7 +612,7 @@ window.jpData = [
         type: "形容動詞",
         romaji: "げんき",
         readings: ["げんき", "ゲンキ"],
-        meaning: "体や心の調子がよく、活発に動ける状態。",
+        meaning: "体や心の調子がよく、活発に動ける状態。健康で活力があることを表す言葉である。",
         enTranslation: "Healthy / Energetic",
         image: null,
         examples: [
@@ -644,7 +628,7 @@ window.jpData = [
         type: "ナ形容詞",
         romaji: "だいじょうぶ",
         readings: ["だいじょうぶ", "ダイジョウブ"],
-        meaning: "問題がなく、心配する必要がないこと。",
+        meaning: "問題がなく、心配する必要がないこと。安全や安心を伝える表現としてよく使われる。",
         enTranslation: "Okay / All right",
         image: null,
         examples: [
@@ -660,7 +644,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "じかん",
         readings: ["じかん", "ジカン"],
-        meaning: "出来事が起こったり、物事が続いたりする長さ。また、時刻を表すこともある。",
+        meaning: "出来事が起こったり物事が続いたりする長さ。また、時刻を表すこともある。生活の中で最も基本的な概念の一つである。",
         enTranslation: "Time",
         image: null,
         examples: [
@@ -676,7 +660,7 @@ window.jpData = [
         type: "時間名詞",
         romaji: "きょう",
         readings: ["きょう", "キョウ"],
-        meaning: "今過ごしている一日のこと。今の日。",
+        meaning: "今過ごしている一日のこと。現在の日を指す時間の言葉である。",
         enTranslation: "Today",
         image: null,
         examples: [
@@ -692,7 +676,7 @@ window.jpData = [
         type: "時間名詞",
         romaji: "あした",
         readings: ["あした", "アシタ", "あす", "アス"],
-        meaning: "今日の次の日。",
+        meaning: "今日の次の日。これから来る日を指す。",
         enTranslation: "Tomorrow",
         image: null,
         examples: [
@@ -708,7 +692,7 @@ window.jpData = [
         type: "時間名詞",
         romaji: "きのう",
         readings: ["きのう", "キノウ"],
-        meaning: "今日の一日前の日。",
+        meaning: "今日の一日前の日。すでに過ぎた日を指す。",
         enTranslation: "Yesterday",
         image: null,
         examples: [
@@ -724,7 +708,7 @@ window.jpData = [
         type: "時間名詞",
         romaji: "あさ",
         readings: ["あさ", "アサ"],
-        meaning: "夜が終わってから昼になるまでの時間。",
+        meaning: "夜が終わってから昼になるまでの時間。一日の始まりの時間帯を表す。",
         enTranslation: "Morning",
         image: null,
         examples: [
@@ -740,7 +724,7 @@ window.jpData = [
         type: "時間名詞",
         romaji: "よる",
         readings: ["よる", "ヨル"],
-        meaning: "太陽が沈んでから、次の日の朝になるまでの時間。",
+        meaning: "太陽が沈んでから次の日の朝になるまでの時間。暗い時間帯を表す。",
         enTranslation: "Night / Evening",
         image: null,
         examples: [
@@ -756,7 +740,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "てんき",
         readings: ["てんき", "テンキ"],
-        meaning: "晴れ、雨、雪、くもりなど、そのときの空の状態。",
+        meaning: "晴れ、雨、雪、くもりなど、そのときの空の状態。気象の状況を表す言葉である。",
         enTranslation: "Weather",
         image: null,
         examples: [
@@ -772,9 +756,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "あめ",
         readings: ["あめ", "アメ"],
-        meaning: "空から水のつぶが降ってくる自然現象。",
+        meaning: "空から水のつぶが降ってくる自然現象。降水の一種で、気温が高いときに起こる。",
         enTranslation: "Rain",
-        image: "images/rain.png",
+        image: null,
         examples: [
             "雨が降っている。",
             "雨なので傘を持っていく。",
@@ -788,9 +772,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "ゆき",
         readings: ["ゆき", "ユキ"],
-        meaning: "空から降ってくる、白くて小さな氷のつぶ。",
+        meaning: "空から降ってくる白くて小さな氷のつぶ。気温が低いときに起こる降水現象である。",
         enTranslation: "Snow",
-        image: "images/snow.png",
+        image: null,
         examples: [
             "雪が降っている。",
             "雪がたくさん積もった。",
@@ -804,9 +788,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "みず",
         readings: ["みず", "ミズ"],
-        meaning: "透明な液体で、人や動物が生きるためにも必要なもの。",
+        meaning: "透明な液体で、人や動物が生きるために必要なもの。地球上に最も多く存在する物質の一つである。",
         enTranslation: "Water",
-        image: "images/water.png",
+        image: null,
         examples: [
             "水を飲む。",
             "コップに水を入れる。",
@@ -820,9 +804,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "たべもの",
         readings: ["たべもの", "タベモノ"],
-        meaning: "人や動物が食べるもの。ご飯、パン、野菜、肉など。",
+        meaning: "人や動物が食べるもの。ご飯、パン、野菜、肉など、栄養を取るための物全般を指す。",
         enTranslation: "Food",
-        image: "images/food.png",
+        image: null,
         examples: [
             "好きな食べ物は何ですか？",
             "食べ物を買いに行く。",
@@ -836,7 +820,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "おかね",
         readings: ["おかね", "オカネ"],
-        meaning: "物を買ったり、サービスを利用したりするときに使うもの。",
+        meaning: "物を買ったりサービスを利用したりするときに使うもの。経済活動の基本となる媒介である。",
         enTranslation: "Money",
         image: null,
         examples: [
@@ -852,9 +836,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "みせ",
         readings: ["みせ", "ミセ"],
-        meaning: "商品や食べ物などを売っている場所。",
+        meaning: "商品や食べ物などを売っている場所。商業施設全般を指す。",
         enTranslation: "Shop / Store",
-        image: "images/shop.png",
+        image: null,
         examples: [
             "店でパンを買う。",
             "この店は人気があります。",
@@ -868,9 +852,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "えき",
         readings: ["えき", "エキ"],
-        meaning: "電車や地下鉄などに乗ったり降りたりするための場所。",
+        meaning: "電車や地下鉄などに乗ったり降りたりするための場所。交通の拠点となる施設である。",
         enTranslation: "Station",
-        image: "images/station.png",
+        image: null,
         examples: [
             "駅まで歩く。",
             "駅で友達と会った。",
@@ -884,9 +868,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "でんしゃ",
         readings: ["でんしゃ", "デンシャ"],
-        meaning: "電気の力で線路の上を走り、人や荷物を運ぶ乗り物。",
+        meaning: "電気の力で線路の上を走り、人や荷物を運ぶ乗り物。都市部の主要な公共交通機関である。",
         enTranslation: "Train",
-        image: "images/train.png",
+        image: null,
         examples: [
             "電車に乗る。",
             "電車で学校へ行く。",
@@ -900,7 +884,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "でんわ",
         readings: ["でんわ", "デンワ"],
-        meaning: "離れた場所にいる人と声で話すためのもの。また、その行動。",
+        meaning: "離れた場所にいる人と声で話すためのもの。また、その行為自体も指す。通信手段の一つである。",
         enTranslation: "Telephone / Phone call",
         image: null,
         examples: [
@@ -916,7 +900,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "もんだい",
         readings: ["もんだい", "モンダイ"],
-        meaning: "答えを考える必要がある質問。また、困ったことや解決する必要があること。",
+        meaning: "答えを考える必要がある質問。また、困ったことや解決する必要があることも指す。",
         enTranslation: "Problem / Question",
         image: null,
         examples: [
@@ -932,7 +916,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "こたえ",
         readings: ["こたえ", "コタエ"],
-        meaning: "質問や問題について出した結果や説明。",
+        meaning: "質問や問題について出した結果や説明。正解や返答を表す。",
         enTranslation: "Answer",
         image: null,
         examples: [
@@ -948,7 +932,7 @@ window.jpData = [
         type: "サ変名詞",
         romaji: "べんきょう",
         readings: ["べんきょう", "ベンキョウ"],
-        meaning: "知識や技術を身につけるために、学んだり練習したりすること。",
+        meaning: "知識や技術を身につけるために学んだり練習したりすること。学習全般を表す言葉である。",
         enTranslation: "Study",
         image: null,
         examples: [
@@ -964,9 +948,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "ほん",
         readings: ["ほん", "ホン"],
-        meaning: "文字や写真、絵などが書かれた紙をまとめたもの。知識や物語を読むために使う。",
+        meaning: "文字や写真、絵などが書かれた紙をまとめたもの。知識や物語を読むために使う媒体である。",
         enTranslation: "Book",
-        image: "images/book.png",
+        image: null,
         examples: [
             "本を読む。",
             "図書館で本を借りた。",
@@ -980,7 +964,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "なまえ",
         readings: ["なまえ", "ナマエ"],
-        meaning: "人や物などを区別するためにつけられた呼び方。",
+        meaning: "人や物などを区別するためにつけられた呼び方。固有の識別に使われる。",
         enTranslation: "Name",
         image: null,
         examples: [
@@ -996,7 +980,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "ひと",
         readings: ["ひと", "ヒト"],
-        meaning: "人間のこと。自分以外の人を指して使うこともある。",
+        meaning: "人間のこと。自分以外の人を指して使うこともある。社会を構成する基本単位である。",
         enTranslation: "Person",
         image: null,
         examples: [
@@ -1012,9 +996,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "こども",
         readings: ["こども", "コドモ"],
-        meaning: "大人になる前の年齢の人。",
+        meaning: "大人になる前の年齢の人。成長途上の人間を指す。",
         enTranslation: "Child / Kid",
-        image: "images/child.png",
+        image: null,
         examples: [
             "子供が公園で遊んでいる。",
             "子供のころによく遊んだ。",
@@ -1028,7 +1012,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "おとな",
         readings: ["おとな", "オトナ"],
-        meaning: "子供ではなく、成長して社会生活をしている人。",
+        meaning: "子供ではなく、成長して社会生活をしている人。責任ある年齢の人間を表す。",
         enTranslation: "Adult",
         image: null,
         examples: [
@@ -1044,9 +1028,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "いぬ",
         readings: ["いぬ", "イヌ"],
-        meaning: "人と一緒に暮らすことが多い動物。四本の足を持ち、よく「ワンワン」と鳴く。",
+        meaning: "人と一緒に暮らすことが多い動物。四本の足を持ち、よく「ワンワン」と鳴く。忠実で親しみやすいペットとして知られる。",
         enTranslation: "Dog",
-        image: "images/dog.png",
+        image: null,
         examples: [
             "犬を飼っている。",
             "公園で犬を見た。",
@@ -1060,9 +1044,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "ねこ",
         readings: ["ねこ", "ネコ"],
-        meaning: "人と一緒に暮らすことが多い動物。四本の足を持ち、「ニャー」と鳴く。",
+        meaning: "人と一緒に暮らすことが多い動物。四本の足を持ち、「ニャー」と鳴く。独立心が強く、愛らしいペットとして人気がある。",
         enTranslation: "Cat",
-        image: "images/cat.png",
+        image: null,
         examples: [
             "猫を飼っている。",
             "猫が窓の近くにいる。",
@@ -1076,9 +1060,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "そら",
         readings: ["そら", "ソラ"],
-        meaning: "地面より上に広がっている空間。太陽や月、星、雲などが見える場所。",
+        meaning: "地面より上に広がっている空間。太陽や月、星、雲などが見える場所で、大気の領域を表す。",
         enTranslation: "Sky",
-        image: "images/sky.png",
+        image: null,
         examples: [
             "空が青い。",
             "空に雲が浮かんでいる。",
@@ -1092,9 +1076,9 @@ window.jpData = [
         type: "普通名詞",
         romaji: "ほし",
         readings: ["ほし", "ホシ"],
-        meaning: "夜の空などで光って見える天体。",
+        meaning: "夜の空などで光って見える天体。遠くの恒星が光って見えるものを指すことが多い。",
         enTranslation: "Star",
-        image: "images/star.png",
+        image: null,
         examples: [
             "夜空に星が見える。",
             "星がたくさん出ている。",
@@ -1108,7 +1092,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "みち",
         readings: ["みち", "ミチ"],
-        meaning: "人や車などが通るために作られた場所。また、目的地までの通り道。",
+        meaning: "人や車などが通るために作られた場所。また、目的地までの通り道や、生き方の道筋を表す場合もある。",
         enTranslation: "Road / Way",
         image: null,
         examples: [
@@ -1124,7 +1108,7 @@ window.jpData = [
         type: "普通名詞",
         romaji: "くるま",
         readings: ["くるま", "クルマ"],
-        meaning: "人や荷物を運ぶための乗り物。",
+        meaning: "人や荷物を運ぶための乗り物。主に道路を走る自動車を指す。現代社会の主要な移動手段である。",
         enTranslation: "Car",
         image: "images/car.png",
         examples: [
