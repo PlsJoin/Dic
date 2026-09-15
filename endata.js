@@ -14,6 +14,367 @@ window.enData = [
             "Thank you so much for helping me out today.（今日は手伝ってくれてありがとうございます！）"
         ]
     },
+        {
+        word: "Cafe",
+        lang: "en",
+        pos: "名詞",
+        type: "場所",
+        romaji: "カフェ",
+        readings: ["カフェ"],
+        meaning: "「Cafe」は軽食や飲み物を提供する店を指す言葉である。コーヒーや紅茶、サンドイッチ、ケーキなどを気軽に楽しめる場所で、日本語でも「カフェ」として広く使われている。レストランよりカジュアルな雰囲気が特徴である。",
+        jaTranslation: "カフェ",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "Let's meet at the cafe near the station.（駅の近くのカフェで会いましょう。）"
+        ]
+    },
+    {
+        word: "Website",
+        lang: "en",
+        pos: "名詞",
+        type: "IT・情報",
+        romaji: "ウェブサイト",
+        readings: ["ウェブサイト", "ウエブサイト"],
+        meaning: "「Website」はインターネット上に公開されている一連のウェブページの集まりを指す言葉である。情報発信や商品販売、ブログなど、さまざまな目的で作られる。日本語でも「ウェブサイト」や「サイト」として日常的に使われる。",
+        jaTranslation: "ウェブサイト",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "I found a useful website for learning English.（英語学習に役立つウェブサイトを見つけた。）"
+        ]
+    },
+    {
+        word: "Popular",
+        lang: "en",
+        pos: "形容詞",
+        type: "状態",
+        romaji: "ポピュラー",
+        readings: ["ポピュラー"],
+        meaning: "「Popular」は「人気がある」「多くの人に好まれている」という意味の形容詞である。人や物、場所、曲などが広く受け入れられている状態を表す。対義語は unpopular。",
+        jaTranslation: "人気のある",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "This cafe is very popular among young people.（このカフェは若者の間でとても人気がある。）"
+        ]
+    },
+    {
+        word: "Owner",
+        lang: "en",
+        pos: "名詞",
+        type: "人物",
+        romaji: "オーナー",
+        readings: ["オーナー"],
+        meaning: "「Owner」は「所有者」「持ち主」を意味する言葉である。店や会社、家、ペットなどの所有権を持つ人を指す。日本語でも「オーナー」として、特に店舗の経営者を表す際によく使われる。",
+        jaTranslation: "所有者 / オーナー",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "The owner of the cafe is very friendly.（そのカフェのオーナーはとても親切だ。）"
+        ]
+    },
+    {
+        word: "Know",
+        lang: "en",
+        pos: "動詞",
+        type: "認識",
+        romaji: "ノウ",
+        readings: ["ノウ"],
+        meaning: "「Know」は「知っている」「わかっている」という意味の動詞である。知識や情報を持っている状態、または人を知り合いである状態を表す。現在形は know / knows、過去形は knew、過去分詞は known となる。",
+        jaTranslation: "知っている",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "Do you know the way to the station?（駅への道を知っていますか？）"
+        ]
+    },
+    {
+        word: "Patty",
+        lang: "en",
+        pos: "名詞",
+        type: "食べ物",
+        romaji: "パティ",
+        readings: ["パティ"],
+        meaning: "「Patty」は主にハンバーガーなどに使う、ひき肉を平たく固めた肉の塊を指す言葉である。牛肉や鶏肉、豆などで作られることが多く、日本語でも「パティ」としてハンバーガーの中身を表す際に使われる。",
+        jaTranslation: "パティ（肉の塊）",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "This hamburger has a thick beef patty.（このハンバーガーは厚みのあるビーフパティが入っている。）"
+        ]
+    },
+    {
+        word: "Fried",
+        lang: "en",
+        pos: "形容詞",
+        type: "状態・調理",
+        romaji: "フライド",
+        readings: ["フライド"],
+        meaning: "「Fried」は「揚げた」「炒めた」という意味の形容詞である。油を使って高温で調理した状態を表す。fried chicken（フライドチキン）や fried rice（チャーハン）など、料理名によく使われる。",
+        jaTranslation: "揚げた / 炒めた",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "I like fried chicken very much.（私はフライドチキンがとても好きだ。）"
+        ]
+    },
+    {
+        word: "Top",
+        lang: "en",
+        pos: "名詞・形容詞",
+        type: "位置・状態",
+        romaji: "トップ",
+        readings: ["トップ"],
+        meaning: "「Top」は「一番上」「頂点」「最高」を意味する言葉である。物理的な位置の最上部を指すほか、成績や人気の上位、最高の状態なども表す。動詞として「上回る」という意味でも使われる。",
+        jaTranslation: "一番上 / 頂点",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "She is at the top of her class.（彼女はクラスで一番の成績だ。）"
+        ]
+    },
+    {
+        word: "Wonderful",
+        lang: "en",
+        pos: "形容詞",
+        type: "感情・評価",
+        romaji: "ワンダフル",
+        readings: ["ワンダフル"],
+        meaning: "「Wonderful」は「素晴らしい」「素敵な」「感動的な」という意味の形容詞である。とても良い印象を強く表す言葉で、人や出来事、景色などを褒めるときに使われる。",
+        jaTranslation: "素晴らしい",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "We had a wonderful time at the party.（パーティーで素晴らしい時間を過ごした。）"
+        ]
+    },
+    {
+        word: "Him",
+        lang: "en",
+        pos: "代名詞",
+        type: "人物",
+        romaji: "ヒム",
+        readings: ["ヒム"],
+        meaning: "「Him」は男性を指す人称代名詞の目的格である。「彼を」「彼に」という意味で使われ、主語の「he」に対する形である。動詞や前置詞の後ろに置かれる。",
+        jaTranslation: "彼を / 彼に",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "I gave him a present for his birthday.（彼の誕生日にプレゼントをあげた。）"
+        ]
+    },
+    {
+        word: "Say",
+        lang: "en",
+        pos: "動詞",
+        type: "伝達",
+        romaji: "セイ",
+        readings: ["セイ"],
+        meaning: "「Say」は「言う」「話す」という意味の動詞である。言葉を発して情報や意見を伝える行為を表す。過去形は said、過去分詞も said となる。tell と違い、主に「内容を言う」ことに焦点がある。",
+        jaTranslation: "言う",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "What did she say to you?（彼女はあなたに何と言いましたか？）"
+        ]
+    },
+    {
+        word: "Every",
+        lang: "en",
+        pos: "形容詞",
+        type: "数量",
+        romaji: "エブリ",
+        readings: ["エブリ"],
+        meaning: "「Every」は「すべての」「毎〜」という意味の形容詞である。後ろに単数形の名詞を伴い、「every day（毎日）」「every student（すべての生徒）」のように使う。集団全体を個別に捉えるニュアンスがある。",
+        jaTranslation: "すべての / 毎〜",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "I study English every morning.（私は毎朝英語を勉強する。）"
+        ]
+    },
+    {
+        word: "Everything",
+        lang: "en",
+        pos: "代名詞",
+        type: "数量",
+        romaji: "エブリシング",
+        readings: ["エブリシング"],
+        meaning: "「Everything」は「すべてのもの」「何もかも」を意味する代名詞である。具体的な物を列挙せずに全体を指すときに使う。肯定文でよく使われ、否定文では nothing が対応する。",
+        jaTranslation: "すべてのもの",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "Everything is ready for the party.（パーティーの準備はすべて整った。）"
+        ]
+    },
+    {
+        word: "Show",
+        lang: "en",
+        pos: "動詞・名詞",
+        type: "行動・イベント",
+        romaji: "ショー",
+        readings: ["ショー"],
+        meaning: "「Show」は動詞として「見せる」「示す」という意味を持ち、名詞としては「ショー」「番組」「展示」を表す言葉である。何かを視覚的に伝える行為や、演劇・コンサートなどの公演を指す。",
+        jaTranslation: "見せる / ショー",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "Can you show me your new photos?（新しい写真を見せてくれますか？）"
+        ]
+    },
+    {
+        word: "Her",
+        lang: "en",
+        pos: "代名詞",
+        type: "人物",
+        romaji: "ハー",
+        readings: ["ハー"],
+        meaning: "「Her」は女性を指す人称代名詞である。所有格として「彼女の」、目的格として「彼女を」「彼女に」の両方の用法がある。主語の「she」に対応する形である。",
+        jaTranslation: "彼女の / 彼女を",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "This is her bag.（これは彼女のカバンです。）",
+            "I met her at the cafe yesterday.（昨日カフェで彼女に会った。）"
+        ]
+    },
+    {
+        word: "Performer",
+        lang: "en",
+        pos: "名詞",
+        type: "人物",
+        romaji: "パフォーマー",
+        readings: ["パフォーマー"],
+        meaning: "「Performer」は舞台やイベントなどで演技・演奏・パフォーマンスをする人を指す言葉である。俳優、歌手、ダンサー、芸人など、観客の前で表現する人全般を表す。",
+        jaTranslation: "出演者 / パフォーマー",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "The performer danced beautifully on the stage.（そのパフォーマーは舞台上で美しく踊った。）"
+        ]
+    },
+    {
+        word: "U.K.",
+        lang: "en",
+        pos: "名詞",
+        type: "場所",
+        romaji: "ユーケー",
+        readings: ["ユーケー", "イギリス"],
+        meaning: "「U.K.」は United Kingdom（連合王国）の略で、イギリスを指す言葉である。イングランド、スコットランド、ウェールズ、北アイルランドから成る国の正式名称の略称として使われる。",
+        jaTranslation: "イギリス",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "She studied in the U.K. for two years.（彼女は2年間イギリスで勉強した。）"
+        ]
+    },
+    {
+        word: "Together",
+        lang: "en",
+        pos: "副詞",
+        type: "状態",
+        romaji: "トゥゲザー",
+        readings: ["トゥゲザー"],
+        meaning: "「Together」は「一緒に」「共に」という意味の副詞である。複数の人が同じ場所にいたり、同じ行動をしたりする状態を表す。協力や連帯のニュアンスも含む。",
+        jaTranslation: "一緒に",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "Let's work together on this project.（このプロジェクトを一緒にやりましょう。）"
+        ]
+    },
+    {
+        word: "He",
+        lang: "en",
+        pos: "代名詞",
+        type: "人物",
+        romaji: "ヒー",
+        readings: ["ヒー"],
+        meaning: "「He」は男性を指す人称代名詞の主格である。「彼は」「彼が」という意味で使われ、文章の主語になる。目的格は him、所有格は his となる。",
+        jaTranslation: "彼は",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "He is my best friend.（彼は私の親友です。）"
+        ]
+    },
+    {
+        word: "She",
+        lang: "en",
+        pos: "代名詞",
+        type: "人物",
+        romaji: "シー",
+        readings: ["シー"],
+        meaning: "「She」は女性を指す人称代名詞の主格である。「彼女は」「彼女が」という意味で使われ、文章の主語になる。目的格は her、所有格も her となる。",
+        jaTranslation: "彼女は",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "She lives in Tokyo.（彼女は東京に住んでいます。）"
+        ]
+    },
+    {
+        word: "Hello",
+        lang: "en",
+        pos: "挨拶",
+        type: "間投詞",
+        romaji: "ハロー",
+        readings: ["ハロー"],
+        meaning: "「Hello」は英語で最も基本的な挨拶の言葉である。会ったときに「こんにちは」「やあ」と声をかける際に使う。電話の応答や、注意を引くときにも使われる。",
+        jaTranslation: "こんにちは",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "Hello! How are you today?（こんにちは！今日の調子はどう？）"
+        ]
+    },
+    {
+        word: "Japan",
+        lang: "en",
+        pos: "名詞",
+        type: "場所",
+        romaji: "ジャパン",
+        readings: ["ジャパン"],
+        meaning: "「Japan」は東アジアに位置する島国、つまり「日本」を指す言葉である。独自の文化や技術、伝統食、アニメなどで世界的に知られている国名である。",
+        jaTranslation: "日本",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "Japan is famous for its unique culture and delicious food.（日本は独自の文化と美味しい食べ物で有名です。）"
+        ]
+    },
+    {
+        word: "Big",
+        lang: "en",
+        pos: "形容詞",
+        type: "状態",
+        romaji: "ビッグ",
+        readings: ["ビッグ"],
+        meaning: "「Big」は形や規模、数量が「大きい」状態を表す形容詞である。物理的な大きさだけでなく、重要性（a big decision）や影響力の大きさにも使われる。対義語は small。",
+        jaTranslation: "大きい",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "They live in a big house with a beautiful garden.（彼らは美しい庭のある大きな家に住んでいます。）"
+        ]
+    },
+    {
+        word: "Small",
+        lang: "en",
+        pos: "形容詞",
+        type: "状態",
+        romaji: "スモール",
+        readings: ["スモール"],
+        meaning: "「Small」は形や規模、数量が「小さい」状態を表す形容詞である。物理的に小さいことだけでなく、程度が低い場合にも使われる。対義語は big。",
+        jaTranslation: "小さい",
+        enTranslation: null,
+        image: null,
+        examples: [
+            "The sparrow is a small and common bird in Japan.（スズメは日本において小さくてありふれた鳥です。）"
+        ]
+    },
     {
         word: "Front",
         lang: "en",
