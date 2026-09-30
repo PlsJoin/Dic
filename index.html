@@ -71,7 +71,7 @@
         }
         .accent-line {
             height: 2.5px;
-            background: linear-gradient(90deg, var(--sky), var(--sky-mid), var(--accent));
+            background: linear-gradient(90deg, var(--sky), var(--sky-mid), var(--sky));
             position: sticky;
             top: var(--nav-h);
             z-index: 999;
@@ -96,59 +96,91 @@
             display: flex;
             align-items: center;
             background: var(--surface-2);
-            border: 1px solid var(--border);
-            height: 40px;
-            transition: border-color var(--ease), box-shadow var(--ease);
+            border: 1px solid transparent;
+            overflow: hidden;
         }
         .search-box:focus-within {
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-soft);
+            background: var(--surface);
         }
         .search-input {
             flex: 1;
             border: none;
             background: transparent;
-            padding: 0 4px 0 12px;
-            font-size: 0.95rem;
+            padding: 9px 6px 9px 12px;
+            font-size: 16px;
             color: var(--text);
             outline: none;
             min-width: 0;
-            height: 100%;
+            -webkit-appearance: none;
+            border-radius: 0;
         }
         .search-input::placeholder { color: var(--text-3); }
         .clear-btn {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border: none;
             background: transparent;
             color: var(--text-3);
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             cursor: pointer;
-            flex-shrink: 0;
-            line-height: 1;
+            display: none;
+            align-items: center;
+            justify-content: center;
         }
         .clear-btn.visible { display: flex; }
         .clear-btn:hover { color: var(--text-2); }
         .search-btn {
-            height: 100%;
-            padding: 0 14px;
             border: none;
             background: var(--accent);
             color: #fff;
-            font-size: 0.9rem;
+            padding: 0 14px;
+            height: 34px;
+            font-size: 0.86rem;
             font-weight: 600;
             cursor: pointer;
-            flex-shrink: 0;
-            transition: opacity var(--ease);
+            white-space: nowrap;
         }
-        .search-btn:hover { opacity: 0.88; }
-        .gear-btn {
-            width: 40px;
-            height: 40px;
+        .search-btn:hover { filter: brightness(1.08); }
+        .suggestions {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: var(--surface);
             border: 1px solid var(--border);
+            max-height: 260px;
+            overflow-y: auto;
+            display: none;
+            z-index: 2000;
+            -webkit-overflow-scrolling: touch;
+        }
+        .suggestions.show { display: block; }
+        .suggestion-item {
+            padding: 12px 13px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .suggestion-item:last-child { border-bottom: none; }
+        .suggestion-item:hover,
+        .suggestion-item:active { background: var(--accent-soft); }
+        .suggestion-word {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.3;
+        }
+        .suggestion-meta {
+            font-size: 0.78rem;
+            color: var(--text-3);
+            margin-top: 2px;
+            line-height: 1.3;
+        }
+        .gear-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
             background: transparent;
             color: var(--text-2);
             cursor: pointer;
@@ -156,60 +188,30 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: border-color var(--ease), color var(--ease);
         }
         .gear-btn:hover,
-        .gear-btn.active {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-        .gear-btn svg { width: 18px; height: 18px; }
-        /* ── Suggestions ── */
-        .suggestions {
-            display: none;
-            position: absolute;
-            top: calc(100% + 4px);
-            left: 0;
-            right: 0;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            max-height: 280px;
-            overflow-y: auto;
-            z-index: 2000;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-        }
-        .suggestions.show { display: block; }
-        .suggestion-item {
-            padding: 11px 14px;
-            cursor: pointer;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.92rem;
-            color: var(--text);
-            transition: background var(--ease);
-        }
-        .suggestion-item:last-child { border-bottom: none; }
-        .suggestion-item:hover { background: var(--accent-soft); }
+        .gear-btn.active { color: var(--text); }
+        .gear-btn svg { width: 17px; height: 17px; }
         /* ── Settings ── */
         .settings-panel {
-            display: none;
             position: fixed;
             top: calc(var(--nav-h) + 10px);
-            right: 12px;
-            width: 240px;
+            right: 10px;
+            width: 236px;
             background: var(--surface);
             border: 1px solid var(--border);
-            padding: 16px;
+            padding: 14px;
             z-index: 1500;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: none;
         }
         .settings-panel.show { display: block; }
         .settings-title {
-            font-size: 0.78rem;
+            font-size: 0.68rem;
             font-weight: 700;
             color: var(--text-3);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 14px;
+            letter-spacing: 0.06em;
+            margin-bottom: 12px;
         }
         .settings-row {
             display: flex;
@@ -218,44 +220,49 @@
             margin-bottom: 12px;
         }
         .settings-row:last-child { margin-bottom: 0; }
-        .settings-label { font-size: 0.88rem; color: var(--text-2); }
-        .font-controls { display: flex; gap: 4px; }
-        .font-btn {
-            width: 32px;
-            height: 32px;
-            border: 1px solid var(--border);
-            background: var(--surface-2);
-            color: var(--text-2);
-            font-size: 0.85rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: border-color var(--ease), color var(--ease), background var(--ease);
+        .settings-label {
+            font-size: 0.88rem;
+            color: var(--text);
         }
+        .font-controls {
+            display: flex;
+            background: var(--surface-2);
+            padding: 2px;
+            gap: 1px;
+        }
+        .font-btn {
+            width: 28px;
+            height: 24px;
+            border: none;
+            background: transparent;
+            color: var(--text-2);
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .font-btn:nth-child(1) { font-size: 0.7rem; }
+        .font-btn:nth-child(2) { font-size: 0.82rem; }
+        .font-btn:nth-child(3) { font-size: 0.94rem; }
         .font-btn.active {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-soft);
+            background: var(--surface);
+            color: var(--text);
         }
         .theme-toggle {
-            width: 44px;
-            height: 24px;
-            border-radius: 12px;
+            width: 42px;
+            height: 22px;
             border: none;
-            background: var(--border);
+            background: var(--surface-2);
             position: relative;
             cursor: pointer;
-            transition: background var(--ease);
         }
         .theme-toggle::after {
-            content: '';
+            content: "";
             position: absolute;
-            top: 3px;
-            left: 3px;
+            top: 2px;
+            left: 2px;
             width: 18px;
             height: 18px;
-            border-radius: 50%;
             background: #fff;
-            transition: transform var(--ease);
+            transition: transform 0.14s;
         }
         [data-theme="dark"] .theme-toggle { background: var(--accent); }
         [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
@@ -320,42 +327,51 @@
         }
         .fav-header .section-title,
         .recent-header .section-title { margin-bottom: 0; }
-        .clear-fav-btn,
-        .clear-history-btn {
-            background: none;
+        .clear-history-btn,
+        .clear-fav-btn {
             border: none;
+            background: transparent;
             color: var(--text-3);
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             cursor: pointer;
-            padding: 2px 6px;
-            transition: color var(--ease);
+            padding: 2px 4px;
         }
-        .clear-fav-btn:hover,
-        .clear-history-btn:hover { color: var(--accent); }
+        .clear-history-btn:hover,
+        .clear-fav-btn:hover { color: var(--accent); }
         .fav-list,
         .recent-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
         .fav-chip,
         .recent-chip {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
+            padding: 6px 9px 6px 11px;
             background: var(--surface-2);
-            border: 1px solid var(--border);
-            padding: 5px 10px;
             font-size: 0.86rem;
             color: var(--text);
             cursor: pointer;
-            transition: border-color var(--ease), background var(--ease);
+            border: none;
+            font-weight: 500;
         }
         .fav-chip:hover,
-        .recent-chip:hover {
-            border-color: var(--accent);
+        .fav-chip:active,
+        .recent-chip:hover,
+        .recent-chip:active {
             background: var(--accent-soft);
+            color: var(--accent);
         }
+        .fav-chip-del,
+        .recent-chip-del {
+            font-size: 0.88rem;
+            opacity: 0.4;
+            margin-left: 1px;
+        }
+        .fav-chip-del:hover,
+        .recent-chip-del:hover { opacity: 1; }
         .fav-empty,
         .recent-empty {
             font-size: 0.86rem;
@@ -433,139 +449,235 @@
             color: var(--text-2);
             font-weight: 500;
         }
-        .dict-card {
-            display: flex;
-            gap: 16px;
+        /* ── Inline Ad (検索結果直下) ── */
+        .inline-ad {
+            position: relative;
+            margin: 0 0 16px;
             background: var(--surface);
             border: 1px solid var(--border);
-            padding: 16px;
-            margin-bottom: 14px;
+            border-radius: 0;
+            overflow: hidden;
+        }
+        /* 右上の灰色透過コントロール（インライン・ボトム共通） */
+        .ad-controls {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.58);
+            padding: 5px 7px 6px;
+            min-width: 42px;
+        }
+        .ad-controls .ad-pr-label {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            line-height: 1.2;
+            padding: 0 0 3px;
+        }
+        .ad-controls .ad-pr-label:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .ad-controls .ad-close,
+        .ad-controls .inline-ad-close {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-size: 1.15rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        .ad-controls .ad-close:hover,
+        .ad-controls .ad-close:active,
+        .ad-controls .inline-ad-close:hover,
+        .ad-controls .inline-ad-close:active {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .inline-ad-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .inline-ad-image {
+            width: 100%;
+            max-height: 110px;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            background: var(--surface-2);
+        }
+        .inline-ad-text {
+            display: block;
+            padding: 10px 14px 12px;
+            font-size: 0.9rem;
+            font-weight: 650;
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            line-height: 1.4;
+            border-top: 1px solid var(--border);
+            word-break: break-word;
+        }
+        .dict-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            padding: 16px 18px;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 18px;
             align-items: flex-start;
         }
-        .dict-card-jp { border-left: 3px solid var(--accent-jp); }
-        .dict-card-en { border-left: 3px solid var(--accent-en); }
+        .dict-card-jp {
+            border-left-color: var(--accent-jp);
+        }
+        .dict-card-en {
+            border-left-color: var(--accent-en);
+        }
         .dict-body { flex: 1; min-width: 0; }
+        .dict-image {
+            flex-shrink: 0;
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+        }
+        .dict-image.hidden { display: none; }
         .card-top {
             display: flex;
-            justify-content: space-between;
             align-items: flex-start;
+            justify-content: space-between;
             gap: 10px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
         }
         .word-block { flex: 1; min-width: 0; }
         .main-word {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.45rem;
+            font-weight: 750;
+            letter-spacing: -0.02em;
             line-height: 1.25;
             word-break: break-word;
         }
         .pos-tag {
-            font-size: 0.78rem;
+            font-size: 0.82rem;
             font-weight: 500;
             color: var(--text-3);
+            margin-left: 5px;
         }
         .meta-row {
             display: flex;
             flex-wrap: wrap;
+            align-items: center;
             gap: 6px;
             margin-top: 4px;
-            align-items: center;
         }
         .lang-badge {
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 2px 7px;
+            font-size: 0.64rem;
+            font-weight: 700;
+            padding: 2px 6px;
             background: var(--accent-soft);
             color: var(--accent);
         }
         .type-tag {
-            font-size: 0.72rem;
+            font-size: 0.76rem;
             color: var(--text-3);
         }
         .romaji {
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             color: var(--text-2);
-            font-style: italic;
         }
         .card-actions {
             display: flex;
             gap: 6px;
             flex-shrink: 0;
         }
-        .fav-btn,
-        .speak-btn {
+        .speak-btn,
+        .fav-btn {
             width: 34px;
             height: 34px;
             border: 1px solid var(--border);
-            background: var(--surface-2);
-            color: var(--text-2);
+            background: var(--surface);
+            color: var(--accent);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: border-color var(--ease), color var(--ease), background var(--ease);
         }
-        .fav-btn svg,
-        .speak-btn svg { width: 16px; height: 16px; }
-        .fav-btn:hover,
-        .speak-btn:hover {
+        .speak-btn:hover,
+        .fav-btn:hover { background: var(--accent-soft); }
+        .speak-btn.speaking {
+            background: var(--accent);
             border-color: var(--accent);
-            color: var(--accent);
+            color: #fff;
         }
         .fav-btn.active {
-            color: #eab308;
-            border-color: #eab308;
-            background: rgba(234, 179, 8, 0.1);
+            background: #fef3c7;
+            border-color: #f59e0b;
+            color: #d97706;
         }
+        [data-theme="dark"] .fav-btn.active {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: #f59e0b;
+            color: #fbbf24;
+        }
+        .speak-btn svg,
+        .fav-btn svg { width: 14px; height: 14px; }
         .meaning {
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 0.94rem;
+            line-height: 1.65;
             color: var(--text);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .trans-meaning {
             font-size: 0.88rem;
             color: var(--text-2);
-            margin-bottom: 6px;
-            line-height: 1.55;
+            margin-bottom: 10px;
+            padding: 9px 12px;
+            background: var(--surface-2);
+            border-left: 2px solid var(--border);
         }
         .clickable-word {
             color: var(--accent);
             cursor: pointer;
-            text-decoration: underline;
-            text-underline-offset: 2px;
+            font-weight: 550;
         }
-        .clickable-word:hover { opacity: 0.85; }
+        .clickable-word:hover { text-decoration: underline; }
         .examples {
             list-style: none;
-            margin-top: 6px;
+            margin-top: 2px;
         }
         .examples li {
-            font-size: 0.86rem;
+            font-size: 0.88rem;
             color: var(--text-2);
+            line-height: 1.6;
             padding: 3px 0 3px 12px;
             position: relative;
-            line-height: 1.5;
         }
         .examples li::before {
-            content: '・';
+            content: "・";
             position: absolute;
             left: 0;
             color: var(--text-3);
         }
-        .dict-image {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            flex-shrink: 0;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-        }
-        .dict-image.hidden { display: none; }
         .empty-state {
             text-align: center;
-            padding: 40px 16px;
-            color: var(--text-2);
+            padding: 48px 16px;
+            color: var(--text-3);
         }
         .empty-state p {
             font-size: 0.96rem;
@@ -604,69 +716,6 @@
             color: var(--text-3);
             margin: 0;
         }
-        /* ── Inline Ad ── */
-        .inline-ad {
-            margin-bottom: 16px;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            overflow: hidden;
-            position: relative;
-        }
-        .ad-controls {
-            position: absolute;
-            top: 0;
-            right: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 2px;
-            padding: 4px 6px 6px;
-            background: rgba(255,255,255,0.92);
-            min-width: 42px;
-            z-index: 2;
-        }
-        .ad-controls .ad-pr-label {
-            font-size: 0.62rem;
-            color: #9ca3af;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            text-decoration: none;
-        }
-        .ad-controls .ad-pr-label:hover { color: #6b7280; }
-        .ad-controls .ad-close,
-        .ad-controls .inline-ad-close {
-            background: none;
-            border: none;
-            font-size: 1.1rem;
-            color: #6b7280;
-            cursor: pointer;
-            line-height: 1;
-            padding: 2px 4px;
-        }
-        .ad-controls .ad-close:hover,
-        .ad-controls .ad-close:active,
-        .ad-controls .inline-ad-close:hover,
-        .ad-controls .inline-ad-close:active {
-            color: #1a1d24;
-        }
-        .inline-ad-link {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-        .inline-ad-image {
-            width: 100%;
-            max-height: 120px;
-            object-fit: contain;
-            display: block;
-            background: var(--surface-2);
-        }
-        .inline-ad-text {
-            padding: 10px 14px 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text);
-        }
         /* ── Bottom Ad Banner ── */
         .ad-banner {
             position: fixed;
@@ -678,7 +727,9 @@
             padding: 14px 14px 18px;
             display: none;
         }
-        .ad-banner.show { display: block; }
+        .ad-banner.show {
+            display: block;
+        }
         .ad-sheet {
             max-width: 460px;
             margin: 0 auto;
@@ -703,23 +754,41 @@
         }
         .ad-text {
             display: block;
-            padding: 10px 14px 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #1a1d24;
+            padding: 13px 16px 15px;
+            font-size: 0.97rem;
+            font-weight: 700;
+            color: #1d4ed8;
+            text-decoration: underline;
+            text-underline-offset: 2px;
             line-height: 1.4;
+            background: #ffffff;
+            border-top: 1px solid #e5e7eb;
+            word-break: break-word;
         }
-        [data-theme="dark"] .ad-sheet { background: #1e222b; }
-        [data-theme="dark"] .ad-image { background: #15181f; }
-        [data-theme="dark"] .ad-text { color: #eef0f4; }
-        body.has-ad-banner { padding-bottom: 230px; }
+        [data-theme="dark"] .ad-sheet {
+            background: #1e222b;
+        }
+        [data-theme="dark"] .ad-image {
+            background: #15181f;
+        }
+        [data-theme="dark"] .ad-text {
+            color: #60a5fa;
+            background: #1e222b;
+            border-top-color: #2a2f3a;
+        }
+        body.has-ad-banner {
+            padding-bottom: 230px;
+        }
         /* ── Mobile ── */
         @media (max-width: 640px) {
             :root { --nav-h: 48px; }
             .navbar { padding: 0 10px; gap: 8px; }
             .logo-img { height: 28px; }
-            .search-input { font-size: 16px; }
-            .search-btn { padding: 0 12px; font-size: 0.88rem; }
+            .search-input {
+                padding: 10px 4px 10px 10px;
+                font-size: 16px;
+            }
+            .search-btn { padding: 0 12px; height: 36px; font-size: 0.88rem; }
             .gear-btn { width: 36px; height: 36px; }
             .main { padding: 20px 12px 48px; }
             .hero { margin-bottom: 24px; }
@@ -742,7 +811,9 @@
             }
             .request-btn { padding: 14px 14px; }
             .suggestion-item { padding: 13px 14px; }
-            .inline-ad-image { max-height: 95px; }
+            .inline-ad-image {
+                max-height: 95px;
+            }
             .inline-ad-text {
                 padding: 9px 12px 11px;
                 font-size: 0.86rem;
@@ -751,18 +822,39 @@
                 padding: 4px 6px 5px;
                 min-width: 38px;
             }
-            .ad-controls .ad-pr-label { font-size: 0.58rem; }
+            .ad-controls .ad-pr-label {
+                font-size: 0.58rem;
+            }
             .ad-controls .ad-close,
-            .ad-controls .inline-ad-close { font-size: 1rem; }
-            .ad-banner { padding: 10px 10px 14px; }
-            .ad-sheet { max-width: 100%; }
-            .ad-image { max-height: 130px; }
-            .ad-text { padding: 8px 12px 10px; font-size: 0.86rem; }
-            body.has-ad-banner { padding-bottom: 200px; }
+            .ad-controls .inline-ad-close {
+                width: 26px;
+                height: 26px;
+                font-size: 1.1rem;
+            }
+            .ad-banner {
+                padding: 12px 10px 16px;
+            }
+            .ad-sheet {
+                max-width: 100%;
+            }
+            .ad-image {
+                max-height: 130px;
+            }
+            .ad-text {
+                padding: 12px 14px 14px;
+                font-size: 0.94rem;
+            }
+            body.has-ad-banner {
+                padding-bottom: 210px;
+            }
         }
         @media (max-width: 380px) {
-            .ad-image { max-height: 110px; }
-            body.has-ad-banner { padding-bottom: 180px; }
+            .ad-image {
+                max-height: 115px;
+            }
+            body.has-ad-banner {
+                padding-bottom: 200px;
+            }
         }
     </style>
 </head>
@@ -866,6 +958,7 @@
         </div>
         <div id="searchResultsView" style="display: none;"></div>
     </main>
+    <!-- ボトム広告バナー -->
     <div id="adBanner" class="ad-banner" aria-label="広告"></div>
     <script src="jpdata.js"></script>
     <script src="endata.js"></script>
@@ -920,10 +1013,47 @@
         }
         function setFontSize(size, save = true) {
             document.documentElement.style.setProperty('--base', size + 'px');
-            if (save) localStorage.setItem('dict-font-size', size);
-            document.querySelectorAll('.font-btn').forEach(b => {
-                b.classList.toggle('active', parseInt(b.dataset.size, 10) === size);
+            document.querySelectorAll('.font-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.size, 10) === size);
             });
+            if (save) localStorage.setItem('dict-font-size', size);
+        }
+        function getMatchScore(item, query) {
+            const q = query.toLowerCase().replace(/\s+/g, '');
+            if (!q) return 0;
+            let score = 0;
+            const check = (str, exactScore, startScore, includeScore) => {
+                if (!str) return;
+                const s = String(str).toLowerCase().replace(/\s+/g, '');
+                if (s === q) score = Math.max(score, exactScore);
+                else if (s.startsWith(q)) score = Math.max(score, startScore);
+                else if (s.includes(q)) score = Math.max(score, includeScore);
+            };
+            check(item.word, 100, 70, 40);
+            if (Array.isArray(item.readings)) {
+                item.readings.forEach(r => check(r, 90, 60, 30));
+            }
+            check(item.romaji, 80, 50, 25);
+            check(item.enTranslation, 50, 30, 15);
+            check(item.jaTranslation, 50, 30, 15);
+            return score;
+        }
+        function filterSuggestions(query) {
+            if (!query) return [];
+            return combinedData
+                .map(item => ({ item, score: getMatchScore(item, query) }))
+                .filter(x => x.score > 0)
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 10)
+                .map(x => x.item);
+        }
+        function filterSearch(query) {
+            if (!query) return [];
+            return combinedData
+                .map(item => ({ item, score: getMatchScore(item, query) }))
+                .filter(x => x.score > 0)
+                .sort((a, b) => b.score - a.score)
+                .map(x => x.item);
         }
         function onInput() {
             const query = document.getElementById('searchInput').value.trim();
@@ -932,9 +1062,14 @@
             if (!query) { box.classList.remove('show'); box.innerHTML = ''; return; }
             const matches = filterSuggestions(query);
             if (matches.length === 0) { box.classList.remove('show'); return; }
-            box.innerHTML = matches.map(m =>
-                `<div class="suggestion-item" role="option" onclick="selectSuggestion('${escapeAttr(m.word)}')">${escapeHtml(m.word)}</div>`
-            ).join('');
+            box.innerHTML = matches.map(m => {
+                const lang = m.lang === 'jp' ? '日本語' : (m.lang === 'en' ? 'English' : '');
+                const meta = [m.pos, lang].filter(Boolean).join(' · ');
+                return `<div class="suggestion-item" role="option" onclick="selectSuggestion('${escapeAttr(m.word)}')">
+                    <div class="suggestion-word">${escapeHtml(m.word)}</div>
+                    ${meta ? `<div class="suggestion-meta">${escapeHtml(meta)}</div>` : ''}
+                </div>`;
+            }).join('');
             box.classList.add('show');
         }
         function onKeydown(e) {
@@ -964,6 +1099,7 @@
         function updateClearBtn() {
             document.getElementById('clearBtn').classList.toggle('visible', document.getElementById('searchInput').value.length > 0);
         }
+        /* ── Recent ── */
         function getRecent() {
             try { return JSON.parse(localStorage.getItem('dict-recent') || '[]'); }
             catch { return []; }
@@ -975,25 +1111,34 @@
             localStorage.setItem('dict-recent', JSON.stringify(list));
             renderRecent();
         }
+        function removeRecent(word) {
+            const list = getRecent().filter(w => w !== word);
+            localStorage.setItem('dict-recent', JSON.stringify(list));
+            renderRecent();
+        }
         function clearAllRecent() {
             if (!confirm('検索履歴をすべて削除しますか？')) return;
-            localStorage.setItem('dict-recent', '[]');
+            localStorage.removeItem('dict-recent');
             renderRecent();
         }
         function renderRecent() {
             const list = getRecent();
             const el = document.getElementById('recentList');
-            const btn = document.getElementById('clearHistoryBtn');
+            const clearBtn = document.getElementById('clearHistoryBtn');
             if (!list.length) {
                 el.innerHTML = '<span class="recent-empty">まだ検索履歴がありません</span>';
-                btn.style.display = 'none';
+                if (clearBtn) clearBtn.style.display = 'none';
                 return;
             }
-            btn.style.display = '';
+            if (clearBtn) clearBtn.style.display = 'block';
             el.innerHTML = list.map(w =>
-                `<button class="recent-chip" onclick="selectSuggestion('${escapeAttr(w)}')">${escapeHtml(w)}</button>`
+                `<button class="recent-chip" onclick="selectSuggestion('${escapeAttr(w)}')">
+                    ${escapeHtml(w)}
+                    <span class="recent-chip-del" onclick="event.stopPropagation();removeRecent('${escapeAttr(w)}')" title="削除">×</span>
+                </button>`
             ).join('');
         }
+        /* ── Favorites ── */
         function getFavorites() {
             try { return JSON.parse(localStorage.getItem('dict-favorites') || '[]'); }
             catch { return []; }
@@ -1005,100 +1150,83 @@
             let list = getFavorites();
             if (list.includes(word)) {
                 list = list.filter(w => w !== word);
-                if (btn) {
-                    btn.classList.remove('active');
-                    const svg = btn.querySelector('svg');
-                    if (svg) svg.setAttribute('fill', 'none');
-                }
+                if (btn) btn.classList.remove('active');
             } else {
                 list.unshift(word);
-                list = list.slice(0, 40);
-                if (btn) {
-                    btn.classList.add('active');
-                    const svg = btn.querySelector('svg');
-                    if (svg) svg.setAttribute('fill', 'currentColor');
-                }
+                list = list.slice(0, 50);
+                if (btn) btn.classList.add('active');
             }
+            localStorage.setItem('dict-favorites', JSON.stringify(list));
+            renderFavorites();
+        }
+        function removeFavorite(word) {
+            const list = getFavorites().filter(w => w !== word);
             localStorage.setItem('dict-favorites', JSON.stringify(list));
             renderFavorites();
         }
         function clearAllFavorites() {
             if (!confirm('お気に入りをすべて削除しますか？')) return;
-            localStorage.setItem('dict-favorites', '[]');
+            localStorage.removeItem('dict-favorites');
             renderFavorites();
         }
         function renderFavorites() {
             const list = getFavorites();
             const el = document.getElementById('favList');
-            const btn = document.getElementById('clearFavBtn');
+            const clearBtn = document.getElementById('clearFavBtn');
             if (!list.length) {
                 el.innerHTML = '<span class="fav-empty">まだお気に入りがありません</span>';
-                btn.style.display = 'none';
+                if (clearBtn) clearBtn.style.display = 'none';
                 return;
             }
-            btn.style.display = '';
+            if (clearBtn) clearBtn.style.display = 'block';
             el.innerHTML = list.map(w =>
-                `<button class="fav-chip" onclick="selectSuggestion('${escapeAttr(w)}')">${escapeHtml(w)}</button>`
+                `<button class="fav-chip" onclick="selectSuggestion('${escapeAttr(w)}')">
+                    ${escapeHtml(w)}
+                    <span class="fav-chip-del" onclick="event.stopPropagation();removeFavorite('${escapeAttr(w)}')" title="削除">×</span>
+                </button>`
             ).join('');
         }
-        function filterSuggestions(query) {
-            const q = query.toLowerCase();
-            return combinedData.filter(item => {
-                const w = (item.word || '').toLowerCase();
-                const r = (item.romaji || '').toLowerCase();
-                return w.startsWith(q) || r.startsWith(q) || w.includes(q);
-            }).slice(0, 8);
-        }
-        function filterSearch(query) {
-            const q = query.toLowerCase().trim();
-            return combinedData.filter(item => {
-                const w = (item.word || '').toLowerCase();
-                const r = (item.romaji || '').toLowerCase();
-                const m = (item.meaning || '').toLowerCase();
-                return w === q || w.startsWith(q) || r === q || r.startsWith(q) || w.includes(q) || m.includes(q);
-            }).sort((a, b) => {
-                const aw = (a.word || '').toLowerCase();
-                const bw = (b.word || '').toLowerCase();
-                if (aw === q && bw !== q) return -1;
-                if (bw === q && aw !== q) return 1;
-                if (aw.startsWith(q) && !bw.startsWith(q)) return -1;
-                if (bw.startsWith(q) && !aw.startsWith(q)) return 1;
-                return aw.localeCompare(bw);
-            });
-        }
-        function speakWord(word, lang) {
-            if (!window.speechSynthesis) return;
-            window.speechSynthesis.cancel();
-            const u = new SpeechSynthesisUtterance(word);
-            u.lang = lang === 'ja' ? 'ja-JP' : 'en-US';
-            u.rate = 0.95;
-            window.speechSynthesis.speak(u);
-        }
-        function linkifyWords(text) {
-            if (!text) return '';
-            const words = combinedData.map(d => d.word).filter(Boolean);
-            words.sort((a, b) => b.length - a.length);
-            let result = escapeHtml(text);
-            const used = new Set();
-            for (const w of words) {
-                if (w.length < 2 || used.has(w)) continue;
-                const re = new RegExp('(?<![\\w\\u3040-\\u30ff\\u4e00-\\u9fff])(' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')(?![\\w\\u3040-\\u30ff\\u4e00-\\u9fff])', 'g');
-                if (re.test(result)) {
-                    result = result.replace(re, `<span class="clickable-word" onclick="autoSearch('${escapeAttr(w)}')">$1</span>`);
-                    used.add(w);
-                }
+        function speakWord(word, lang, btn) {
+            if (!window.speechSynthesis) {
+                alert('お使いのブラウザは音声読み上げに対応していません。');
+                return;
             }
-            return result;
+            window.speechSynthesis.cancel();
+            const utter = new SpeechSynthesisUtterance(word);
+            utter.lang = (lang === 'jp' || lang === 'ja') ? 'ja-JP' : 'en-US';
+            utter.rate = 0.9;
+            const btns = document.querySelectorAll('.speak-btn');
+            btns.forEach(b => b.classList.remove('speaking'));
+            if (btn) btn.classList.add('speaking');
+            utter.onend = utter.onerror = () => { btns.forEach(b => b.classList.remove('speaking')); };
+            window.speechSynthesis.speak(utter);
+        }
+        function hasValidTranslation(val) {
+            return val != null && String(val).trim() !== '';
         }
         function buildTranslationHtml(item) {
-            if (!item.translation) return '';
-            const parts = String(item.translation).split(/\n|；|;/).map(s => s.trim()).filter(Boolean);
+            let parts = [];
+            if (hasValidTranslation(item.enTranslation)) {
+                const tokens = String(item.enTranslation).split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
+                const links = tokens.map(t =>
+                    `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`
+                ).join(' <span style="color:var(--text-3)">/</span> ');
+                parts.push(`英訳：${links}`);
+            }
+            if (hasValidTranslation(item.jaTranslation)) {
+                const tokens = String(item.jaTranslation).split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
+                const links = tokens.map(t =>
+                    `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`
+                ).join(' <span style="color:var(--text-3)">/</span> ');
+                parts.push(`和訳：${links}`);
+            }
             if (parts.length === 0) return '';
-            return `<div class="trans-meaning">${parts.map(p => linkifyWords(p)).join('<br>')}</div>`;
+            return `<div class="trans-meaning">${parts.join('<br>')}</div>`;
         }
+        /* ── Inline Ad（検索結果直下） ── */
         function buildInlineAdHtml() {
             if (!window.adData || !window.adData.length) return '';
-            if (sessionStorage.getItem('ad-closed') === '1') return '';
+            // 毎回検索するたびに必ず表示（閉じても次の検索で復活）
             const ad = window.adData[Math.floor(Math.random() * window.adData.length)];
             const hasTitle = ad.title && String(ad.title).trim() !== '';
             return `
@@ -1111,11 +1239,13 @@
                         <img class="inline-ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">
                         ${hasTitle ? `<div class="inline-ad-text">${escapeHtml(ad.title)}</div>` : ''}
                     </a>
-                </div>`;
+                </div>
+            `;
         }
         function closeInlineAd() {
             const el = document.getElementById('inlineAd');
             if (el) el.remove();
+            // sessionStorageには保存しない → 次の検索でまた表示される
         }
         function performSearch(query) {
             if (!query) return;
@@ -1194,7 +1324,7 @@
                                                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                                             </svg>
                                         </button>
-                                        <button class="speak-btn" onclick="speakWord('${escapeAttr(item.word)}', '${speakLang}')" title="発音を聞く" aria-label="発音">
+                                        <button class="speak-btn" onclick="speakWord('${escapeAttr(item.word)}', '${speakLang}', this)" title="発音を聞く" aria-label="発音">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -1202,7 +1332,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="meaning">${linkifyWords(meaning)}</div>
+                                <div class="meaning">${escapeHtml(meaning)}</div>
                                 ${transHtml}
                                 ${exHtml}
                             </div>
@@ -1262,6 +1392,7 @@
         function escapeAttr(str) {
             return String(str).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
+        /* ── 広告バナー制御 ── */
         function getAdSuppressCount() {
             return parseInt(sessionStorage.getItem('ad-suppress-count') || '0', 10);
         }
