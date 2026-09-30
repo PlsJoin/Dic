@@ -9,52 +9,38 @@
     <title>【簡辞】簡単辞典｜Easy Web Dictionary</title>
     <style>
         :root {
-            --bg: #f3f4f6;
-            --surface: #ffffff;
-            --surface-2: #e8eaee;
-            --text: #12141a;
-            --text-2: #3f4654;
+            --bg: #0f1115;
+            --surface: #171a21;
+            --surface-2: #1e222b;
+            --border: #2a2f3a;
+            --text: #e8eaed;
+            --text-2: #a0a6b4;
             --text-3: #6b7280;
             --accent: #1d4ed8;
-            --accent-soft: rgba(29, 78, 216, 0.08);
-            --border: #d8dbe2;
+            --accent-soft: rgba(29, 78, 216, 0.12);
+            --ease: 0.18s ease;
             --nav-h: 52px;
-            --base: 16px;
-            --ease: 0.14s ease;
-            --sky: #7dd3fc;
-            --sky-mid: #38bdf8;
-            --accent-jp: #ea580c;
-            --accent-en: #9333ea;
         }
-        [data-theme="dark"] {
-            --bg: #0c0e12;
-            --surface: #15181f;
-            --surface-2: #1e222b;
-            --text: #eef0f4;
-            --text-2: #9ca3af;
-            --text-3: #6b7280;
-            --accent: #3b82f6;
-            --accent-soft: rgba(59, 130, 246, 0.12);
-            --border: #2a2f3a;
-            --sky: #38bdf8;
-            --sky-mid: #0ea5e9;
-            --accent-jp: #f97316;
-            --accent-en: #a855f7;
+        [data-theme="light"] {
+            --bg: #f4f5f7;
+            --surface: #ffffff;
+            --surface-2: #eef0f4;
+            --border: #d8dce4;
+            --text: #1a1d24;
+            --text-2: #4b5563;
+            --text-3: #9ca3af;
+            --accent: #1d4ed8;
+            --accent-soft: rgba(29, 78, 216, 0.08);
         }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-        html { font-size: var(--base); }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; -webkit-text-size-adjust: 100%; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.5;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
+            min-height: 100dvh;
+            transition: background var(--ease), color var(--ease);
         }
         /* ── Navbar ── */
         .navbar {
@@ -62,16 +48,16 @@
             top: 0;
             z-index: 1000;
             height: var(--nav-h);
-            background: var(--surface);
-            border-bottom: none;
             display: flex;
             align-items: center;
-            padding: 0 14px;
             gap: 12px;
+            padding: 0 14px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
         }
         .accent-line {
-            height: 2.5px;
-            background: linear-gradient(90deg, var(--sky), var(--sky-mid), var(--sky));
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent 70%);
             position: sticky;
             top: var(--nav-h);
             z-index: 999;
@@ -81,14 +67,12 @@
             flex-shrink: 0;
             user-select: none;
         }
-        .logo-mark {
-            font-size: 1.18rem;
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 1;
-            color: var(--text);
+        .logo-img {
+            height: 34px;
+            width: auto;
+            display: block;
+            object-fit: contain;
         }
-        .logo-mark span { color: var(--accent); }
         .search-area {
             flex: 1;
             max-width: 460px;
@@ -98,110 +82,120 @@
             display: flex;
             align-items: center;
             background: var(--surface-2);
-            border: 1px solid transparent;
+            border: 1px solid var(--border);
+            border-radius: 0;
             overflow: hidden;
-        }
-        .search-box:focus-within {
-            border-color: var(--accent);
-            background: var(--surface);
         }
         .search-input {
             flex: 1;
             border: none;
             background: transparent;
-            padding: 9px 6px 9px 12px;
-            font-size: 16px;
             color: var(--text);
+            padding: 10px 6px 10px 12px;
+            font-size: 0.95rem;
             outline: none;
             min-width: 0;
-            -webkit-appearance: none;
-            border-radius: 0;
         }
         .search-input::placeholder { color: var(--text-3); }
         .clear-btn {
-            width: 28px;
-            height: 28px;
+            background: none;
             border: none;
-            background: transparent;
             color: var(--text-3);
-            font-size: 1.05rem;
+            font-size: 1.2rem;
+            width: 32px;
+            height: 32px;
             cursor: pointer;
             display: none;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
-        .clear-btn.visible { display: flex; }
-        .clear-btn:hover { color: var(--text-2); }
+        .clear-btn.show { display: flex; }
         .search-btn {
-            border: none;
             background: var(--accent);
             color: #fff;
+            border: none;
             padding: 0 14px;
-            height: 34px;
-            font-size: 0.86rem;
+            height: 38px;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
-            white-space: nowrap;
+            flex-shrink: 0;
+            transition: opacity var(--ease);
         }
-        .search-btn:hover { filter: brightness(1.08); }
-        .suggestions {
-            position: absolute;
-            top: calc(100% + 4px);
-            left: 0;
-            right: 0;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            max-height: 260px;
-            overflow-y: auto;
-            display: none;
-            z-index: 2000;
-            -webkit-overflow-scrolling: touch;
-        }
-        .suggestions.show { display: block; }
-        .suggestion-item {
-            padding: 12px 13px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            border-bottom: 1px solid var(--border);
-        }
-        .suggestion-item:last-child { border-bottom: none; }
-        .suggestion-item:hover,
-        .suggestion-item:active { background: var(--accent-soft); }
+        .search-btn:hover { opacity: 0.9; }
         .gear-btn {
-            width: 36px;
-            height: 36px;
-            border: none;
+            width: 40px;
+            height: 40px;
             background: transparent;
+            border: 1px solid var(--border);
             color: var(--text-2);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            transition: border-color var(--ease), color var(--ease);
         }
         .gear-btn:hover,
-        .gear-btn.active { color: var(--text); }
-        .gear-btn svg { width: 17px; height: 17px; }
-        /* ── Settings ── */
-        .settings-panel {
-            position: fixed;
-            top: calc(var(--nav-h) + 10px);
-            right: 10px;
-            width: 236px;
+        .gear-btn.active {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .gear-btn svg { width: 18px; height: 18px; }
+        /* ── Suggestions ── */
+        .suggestions {
+            display: none;
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
             background: var(--surface);
             border: 1px solid var(--border);
-            padding: 14px;
-            z-index: 1500;
+            max-height: 280px;
+            overflow-y: auto;
+            z-index: 2000;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+        }
+        .suggestions.show { display: block; }
+        .suggestion-item {
+            padding: 11px 14px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.92rem;
+            color: var(--text);
+            transition: background var(--ease);
+        }
+        .suggestion-item:last-child { border-bottom: none; }
+        .suggestion-item:hover,
+        .suggestion-item.active { background: var(--accent-soft); }
+        .suggestion-word { font-weight: 600; }
+        .suggestion-meta {
+            font-size: 0.78rem;
+            color: var(--text-3);
+            margin-top: 2px;
+        }
+        /* ── Settings ── */
+        .settings-panel {
             display: none;
+            position: fixed;
+            top: calc(var(--nav-h) + 10px);
+            right: 12px;
+            width: 240px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 16px;
+            z-index: 1500;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .settings-panel.show { display: block; }
         .settings-title {
-            font-size: 0.68rem;
+            font-size: 0.78rem;
             font-weight: 700;
             color: var(--text-3);
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+            margin-bottom: 14px;
         }
         .settings-row {
             display: flex;
@@ -210,52 +204,53 @@
             margin-bottom: 12px;
         }
         .settings-row:last-child { margin-bottom: 0; }
-        .settings-label {
-            font-size: 0.88rem;
-            color: var(--text);
-        }
-        .font-controls {
-            display: flex;
-            background: var(--surface-2);
-            padding: 2px;
-            gap: 1px;
-        }
+        .settings-label { font-size: 0.88rem; color: var(--text-2); }
+        .font-controls { display: flex; gap: 4px; }
         .font-btn {
-            width: 28px;
-            height: 24px;
-            border: none;
-            background: transparent;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
             color: var(--text-2);
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 700;
             cursor: pointer;
+            transition: border-color var(--ease), color var(--ease), background var(--ease);
         }
-        .font-btn:nth-child(1) { font-size: 0.7rem; }
-        .font-btn:nth-child(2) { font-size: 0.82rem; }
-        .font-btn:nth-child(3) { font-size: 0.94rem; }
         .font-btn.active {
-            background: var(--surface);
-            color: var(--text);
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-soft);
         }
         .theme-toggle {
-            width: 42px;
-            height: 22px;
+            width: 44px;
+            height: 24px;
+            border-radius: 12px;
             border: none;
-            background: var(--surface-2);
+            background: var(--border);
             position: relative;
             cursor: pointer;
+            transition: background var(--ease);
         }
         .theme-toggle::after {
-            content: "";
+            content: '';
             position: absolute;
-            top: 2px;
-            left: 2px;
+            top: 3px;
+            left: 3px;
             width: 18px;
             height: 18px;
+            border-radius: 50%;
             background: #fff;
-            transition: transform 0.14s;
+            transition: transform var(--ease);
         }
-        [data-theme="dark"] .theme-toggle { background: var(--accent); }
-        [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
+        [data-theme="dark"] .theme-toggle,
+        :root:not([data-theme="light"]) .theme-toggle {
+            background: var(--accent);
+        }
+        [data-theme="dark"] .theme-toggle::after,
+        :root:not([data-theme="light"]) .theme-toggle::after {
+            transform: translateX(20px);
+        }
         /* ── Main ── */
         .main {
             max-width: 640px;
@@ -267,13 +262,14 @@
             margin-bottom: 30px;
             padding: 8px 0 4px;
         }
-        .hero-title {
-            font-size: 1.85rem;
-            font-weight: 800;
-            letter-spacing: -0.035em;
-            margin-bottom: 4px;
+        .hero-logo {
+            height: 72px;
+            width: auto;
+            max-width: 200px;
+            display: block;
+            margin: 0 auto 10px;
+            object-fit: contain;
         }
-        .hero-title span { color: var(--accent); }
         .hero-sub {
             font-size: 0.92rem;
             color: var(--text-2);
@@ -316,47 +312,52 @@
         }
         .fav-header .section-title,
         .recent-header .section-title { margin-bottom: 0; }
-        .clear-history-btn,
-        .clear-fav-btn {
+        .clear-fav-btn,
+        .clear-history-btn {
+            background: none;
             border: none;
-            background: transparent;
             color: var(--text-3);
-            font-size: 0.76rem;
+            font-size: 0.78rem;
             cursor: pointer;
-            padding: 2px 4px;
+            padding: 2px 6px;
+            transition: color var(--ease);
         }
-        .clear-history-btn:hover,
-        .clear-fav-btn:hover { color: var(--accent); }
+        .clear-fav-btn:hover,
+        .clear-history-btn:hover { color: var(--accent); }
         .fav-list,
         .recent-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 8px;
         }
         .fav-chip,
         .recent-chip {
             display: inline-flex;
             align-items: center;
-            gap: 3px;
-            padding: 6px 9px 6px 11px;
+            gap: 4px;
             background: var(--surface-2);
+            border: 1px solid var(--border);
+            padding: 5px 10px;
             font-size: 0.86rem;
             color: var(--text);
             cursor: pointer;
-            border: none;
-            font-weight: 500;
+            transition: border-color var(--ease), background var(--ease);
         }
         .fav-chip:hover,
-        .fav-chip:active,
-        .recent-chip:hover,
-        .recent-chip:active {
+        .recent-chip:hover {
+            border-color: var(--accent);
             background: var(--accent-soft);
-            color: var(--accent);
         }
         .fav-chip-del,
         .recent-chip-del {
-            font-size: 0.88rem;
-            opacity: 0.4;
+            background: none;
+            border: none;
+            color: var(--text-3);
+            font-size: 0.9rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0 2px;
+            opacity: 0.7;
             margin-left: 1px;
         }
         .fav-chip-del:hover,
@@ -438,235 +439,137 @@
             color: var(--text-2);
             font-weight: 500;
         }
-        /* ── Inline Ad (検索結果直下) ── */
-        .inline-ad {
-            position: relative;
-            margin: 0 0 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 0;
-            overflow: hidden;
-        }
-        /* 右上の灰色透過コントロール（インライン・ボトム共通） */
-        .ad-controls {
-            position: absolute;
-            top: 0;
-            right: 0;
-            z-index: 6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.58);
-            padding: 5px 7px 6px;
-            min-width: 42px;
-        }
-        .ad-controls .ad-pr-label {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.62rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            text-decoration: none;
-            line-height: 1.2;
-            padding: 0 0 3px;
-        }
-        .ad-controls .ad-pr-label:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-        .ad-controls .ad-close,
-        .ad-controls .inline-ad-close {
-            width: 28px;
-            height: 28px;
-            border: none;
-            background: transparent;
-            color: #fff;
-            font-size: 1.15rem;
-            line-height: 1;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-        }
-        .ad-controls .ad-close:hover,
-        .ad-controls .ad-close:active,
-        .ad-controls .inline-ad-close:hover,
-        .ad-controls .inline-ad-close:active {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        .inline-ad-link {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-        .inline-ad-image {
-            width: 100%;
-            max-height: 110px;
-            height: auto;
-            display: block;
-            object-fit: contain;
-            background: var(--surface-2);
-        }
-        .inline-ad-text {
-            display: block;
-            padding: 10px 14px 12px;
-            font-size: 0.9rem;
-            font-weight: 650;
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 2px;
-            line-height: 1.4;
-            border-top: 1px solid var(--border);
-            word-break: break-word;
-        }
         .dict-card {
+            display: flex;
+            gap: 16px;
             background: var(--surface);
             border: 1px solid var(--border);
-            border-left: 3px solid var(--accent);
-            padding: 16px 18px;
-            margin-bottom: 10px;
-            display: flex;
-            gap: 18px;
+            padding: 16px;
+            margin-bottom: 14px;
             align-items: flex-start;
         }
-        .dict-card-jp {
-            border-left-color: var(--accent-jp);
-        }
-        .dict-card-en {
-            border-left-color: var(--accent-en);
-        }
+        .dict-card-jp { border-left: 3px solid #059669; }
+        .dict-card-en { border-left: 3px solid #1d4ed8; }
         .dict-body { flex: 1; min-width: 0; }
-        .dict-image {
-            flex-shrink: 0;
-            width: 140px;
-            height: 140px;
-            object-fit: contain;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-        }
-        .dict-image.hidden { display: none; }
         .card-top {
             display: flex;
-            align-items: flex-start;
             justify-content: space-between;
+            align-items: flex-start;
             gap: 10px;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border);
+            margin-bottom: 8px;
         }
         .word-block { flex: 1; min-width: 0; }
         .main-word {
-            font-size: 1.45rem;
-            font-weight: 750;
-            letter-spacing: -0.02em;
+            font-size: 1.4rem;
+            font-weight: 700;
             line-height: 1.25;
             word-break: break-word;
         }
         .pos-tag {
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             font-weight: 500;
             color: var(--text-3);
-            margin-left: 5px;
         }
         .meta-row {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
             gap: 6px;
             margin-top: 4px;
+            align-items: center;
         }
         .lang-badge {
-            font-size: 0.64rem;
-            font-weight: 700;
-            padding: 2px 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 7px;
             background: var(--accent-soft);
             color: var(--accent);
         }
         .type-tag {
-            font-size: 0.76rem;
+            font-size: 0.72rem;
             color: var(--text-3);
         }
         .romaji {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--text-2);
+            font-style: italic;
         }
         .card-actions {
             display: flex;
             gap: 6px;
             flex-shrink: 0;
         }
-        .speak-btn,
-        .fav-btn {
+        .fav-btn,
+        .speak-btn {
             width: 34px;
             height: 34px;
             border: 1px solid var(--border);
-            background: var(--surface);
-            color: var(--accent);
+            background: var(--surface-2);
+            color: var(--text-2);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: border-color var(--ease), color var(--ease), background var(--ease);
         }
-        .speak-btn:hover,
-        .fav-btn:hover { background: var(--accent-soft); }
-        .speak-btn.speaking {
-            background: var(--accent);
+        .fav-btn svg,
+        .speak-btn svg { width: 16px; height: 16px; }
+        .fav-btn:hover,
+        .speak-btn:hover {
             border-color: var(--accent);
-            color: #fff;
+            color: var(--accent);
         }
         .fav-btn.active {
-            background: #fef3c7;
-            border-color: #f59e0b;
-            color: #d97706;
+            color: #eab308;
+            border-color: #eab308;
+            background: rgba(234, 179, 8, 0.1);
         }
-        [data-theme="dark"] .fav-btn.active {
-            background: rgba(245, 158, 11, 0.2);
-            border-color: #f59e0b;
-            color: #fbbf24;
-        }
-        .speak-btn svg,
-        .fav-btn svg { width: 14px; height: 14px; }
         .meaning {
-            font-size: 0.94rem;
-            line-height: 1.65;
+            font-size: 0.95rem;
+            line-height: 1.6;
             color: var(--text);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-        .trans-meaning {
+        .trans-block {
             font-size: 0.88rem;
             color: var(--text-2);
-            margin-bottom: 10px;
-            padding: 9px 12px;
-            background: var(--surface-2);
-            border-left: 2px solid var(--border);
+            margin-bottom: 6px;
         }
-        .clickable-word {
-            color: var(--accent);
-            cursor: pointer;
-            font-weight: 550;
+        .trans-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-3);
+            margin-right: 4px;
         }
-        .clickable-word:hover { text-decoration: underline; }
         .examples {
             list-style: none;
-            margin-top: 2px;
+            margin-top: 6px;
         }
         .examples li {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             color: var(--text-2);
-            line-height: 1.6;
             padding: 3px 0 3px 12px;
             position: relative;
+            line-height: 1.5;
         }
         .examples li::before {
-            content: "・";
+            content: '・';
             position: absolute;
             left: 0;
             color: var(--text-3);
         }
+        .dict-image {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+        }
+        .dict-image.hidden { display: none; }
         .empty-state {
             text-align: center;
-            padding: 48px 16px;
-            color: var(--text-3);
+            padding: 40px 16px;
+            color: var(--text-2);
         }
         .empty-state p {
             font-size: 0.96rem;
@@ -675,10 +578,35 @@
         .empty-hint { font-size: 0.86rem; }
         .footer {
             text-align: center;
+            margin-top: 32px;
+            padding: 20px 12px 16px;
+            border-top: 1px solid var(--border);
+        }
+        .footer-link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 18px;
+            margin-bottom: 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: border-color var(--ease), background var(--ease), color var(--ease);
+        }
+        .footer-link-btn:hover,
+        .footer-link-btn:active {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+        .footer-copy {
             font-size: 0.72rem;
             color: var(--text-3);
-            margin-top: 28px;
-            padding-bottom: 8px;
+            margin: 0;
         }
         /* ── Bottom Ad Banner ── */
         .ad-banner {
@@ -718,27 +646,70 @@
         }
         .ad-text {
             display: block;
-            padding: 13px 16px 15px;
-            font-size: 0.97rem;
-            font-weight: 700;
-            color: #1d4ed8;
-            text-decoration: underline;
-            text-underline-offset: 2px;
+            padding: 10px 14px 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1a1d24;
             line-height: 1.4;
-            background: #ffffff;
-            border-top: 1px solid #e5e7eb;
-            word-break: break-word;
         }
-        [data-theme="dark"] .ad-sheet {
-            background: #1e222b;
+        .ad-controls {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+            padding: 4px 6px 6px;
+            background: rgba(255,255,255,0.92);
+            min-width: 42px;
         }
-        [data-theme="dark"] .ad-image {
-            background: #15181f;
+        .ad-controls .ad-pr-label {
+            font-size: 0.62rem;
+            color: #9ca3af;
+            font-weight: 600;
+            letter-spacing: 0.04em;
         }
-        [data-theme="dark"] .ad-text {
-            color: #60a5fa;
-            background: #1e222b;
-            border-top-color: #2a2f3a;
+        .ad-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            color: #6b7280;
+            cursor: pointer;
+            line-height: 1;
+            padding: 2px 4px;
+        }
+        .ad-close-btn:hover { color: #1a1d24; }
+        /* ── Inline Ad ── */
+        .inline-ad {
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            overflow: hidden;
+        }
+        .inline-ad-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .inline-ad-image {
+            width: 100%;
+            max-height: 120px;
+            object-fit: contain;
+            display: block;
+            background: var(--surface-2);
+        }
+        .inline-ad-text {
+            padding: 10px 14px 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .inline-ad-pr {
+            font-size: 0.68rem;
+            color: var(--text-3);
+            font-weight: 500;
+            margin-left: 6px;
         }
         body.has-ad-banner {
             padding-bottom: 230px;
@@ -747,7 +718,7 @@
         @media (max-width: 640px) {
             :root { --nav-h: 48px; }
             .navbar { padding: 0 10px; gap: 8px; }
-            .logo-mark { font-size: 1.05rem; }
+            .logo-img { height: 28px; }
             .search-input {
                 padding: 10px 4px 10px 10px;
                 font-size: 16px;
@@ -756,7 +727,7 @@
             .gear-btn { width: 36px; height: 36px; }
             .main { padding: 20px 12px 48px; }
             .hero { margin-bottom: 24px; }
-            .hero-title { font-size: 1.55rem; }
+            .hero-logo { height: 56px; max-width: 160px; }
             .dict-card {
                 flex-direction: column;
                 padding: 14px;
@@ -789,33 +760,6 @@
             .ad-controls .ad-pr-label {
                 font-size: 0.58rem;
             }
-            .ad-controls .ad-close,
-            .ad-controls .inline-ad-close {
-                width: 26px;
-                height: 26px;
-                font-size: 1.1rem;
-            }
-            .ad-banner {
-                padding: 12px 10px 16px;
-            }
-            .ad-sheet {
-                max-width: 100%;
-            }
-            .ad-image {
-                max-height: 130px;
-            }
-            .ad-text {
-                padding: 12px 14px 14px;
-                font-size: 0.94rem;
-            }
-            body.has-ad-banner {
-                padding-bottom: 210px;
-            }
-        }
-        @media (max-width: 380px) {
-            .ad-image {
-                max-height: 115px;
-            }
             body.has-ad-banner {
                 padding-bottom: 200px;
             }
@@ -825,7 +769,7 @@
 <body>
     <nav class="navbar">
         <div class="logo" onclick="resetPage()" title="ホームに戻る">
-            <div class="logo-mark">簡<span>辞</span></div>
+            <img src="images/kanji.png" alt="簡辞" class="logo-img">
         </div>
         <div class="search-area">
             <div class="search-box">
@@ -861,7 +805,7 @@
     <main class="main" id="mainContent">
         <div id="welcomeView">
             <div class="hero">
-                <h1 class="hero-title">簡<span>辞</span></h1>
+                <img src="images/kanji.png" alt="簡辞" class="hero-logo">
                 <p class="hero-sub">簡単辞典 - Easy Web Dictionary</p>
                 <p class="hero-desc">知りたい単語だけ検索。わかりやすく短い説明ですぐわかる。</p>
             </div>
@@ -898,6 +842,15 @@
                 </div>
             </div>
             <div class="section">
+                <a href="https://forms.gle/q5eZko8oVpzvNQP89" target="_blank" rel="noopener noreferrer" class="request-btn">
+                    <div class="request-text">
+                        <span class="request-main">お問い合わせはこちらから</span>
+                        <span class="request-sub">クリックしてお問い合わせページへ</span>
+                    </div>
+                    <div class="request-arrow">→</div>
+                </a>
+            </div>
+            <div class="section">
                 <a href="https://forms.gle/jHLszF9ndrR9MXMy6" target="_blank" rel="noopener noreferrer" class="request-btn">
                     <div class="request-text">
                         <span class="request-main">単語追加の申請はこちらから</span>
@@ -906,7 +859,10 @@
                     <div class="request-arrow">→</div>
                 </a>
             </div>
-            <div class="footer">© Entry-Production</div>
+            <div class="footer">
+                <a href="#" class="footer-link-btn" title="URL未定">公式ホームページ</a>
+                <p class="footer-copy">© Entry-Production</p>
+            </div>
         </div>
         <div id="searchResultsView" style="display: none;"></div>
     </main>
@@ -924,171 +880,120 @@
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
+            } else if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
             }
-            const savedSize = localStorage.getItem('dict-font-size');
-            if (savedSize) setFontSize(parseInt(savedSize, 10), false);
-            renderRecent();
+            const savedFont = localStorage.getItem('dict-font-size');
+            if (savedFont) setFontSize(parseInt(savedFont, 10), true);
             renderFavorites();
+            renderRecent();
             updateClearBtn();
-            const input = document.getElementById('searchInput');
-            input.addEventListener('input', onInput);
-            input.addEventListener('keydown', onKeydown);
-            input.addEventListener('focus', onInput);
-            incrementAdCounter();
-            renderBottomAd();
-        });
-        function toggleSettings() {
-            const panel = document.getElementById('settingsPanel');
-            const btn = document.getElementById('gearBtn');
-            const isOpen = panel.classList.toggle('show');
-            btn.classList.toggle('active', isOpen);
-        }
-        document.addEventListener('click', (e) => {
-            const panel = document.getElementById('settingsPanel');
-            const btn = document.getElementById('gearBtn');
-            if (panel.classList.contains('show') && !panel.contains(e.target) && !btn.contains(e.target)) {
-                panel.classList.remove('show');
-                btn.classList.remove('active');
-            }
-            const area = document.querySelector('.search-area');
-            if (!area.contains(e.target)) document.getElementById('suggestions').classList.remove('show');
-        });
-        function toggleTheme() {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            if (isDark) {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('dict-theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('dict-theme', 'dark');
-            }
-        }
-        function setFontSize(size, save = true) {
-            document.documentElement.style.setProperty('--base', size + 'px');
-            document.querySelectorAll('.font-btn').forEach(btn => {
-                btn.classList.toggle('active', parseInt(btn.dataset.size, 10) === size);
+            document.getElementById('searchInput').addEventListener('input', onSearchInput);
+            document.getElementById('searchInput').addEventListener('keydown', e => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    triggerSearch();
+                }
             });
-            if (save) localStorage.setItem('dict-font-size', size);
+            document.addEventListener('click', e => {
+                const panel = document.getElementById('settingsPanel');
+                const gear = document.getElementById('gearBtn');
+                if (!panel.contains(e.target) && !gear.contains(e.target)) {
+                    panel.classList.remove('show');
+                    gear.classList.remove('active');
+                }
+                const sug = document.getElementById('suggestions');
+                const searchArea = document.querySelector('.search-area');
+                if (!searchArea.contains(e.target)) {
+                    sug.classList.remove('show');
+                }
+            });
+        });
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
         }
-        function getMatchScore(item, query) {
-            const q = query.toLowerCase().replace(/\s+/g, '');
-            if (!q) return 0;
-            let score = 0;
-            const check = (str, exactScore, startScore, includeScore) => {
-                if (!str) return;
-                const s = String(str).toLowerCase().replace(/\s+/g, '');
-                if (s === q) score = Math.max(score, exactScore);
-                else if (s.startsWith(q)) score = Math.max(score, startScore);
-                else if (s.includes(q)) score = Math.max(score, includeScore);
-            };
-            check(item.word, 100, 70, 40);
-            if (Array.isArray(item.readings)) {
-                item.readings.forEach(r => check(r, 90, 60, 30));
-            }
-            check(item.romaji, 80, 50, 25);
-            check(item.enTranslation, 50, 30, 15);
-            check(item.jaTranslation, 50, 30, 15);
-            return score;
-        }
-        function filterSuggestions(query) {
-            if (!query) return [];
-            return combinedData
-                .map(item => ({ item, score: getMatchScore(item, query) }))
-                .filter(x => x.score > 0)
-                .sort((a, b) => b.score - a.score)
-                .slice(0, 10)
-                .map(x => x.item);
-        }
-        function filterSearch(query) {
-            if (!query) return [];
-            return combinedData
-                .map(item => ({ item, score: getMatchScore(item, query) }))
-                .filter(x => x.score > 0)
-                .sort((a, b) => b.score - a.score)
-                .map(x => x.item);
-        }
-        function onInput() {
-            const query = document.getElementById('searchInput').value.trim();
-            updateClearBtn();
-            const box = document.getElementById('suggestions');
-            if (!query) { box.classList.remove('show'); box.innerHTML = ''; return; }
-            const matches = filterSuggestions(query);
-            if (matches.length === 0) { box.classList.remove('show'); return; }
-            box.innerHTML = matches.map(m =>
-                `<div class="suggestion-item" role="option" onclick="selectSuggestion('${escapeAttr(m.word)}')">${escapeHtml(m.word)}</div>`
-            ).join('');
-            box.classList.add('show');
-        }
-        function onKeydown(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                document.getElementById('suggestions').classList.remove('show');
-                performSearch(document.getElementById('searchInput').value.trim());
-            }
-        }
-        function selectSuggestion(word) {
-            document.getElementById('searchInput').value = word;
-            document.getElementById('suggestions').classList.remove('show');
-            performSearch(word);
-            document.getElementById('searchInput').blur();
-        }
-        function triggerSearch() {
-            document.getElementById('suggestions').classList.remove('show');
-            performSearch(document.getElementById('searchInput').value.trim());
-        }
-        function clearSearch() {
-            const input = document.getElementById('searchInput');
-            input.value = '';
-            document.getElementById('suggestions').classList.remove('show');
-            updateClearBtn();
-            input.focus();
+        function escapeAttr(str) {
+            return escapeHtml(str).replace(/\n/g, ' ');
         }
         function updateClearBtn() {
-            document.getElementById('clearBtn').classList.toggle('visible', document.getElementById('searchInput').value.length > 0);
+            const input = document.getElementById('searchInput');
+            const btn = document.getElementById('clearBtn');
+            if (input.value.trim()) btn.classList.add('show');
+            else btn.classList.remove('show');
         }
-        /* ── Recent ── */
-        function getRecent() {
-            try { return JSON.parse(localStorage.getItem('dict-recent') || '[]'); }
-            catch { return []; }
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('suggestions').classList.remove('show');
+            updateClearBtn();
+            document.getElementById('searchInput').focus();
         }
-        function addRecent(word) {
-            let list = getRecent().filter(w => w !== word);
-            list.unshift(word);
-            list = list.slice(0, 12);
-            localStorage.setItem('dict-recent', JSON.stringify(list));
-            renderRecent();
-        }
-        function removeRecent(word) {
-            const list = getRecent().filter(w => w !== word);
-            localStorage.setItem('dict-recent', JSON.stringify(list));
-            renderRecent();
-        }
-        function clearAllRecent() {
-            if (!confirm('検索履歴をすべて削除しますか？')) return;
-            localStorage.removeItem('dict-recent');
-            renderRecent();
-        }
-        function renderRecent() {
-            const list = getRecent();
-            const el = document.getElementById('recentList');
-            const clearBtn = document.getElementById('clearHistoryBtn');
-            if (!list.length) {
-                el.innerHTML = '<span class="recent-empty">まだ検索履歴がありません</span>';
-                if (clearBtn) clearBtn.style.display = 'none';
+        function onSearchInput() {
+            updateClearBtn();
+            const q = document.getElementById('searchInput').value.trim().toLowerCase();
+            const sug = document.getElementById('suggestions');
+            if (!q || q.length < 1) {
+                sug.classList.remove('show');
+                sug.innerHTML = '';
                 return;
             }
-            if (clearBtn) clearBtn.style.display = 'block';
-            el.innerHTML = list.map(w =>
-                `<button class="recent-chip" onclick="selectSuggestion('${escapeAttr(w)}')">
-                    ${escapeHtml(w)}
-                    <span class="recent-chip-del" onclick="event.stopPropagation();removeRecent('${escapeAttr(w)}')" title="削除">×</span>
-                </button>`
-            ).join('');
+            const matches = combinedData.filter(item => {
+                const w = (item.word || '').toLowerCase();
+                const r = (item.romaji || '').toLowerCase();
+                return w.startsWith(q) || r.startsWith(q) || w.includes(q);
+            }).slice(0, 8);
+            if (!matches.length) {
+                sug.classList.remove('show');
+                sug.innerHTML = '';
+                return;
+            }
+            sug.innerHTML = matches.map(item => {
+                const meta = [item.pos, item.lang === 'jp' ? '日本語' : 'English'].filter(Boolean).join(' · ');
+                return `<div class="suggestion-item" role="option" onclick="autoSearch('${escapeAttr(item.word)}')">
+                    <div class="suggestion-word">${escapeHtml(item.word)}</div>
+                    <div class="suggestion-meta">${escapeHtml(meta)}</div>
+                </div>`;
+            }).join('');
+            sug.classList.add('show');
         }
-        /* ── Favorites ── */
+        function triggerSearch() {
+            const q = document.getElementById('searchInput').value.trim();
+            if (!q) return;
+            document.getElementById('suggestions').classList.remove('show');
+            performSearch(q);
+        }
+        function filterSearch(query) {
+            const q = query.toLowerCase().trim();
+            return combinedData.filter(item => {
+                const w = (item.word || '').toLowerCase();
+                const r = (item.romaji || '').toLowerCase();
+                const m = (item.meaning || '').toLowerCase();
+                return w === q || w.startsWith(q) || r === q || r.startsWith(q) || w.includes(q) || m.includes(q);
+            }).sort((a, b) => {
+                const aw = (a.word || '').toLowerCase();
+                const bw = (b.word || '').toLowerCase();
+                if (aw === q && bw !== q) return -1;
+                if (bw === q && aw !== q) return 1;
+                if (aw.startsWith(q) && !bw.startsWith(q)) return -1;
+                if (bw.startsWith(q) && !aw.startsWith(q)) return 1;
+                return aw.localeCompare(bw);
+            });
+        }
+        function buildTranslationHtml(item) {
+            if (!item.translation) return '';
+            return `<div class="trans-block"><span class="trans-label">訳</span>${escapeHtml(item.translation)}</div>`;
+        }
         function getFavorites() {
-            try { return JSON.parse(localStorage.getItem('dict-favorites') || '[]'); }
-            catch { return []; }
+            try {
+                return JSON.parse(localStorage.getItem('dict-favorites') || '[]');
+            } catch { return []; }
+        }
+        function saveFavorites(list) {
+            localStorage.setItem('dict-favorites', JSON.stringify(list));
         }
         function isFavorite(word) {
             return getFavorites().includes(word);
@@ -1097,23 +1002,24 @@
             let list = getFavorites();
             if (list.includes(word)) {
                 list = list.filter(w => w !== word);
-                if (btn) btn.classList.remove('active');
+                if (btn) {
+                    btn.classList.remove('active');
+                    btn.querySelector('svg').setAttribute('fill', 'none');
+                }
             } else {
                 list.unshift(word);
-                list = list.slice(0, 50);
-                if (btn) btn.classList.add('active');
+                if (list.length > 50) list = list.slice(0, 50);
+                if (btn) {
+                    btn.classList.add('active');
+                    btn.querySelector('svg').setAttribute('fill', 'currentColor');
+                }
             }
-            localStorage.setItem('dict-favorites', JSON.stringify(list));
-            renderFavorites();
-        }
-        function removeFavorite(word) {
-            const list = getFavorites().filter(w => w !== word);
-            localStorage.setItem('dict-favorites', JSON.stringify(list));
+            saveFavorites(list);
             renderFavorites();
         }
         function clearAllFavorites() {
             if (!confirm('お気に入りをすべて削除しますか？')) return;
-            localStorage.removeItem('dict-favorites');
+            saveFavorites([]);
             renderFavorites();
         }
         function renderFavorites() {
@@ -1122,76 +1028,132 @@
             const clearBtn = document.getElementById('clearFavBtn');
             if (!list.length) {
                 el.innerHTML = '<span class="fav-empty">まだお気に入りがありません</span>';
-                if (clearBtn) clearBtn.style.display = 'none';
+                clearBtn.style.display = 'none';
                 return;
             }
-            if (clearBtn) clearBtn.style.display = 'block';
-            el.innerHTML = list.map(w =>
-                `<button class="fav-chip" onclick="selectSuggestion('${escapeAttr(w)}')">
-                    ${escapeHtml(w)}
-                    <span class="fav-chip-del" onclick="event.stopPropagation();removeFavorite('${escapeAttr(w)}')" title="削除">×</span>
-                </button>`
+            clearBtn.style.display = '';
+            el.innerHTML = list.map(word =>
+                `<span class="fav-chip" onclick="autoSearch('${escapeAttr(word)}')">${escapeHtml(word)}<button class="fav-chip-del" onclick="event.stopPropagation();removeFavorite('${escapeAttr(word)}')" aria-label="削除">×</button></span>`
             ).join('');
         }
-        function speakWord(word, lang, btn) {
-            if (!window.speechSynthesis) {
-                alert('お使いのブラウザは音声読み上げに対応していません。');
+        function removeFavorite(word) {
+            let list = getFavorites().filter(w => w !== word);
+            saveFavorites(list);
+            renderFavorites();
+        }
+        function getRecent() {
+            try {
+                return JSON.parse(localStorage.getItem('dict-recent') || '[]');
+            } catch { return []; }
+        }
+        function saveRecent(list) {
+            localStorage.setItem('dict-recent', JSON.stringify(list));
+        }
+        function addRecent(word) {
+            let list = getRecent().filter(w => w !== word);
+            list.unshift(word);
+            if (list.length > 20) list = list.slice(0, 20);
+            saveRecent(list);
+            renderRecent();
+        }
+        function clearAllRecent() {
+            if (!confirm('検索履歴をすべて削除しますか？')) return;
+            saveRecent([]);
+            renderRecent();
+        }
+        function renderRecent() {
+            const list = getRecent();
+            const el = document.getElementById('recentList');
+            const clearBtn = document.getElementById('clearHistoryBtn');
+            if (!list.length) {
+                el.innerHTML = '<span class="recent-empty">まだ検索履歴がありません</span>';
+                clearBtn.style.display = 'none';
                 return;
             }
+            clearBtn.style.display = '';
+            el.innerHTML = list.map(word =>
+                `<span class="recent-chip" onclick="autoSearch('${escapeAttr(word)}')">${escapeHtml(word)}<button class="recent-chip-del" onclick="event.stopPropagation();removeRecent('${escapeAttr(word)}')" aria-label="削除">×</button></span>`
+            ).join('');
+        }
+        function removeRecent(word) {
+            let list = getRecent().filter(w => w !== word);
+            saveRecent(list);
+            renderRecent();
+        }
+        function speakWord(word, lang, btn) {
+            if (!window.speechSynthesis) return;
             window.speechSynthesis.cancel();
-            const utter = new SpeechSynthesisUtterance(word);
-            utter.lang = (lang === 'jp' || lang === 'ja') ? 'ja-JP' : 'en-US';
-            utter.rate = 0.9;
-            const btns = document.querySelectorAll('.speak-btn');
-            btns.forEach(b => b.classList.remove('speaking'));
-            if (btn) btn.classList.add('speaking');
-            utter.onend = utter.onerror = () => { btns.forEach(b => b.classList.remove('speaking')); };
-            window.speechSynthesis.speak(utter);
+            const u = new SpeechSynthesisUtterance(word);
+            u.lang = lang === 'ja' ? 'ja-JP' : 'en-US';
+            u.rate = 0.95;
+            window.speechSynthesis.speak(u);
         }
-        function hasValidTranslation(val) {
-            return val != null && String(val).trim() !== '';
+        function setFontSize(size, silent) {
+            document.documentElement.style.fontSize = size + 'px';
+            localStorage.setItem('dict-font-size', size);
+            document.querySelectorAll('.font-btn').forEach(b => {
+                b.classList.toggle('active', parseInt(b.dataset.size, 10) === size);
+            });
         }
-        function buildTranslationHtml(item) {
-            let parts = [];
-            if (hasValidTranslation(item.enTranslation)) {
-                const tokens = String(item.enTranslation).split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
-                const links = tokens.map(t =>
-                    `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`
-                ).join(' <span style="color:var(--text-3)">/</span> ');
-                parts.push(`英訳：${links}`);
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            if (current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.setAttribute('data-theme', 'light');
+                localStorage.setItem('dict-theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('dict-theme', 'dark');
             }
-            if (hasValidTranslation(item.jaTranslation)) {
-                const tokens = String(item.jaTranslation).split(/[\/,]+/).map(t => t.trim()).filter(Boolean);
-                const links = tokens.map(t =>
-                    `<span class="clickable-word" onclick="autoSearch('${escapeAttr(t)}')">${escapeHtml(t)}</span>`
-                ).join(' <span style="color:var(--text-3)">/</span> ');
-                parts.push(`和訳：${links}`);
-            }
-            if (parts.length === 0) return '';
-            return `<div class="trans-meaning">${parts.join('<br>')}</div>`;
         }
-        /* ── Inline Ad（検索結果直下） ── */
+        function toggleSettings() {
+            const panel = document.getElementById('settingsPanel');
+            const gear = document.getElementById('gearBtn');
+            panel.classList.toggle('show');
+            gear.classList.toggle('active');
+        }
+        // Ad related (kept from original)
+        let adCounter = 0;
+        function incrementAdCounter() {
+            adCounter++;
+        }
         function buildInlineAdHtml() {
-            if (!window.adData || !window.adData.length) return '';
-            // 毎回検索するたびに必ず表示（閉じても次の検索で復活）
-            const ad = window.adData[Math.floor(Math.random() * window.adData.length)];
-            const hasTitle = ad.title && String(ad.title).trim() !== '';
-            return `
-                <div class="inline-ad" id="inlineAd">
-                    <div class="ad-controls">
-                        <a href="pr.html" class="ad-pr-label" target="_blank" rel="noopener noreferrer">広告-PR</a>
-                        <button class="inline-ad-close" onclick="closeInlineAd()" aria-label="閉じる">×</button>
-                    </div>
-                    <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="inline-ad-link">
-                        <img class="inline-ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">
-                        ${hasTitle ? `<div class="inline-ad-text">${escapeHtml(ad.title)}</div>` : ''}
-                    </a>
-                </div>
-            `;
+            if (typeof window.getInlineAd !== 'function') return '';
+            const ad = window.getInlineAd();
+            if (!ad) return '';
+            return `<div class="inline-ad">
+                <a class="inline-ad-link" href="${escapeAttr(ad.url || '#')}" target="_blank" rel="noopener noreferrer sponsored">
+                    ${ad.image ? `<img class="inline-ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">` : ''}
+                    <div class="inline-ad-text">${escapeHtml(ad.title || '')}<span class="inline-ad-pr">PR</span></div>
+                </a>
+            </div>`;
         }
-        function closeInlineAd() {
-            const el = document.getElementById('inlineAd');
-            if (el) el.remove();
+        function renderBottomAd() {
+            if (typeof window.getBottomAd !== 'function') return;
+            const ad = window.getBottomAd();
+            const banner = document.getElementById('adBanner');
+            if (!ad) {
+                banner.classList.remove('show');
+                document.body.classList.remove('has-ad-banner');
+                return;
+            }
+            banner.innerHTML = `
+                <div class="ad-sheet">
+                    <div class="ad-controls">
+                        <span class="ad-pr-label">PR</span>
+                        <button class="ad-close-btn" onclick="closeBottomAd()" aria-label="閉じる">×</button>
+                    </div>
+                    <a class="ad-link" href="${escapeAttr(ad.url || '#')}" target="_blank" rel="noopener noreferrer sponsored">
+                        ${ad.image ? `<img class="ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">` : ''}
+                        <span class="ad-text">${escapeHtml(ad.title || '')}</span>
+                    </a>
+                </div>`;
+            banner.classList.add('show');
+            document.body.classList.add('has-ad-banner');
+        }
+        function closeBottomAd() {
+            document.getElementById('adBanner').classList.remove('show');
+            document.body.classList.remove('has-ad-banner');
             // sessionStorageには保存しない → 次の検索でまた表示される
         }
         function performSearch(query) {
@@ -1211,6 +1173,15 @@
                         <p class="empty-hint">別の表記でも試してみてください</p>
                     </div>
                     <div class="section" style="margin-top: 20px;">
+                        <a href="https://forms.gle/q5eZko8oVpzvNQP89" target="_blank" rel="noopener noreferrer" class="request-btn">
+                            <div class="request-text">
+                                <span class="request-main">お問い合わせはこちらから</span>
+                                <span class="request-sub">クリックしてお問い合わせページへ</span>
+                            </div>
+                            <div class="request-arrow">→</div>
+                        </a>
+                    </div>
+                    <div class="section">
                         <a href="https://forms.gle/jHLszF9ndrR9MXMy6" target="_blank" rel="noopener noreferrer" class="request-btn" style="border-left-width: 4px; box-shadow: 0 2px 12px rgba(29, 78, 216, 0.12);">
                             <div class="request-text">
                                 <span class="request-main">この単語を追加してほしい場合はこちら</span>
@@ -1219,7 +1190,10 @@
                             <div class="request-arrow">→</div>
                         </a>
                     </div>
-                    <div class="footer">© Entry-Production</div>`;
+                    <div class="footer">
+                        <a href="#" class="footer-link-btn" title="URL未定">公式ホームページ</a>
+                        <p class="footer-copy">© Entry-Production</p>
+                    </div>`;
             } else {
                 const countLabel = found.length === 1 ? '1件' : found.length + '件';
                 html += `<div class="results-header"><p class="results-title">「${escapeHtml(query)}」の検索結果（${countLabel}）</p></div>`;
@@ -1276,6 +1250,15 @@
                 });
                 html += `
                     <div class="section" style="margin-top: 28px;">
+                        <a href="https://forms.gle/q5eZko8oVpzvNQP89" target="_blank" rel="noopener noreferrer" class="request-btn">
+                            <div class="request-text">
+                                <span class="request-main">お問い合わせはこちらから</span>
+                                <span class="request-sub">クリックしてお問い合わせページへ</span>
+                            </div>
+                            <div class="request-arrow">→</div>
+                        </a>
+                    </div>
+                    <div class="section">
                         <a href="https://forms.gle/jHLszF9ndrR9MXMy6" target="_blank" rel="noopener noreferrer" class="request-btn">
                             <div class="request-text">
                                 <span class="request-main">単語追加の申請はこちらから</span>
@@ -1284,7 +1267,10 @@
                             <div class="request-arrow">→</div>
                         </a>
                     </div>
-                    <div class="footer">© Entry-Production</div>`;
+                    <div class="footer">
+                        <a href="#" class="footer-link-btn" title="URL未定">公式ホームページ</a>
+                        <p class="footer-copy">© Entry-Production</p>
+                    </div>`;
             }
             results.innerHTML = html;
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1302,71 +1288,11 @@
             updateClearBtn();
             document.getElementById('welcomeView').style.display = 'block';
             document.getElementById('searchResultsView').style.display = 'none';
-            document.getElementById('searchResultsView').innerHTML = '';
             document.getElementById('settingsPanel').classList.remove('show');
             document.getElementById('gearBtn').classList.remove('active');
-            renderRecent();
-            renderFavorites();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        function escapeHtml(str) {
-            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-        }
-        function escapeAttr(str) {
-            return String(str).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        }
-        /* ── 広告バナー制御 ── */
-        function getAdSuppressCount() {
-            return parseInt(sessionStorage.getItem('ad-suppress-count') || '0', 10);
-        }
-        function setAdSuppressCount(n) {
-            sessionStorage.setItem('ad-suppress-count', String(n));
-        }
-        function incrementAdCounter() {
-            if (sessionStorage.getItem('ad-closed') === '1') {
-                const count = getAdSuppressCount() + 1;
-                setAdSuppressCount(count);
-                if (count >= 5) {
-                    sessionStorage.removeItem('ad-closed');
-                    setAdSuppressCount(0);
-                }
-            }
-        }
-        function renderBottomAd() {
-            const banner = document.getElementById('adBanner');
-            if (!banner || !window.adData || !window.adData.length) return;
-            if (sessionStorage.getItem('ad-closed') === '1') {
-                banner.classList.remove('show');
-                banner.innerHTML = '';
-                document.body.classList.remove('has-ad-banner');
-                return;
-            }
-            const ad = window.adData[Math.floor(Math.random() * window.adData.length)];
-            const hasTitle = ad.title && String(ad.title).trim() !== '';
-            banner.innerHTML = `
-                <div class="ad-sheet">
-                    <div class="ad-controls">
-                        <a href="pr.html" class="ad-pr-label" target="_blank" rel="noopener noreferrer">広告-PR</a>
-                        <button class="ad-close" onclick="closeAd()" aria-label="閉じる">×</button>
-                    </div>
-                    <a href="${escapeAttr(ad.url)}" target="_blank" rel="noopener noreferrer" class="ad-link">
-                        <img class="ad-image" src="${escapeAttr(ad.image)}" alt="${escapeHtml(ad.title || '広告')}" loading="lazy">
-                        ${hasTitle ? `<div class="ad-text">${escapeHtml(ad.title)}</div>` : ''}
-                    </a>
-                </div>
-            `;
-            banner.classList.add('show');
-            document.body.classList.add('has-ad-banner');
-        }
-        function closeAd() {
-            const banner = document.getElementById('adBanner');
-            if (banner) {
-                banner.classList.remove('show');
-                banner.innerHTML = '';
-            }
-            document.body.classList.remove('has-ad-banner');
-            sessionStorage.setItem('ad-closed', '1');
-            setAdSuppressCount(0);
+            renderFavorites();
+            renderRecent();
         }
     </script>
 </body>
